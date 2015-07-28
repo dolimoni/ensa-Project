@@ -7,6 +7,6 @@ class Index extends CI_Controller {
 	 
 	public function inscription()
 	{
-		$this->load->view('inscription');
+		$this->load->view('inscription.html.twig');
 	}
 }
