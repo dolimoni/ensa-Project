@@ -28,5 +28,29 @@ class Etudiant_model extends CI_Model
             return false;
         }
     }
+    
+    /**
+	 *	check if cne and cin and password are corrcts
+     *  return true if valid , else return false
+	 */
+    public function login($cin,$cne,$password){
+        if($password == "" || $cin == "" || $cne == ""){
+            return false;
+        }
+        
+        $query = $this->db->select("id")
+                    ->from($this->table)
+                    ->where('password',$password)
+                    ->where('cin',strtolower($cin))
+                    ->where('cne',strtolower($cne))
+                    ->get();
+        
+        if ( $query->num_rows() > 0 )
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
 	
 }
