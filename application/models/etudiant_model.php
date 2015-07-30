@@ -2,7 +2,7 @@
 
 class Etudiant_model extends CI_Model
 {
-	protected $table = 'achats';
+	protected $table = 'etudiant';
 	
 	/**
 	 *	check if user is valid
