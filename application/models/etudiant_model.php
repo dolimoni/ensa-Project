@@ -59,7 +59,7 @@ class Etudiant_model extends CI_Model
             $this->db->set('created_at','NOW()',false);
             $this->db->set('isValid',1);
             
-            $this->db->where('cin',$info['cin'])
+            $this->db->where('cin',$info['cin']);
             $this->db->update( $this->table) ;
             return true;
         }
