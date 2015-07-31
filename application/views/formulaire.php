@@ -7,5 +7,6 @@
 	<input type="password" name="mdp" value="" />
 	<?php echo form_error('mdp'); ?>
 
-	<input type="submit" value="Envoyer" />
+	<input type="submit" value="Envoyer" /><br/>
+
 </form>

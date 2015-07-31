@@ -8,7 +8,7 @@ class Etudiant_model extends CI_Model
 	 *	check if user is valid
      *  return true if valid , else return false
 	 */
-    private function isValidUser($nom,$prenom,$cin,$cne){
+    public function isValidUser($nom,$prenom,$cin,$cne){
         if($nom == "" || $prenom == "" || $cin == "" || $cne == ""){
             return false;
         }
@@ -36,7 +36,7 @@ class Etudiant_model extends CI_Model
     *$info array contains all the informations given by the user
     */
     public function inscription($info){
-        if(isValidUser($info['nom'],$info['prenom'],$info['cin'],$info['cne'])){
+        if($this->isValidUser($info['nom'],$info['prenom'],$info['cin'],$info['cne'])){
 
 
            
@@ -61,6 +61,8 @@ class Etudiant_model extends CI_Model
             
             $this->db->where('cin',$info['cin']);
             $this->db->update( $this->table) ;
+
+            //we need to update etudiant_ensa also...
             return true;
         }
         return false;
