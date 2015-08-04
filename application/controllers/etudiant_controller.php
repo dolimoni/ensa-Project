@@ -13,9 +13,18 @@ class Etudiant_controller extends CI_Controller {
 		$this->connexion();
 		
 	}
-	public function inscription()
+
+	public function inscription_ensa()
 	{
-		$this->load->view('inscription.html.twig');
+		$this->load->view('form_ensa.html.twig');
+	}
+	public function inscription_cnc()
+	{
+		$this->load->view('form_cnc.html.twig');
+	}
+	public function inscription_3and4Year()
+	{
+		$this->load->view('form_3and4Year.html.twig');
 	}
 	
 
@@ -23,7 +32,8 @@ class Etudiant_controller extends CI_Controller {
 		{
 			
 			//form verification
-			$this->form_validation->set_rules('nom','nom','required|encode_php_tags');
+
+			/*$this->form_validation->set_rules('nom','nom','required|encode_php_tags');
 			$this->form_validation->set_rules('prenom','prenom','required|encode_php_tags');
 			$this->form_validation->set_rules('cne','CNE','required|encode_php_tags');
 			$this->form_validation->set_rules('cin','CIN','required|encode_php_tags');
@@ -38,7 +48,7 @@ class Etudiant_controller extends CI_Controller {
 			$this->form_validation->set_rules('profession_pere','profession de père','required|alpha_dash|encode_php_tags');
 			$this->form_validation->set_rules('profession_mere','profession de mère','required|alpha_dash|encode_php_tags');
 			$this->form_validation->set_rules('note_bac','Note de bac','is_numeric|encode_php_tags');
-			$this->form_validation->set_rules('note_1er_annee','note 1er année','is_numeric|encode_php_tags');
+			$this->form_validation->set_rules('note_1er_annee','note 1er année','is_numeric|encode_php_tags');*/
 			$this->form_validation->set_rules('classement','classement','integer|encode_php_tags');
 
 			if( $this->form_validation->run( ))
@@ -63,8 +73,10 @@ class Etudiant_controller extends CI_Controller {
 				$info['note_1er_annee']=$this->input->post('note_1er_annee');
 				$info['classement']=$this->input->post('classement');
 				$info['type_bac']=$this->input->post('type_bac');
+
+				echo $this->input->post('who');
 				$this->etudiant_model->inscription($info);
-				$this->load->view('index');
+			//	$this->load->view('index');
 			}
 			else
 			{
