@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Inscription extends CI_Controller {
+class Etudiant_controller extends CI_Controller {
 
 	
 	 
@@ -13,8 +13,13 @@ class Inscription extends CI_Controller {
 		$this->connexion();
 		
 	}
+	public function inscription()
+	{
+		$this->load->view('inscription.html.twig');
+	}
+	
 
-	public function connexion( )
+	private  function connexion( )
 		{
 			
 			//form verification
@@ -59,7 +64,7 @@ class Inscription extends CI_Controller {
 				$info['classement']=$this->input->post('classement');
 				$info['type_bac']=$this->input->post('type_bac');
 				$this->etudiant_model->inscription($info);
-				$this->load->view('index') ;
+				$this->load->view('index');
 			}
 			else
 			{
