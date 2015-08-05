@@ -4,10 +4,13 @@
 	<title></title>
 </head>
 <body>
+<h1>Inscription CNC</h1>
 <?= validation_errors() ?>
 <form ENCTYPE="multipart/form-data" method="post" action="<?= site_url('etudiant_controller') ?>">
 	nom : <input type="text" name="nom" value="<?php if(isset($_POST['nom'])) echo $_POST['nom']; ?>" /><br/><br/>
 	prénom <input type="text" name="prenom" value="<?php if(isset($_POST['prenom'])) echo $_POST['prenom']; ?>"/><br/><br/>
+	Civilité <input type="text" name="civilite" value="<?php if(isset($_POST['civilite'])) echo $_POST['civilite']; ?>"/><br/><br/>
+	password <input type="password" name="password"/><br/><br/>
 	Photo <INPUT TYPE=HIDDEN NAME="MAX_FILE_SIZE" VALUE="2000000">
     <INPUT TYPE=FILE SIZE=40 NAME="photo"><br/><br/>
 	Nationalité <input type="text" name="nationalite" value="<?php if(isset($_POST['nationalite'])) echo $_POST['nationalite']; ?>"/><br/><br/>
@@ -37,7 +40,7 @@
 	Filiere CP : <input type="text" name="filiere_cp" value="<?php if(isset($_POST['filiere_cp'])) echo $_POST['filiere_cp']; ?>"/><br/><br/>
 	Etablissement CP : <input type="text" name="etablissement_cp" value="<?php if(isset($_POST['etablissement_cp'])) echo $_POST['etablissement_cp']; ?>"/><br/><br/>
 	ville : <input type="text" name="ville_cp" value="<?php if(isset($_POST['ville_cp'])) echo $_POST['ville_cp']; ?>"/><br/><br/>
-	rang CNC : <input type="text" name="rang_cnc" value="<?php if(isset($_POST['rang_cnc'])) echo $_POST['rang_cnc']; ?>"/><br/><br/>
+	rang CNC : <input type="text" name="range_cnc" value="<?php if(isset($_POST['range_cnc'])) echo $_POST['range_cnc']; ?>"/><br/><br/>
 	
 	<h1>Choix de la filière</h1>
 	<select name="filiere">

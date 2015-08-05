@@ -4,10 +4,13 @@
 	<title></title>
 </head>
 <body>
+<h1>Inscription 3eme et 4eme année</h1>
 <?= validation_errors() ?>
 <form ENCTYPE="multipart/form-data" method="post" action="<?= site_url('etudiant_controller') ?>">
 	nom : <input type="text" name="nom" value="<?php if(isset($_POST['nom'])) echo $_POST['nom']; ?>" /><br/><br/>
 	prénom <input type="text" name="prenom" value="<?php if(isset($_POST['prenom'])) echo $_POST['prenom']; ?>"/><br/><br/>
+	Civilité <input type="text" name="civilite" value="<?php if(isset($_POST['civilite'])) echo $_POST['civilite']; ?>"/><br/><br/>
+	password <input type="password" name="password"/><br/><br/>
 	Photo <INPUT TYPE=HIDDEN NAME="MAX_FILE_SIZE" VALUE="2000000">
     <INPUT TYPE=FILE SIZE=40 NAME="photo"><br/><br/>
 	Nationalité <input type="text" name="nationalite" value="<?php if(isset($_POST['nationalite'])) echo $_POST['nationalite']; ?>"/><br/><br/>
@@ -35,13 +38,13 @@
 	 <br/>
 	Note de bac : <input type="text" name="note_bac" value="<?php if(isset($_POST['note_bac'])) echo $_POST['note_bac']; ?>"/><br/><br/>
 	Diplôme : 
-	<select name="diplome">
+	<select name="type_diplome">
 		<option>DUT</option>
 		<option>Licence</option>
 	</select>
 	<br/>
 	<br/>
-	Etablissement d’obtention de diplôme : <input type="text" name="note_bac" value="<?php if(isset($_POST['note_bac'])) echo $_POST['note_bac']; ?>"/>
+	Etablissement d’obtention de diplôme : <input type="text" name="etablissement_diplome" value="<?php if(isset($_POST['etablissement_diplome'])) echo $_POST['etablissement_diplome']; ?>"/>
 	<h1>Choix de la filière</h1>
 	<select name="filiere">
 		<option>G.industriel</option>
