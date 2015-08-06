@@ -67,8 +67,7 @@ class Etudiant_controller extends CI_Controller {
 
 				$info['gsm']=$this->input->post('gsm');
 				$info['email']=$this->input->post('email');
-				$info['email']=$this->input->post('adresse');
-				$info['adresse']=$this->input->post('tel');
+				$info['adresse']=$this->input->post('adresse');
 				$info['ville']=$this->input->post('ville');
 				$info['profession_pere']=$this->input->post('profession_pere');
 				$info['profession_mere']=$this->input->post('profession_mere');
@@ -91,11 +90,11 @@ class Etudiant_controller extends CI_Controller {
 
 				$info['who']= $this->input->post('who');
 				$this->etudiant_model->inscription($info);
-				$this->load->view('index');
+				//$this->load->view('index');
 			}
 			else
 			{
-				$this->load->view('inscription.html.twig');
+				$this->load->view('index');
 			}
 		
 			

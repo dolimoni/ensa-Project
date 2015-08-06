@@ -36,31 +36,33 @@ class Etudiant_model extends CI_Model
     *$info array contains all the informations given by the user
     */
     public function inscription($info){
-      
+            
+             $data= array(
+                        'email' => $info['email'], 
+                        //'niveau' => $info['niveau'], 
+                        'password'=> $info['password'],
+                        'photo'=> $info['photo']['name'],
+                        'filiere'=> $info['filiere'],
+                        'civilite'=> $info['civilite'],
+                        'nationalite'=> $info['nationalite'],
+                        'date_naissance'=> $info['date_naissance'],
+                        'lieu_naissance'=> $info['lieu_naissance'],
+                        'tel'=> $info['tel'],
+                        'gsm'=> $info['gsm'],
+                        'adresse'=> $info['adresse'],
+                        'ville'=> $info['ville'],
+                        'profession_pere' =>$info['profession_pere'],
+                        'profession_mere'=> $info['profession_mere'],
+                        'matricule' =>'1',
+                        'isValid'=>1,
+                        'created_at'=>date("Y-m-d H:i:s")
+                        );
 
             if($info['who']=="ensa" and $this->isValidUser($info['nom'],$info['prenom'],$info['cin'],$info['cne']))
             {
-                //updating etudiant table
-                $this->db->set('email',$info['email'])
-                     ->set('password',$info['password'])
-                    // ->set('niveau',$info['niveau'])
-                     ->set('photo',$info['photo']['name']) 
-                     ->set('filiere',$info['filiere'])
-                     ->set('civilite',$info['civilite'])
-                     ->set('nationalite',$info['nationalite'])
-                     ->set('date_naissance',$info['date_naissance'])
-                     ->set('lieu_naissance',$info['lieu_naissance'])
-                     ->set('tel',$info['tel'])
-                     ->set('gsm',$info['gsm'])
-                     ->set('adresse',$info['adresse'])
-                     ->set('ville',$info['ville'])
-                     ->set('profession_pere',$info['profession_pere'])
-                     ->set('profession_mere',$info['profession_mere'])
-                     ->set('matricule',$info['matricule'])
-                     ->set('created_at','NOW()',false)
-                     ->set('isValid',1)
-                     ->where('cin',$info['cin'])
-                     ->update( $this->table) ;
+                   
+                     $this->db->where('cin',$info['cin']);
+                     $this->db->update($this->table, $data); 
 
                       copy($info['photo']['tmp_name'], 'assets/img'.$info['photo']['name']);
 
@@ -75,30 +77,8 @@ class Etudiant_model extends CI_Model
             }
             else if($info['who']=="cnc")
             {
-                 //updating etudiant table
-                $this->db->set('nom',$info['nom'])
-                        ->set('prenom',$info['prenom'])
-                        ->set('cin',$info['cin'])
-                        ->set('cne',$info['cne'])
-                        ->set('email',$info['email'])
-                        ->set('password',$info['password'])
-                        ->set('photo',$info['photo']['name']) 
-                       // ->set('niveau',$info['niveau'])
-                        ->set('filiere',$info['filiere'])
-                        ->set('civilite',$info['civilite'])
-                        ->set('nationalite',$info['nationalite'])
-                        ->set('date_naissance',$info['date_naissance'])
-                        ->set('lieu_naissance',$info['lieu_naissance'])
-                        ->set('tel',$info['tel'])
-                        ->set('gsm',$info['gsm'])
-                        ->set('adresse',$info['adresse'])
-                        ->set('ville',$info['ville'])
-                        ->set('profession_pere',$info['profession_pere'])
-                        ->set('profession_mere',$info['profession_mere'])
-                        ->set('matricule','1')
-                        ->set('created_at','NOW()',false)
-                        ->set('isValid',1)
-                        ->insert( $this->table) ;
+                
+                        $this->db->insert($this->table,$data);
 
                  $this->db->set('id_etudiant',$this->getId($info['cin']))
                           ->set('type_bac',$info['type_bac'])
@@ -113,29 +93,8 @@ class Etudiant_model extends CI_Model
             }
             else if($info['who']=="3and4Year")
             {
-                $this->db->set('nom',$info['nom'])
-                         ->set('prenom',$info['prenom'])
-                         ->set('cin',$info['cin'])
-                         ->set('cne',$info['cne'])
-                         ->set('email',$info['email'])
-                         ->set('password',$info['password'])
-                         ->set('photo',$info['photo']['name']) 
-                       //  ->set('niveau',$info['niveau'])
-                         ->set('filiere',$info['filiere'])
-                         ->set('civilite',$info['civilite'])
-                         ->set('nationalite',$info['nationalite'])
-                         ->set('date_naissance',$info['date_naissance'])
-                         ->set('lieu_naissance',$info['lieu_naissance'])
-                         ->set('tel',$info['tel'])
-                         ->set('gsm',$info['gsm'])
-                         ->set('adresse',$info['adresse'])
-                         ->set('ville',$info['ville'])
-                         ->set('profession_pere',$info['profession_pere'])
-                         ->set('profession_mere',$info['profession_mere'])
-                         ->set('matricule','1')
-                         ->set('created_at','NOW()',false)
-                         ->set('isValid',1)
-                         ->insert( $this->table) ;
+
+                 $this->db->insert($this->table,$data);
 
                  $this->db->set('id_etudiant',$info['cin'])
                           ->set('type_diplome',$info['type_diplome'])
