@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Etudiant_controller extends CI_Controller {
+class Ensa_controller extends CI_Controller {
 
 	
 	 
@@ -18,14 +18,6 @@ class Etudiant_controller extends CI_Controller {
 	{
 		$this->load->view('form_ensa.html.twig');
 	}
-	public function inscription_cnc()
-	{
-		$this->load->view('form_cnc.html.twig');
-	}
-	public function inscription_3and4Year()
-	{
-		$this->load->view('form_3and4Year.html.twig');
-	}
 	
 
 	private  function connexion( )
@@ -33,7 +25,7 @@ class Etudiant_controller extends CI_Controller {
 			
 			//form verification
 
-			/*$this->form_validation->set_rules('nom','nom','required|encode_php_tags');
+			$this->form_validation->set_rules('nom','nom','required|encode_php_tags');
 			$this->form_validation->set_rules('prenom','prenom','required|encode_php_tags');
 			$this->form_validation->set_rules('cne','CNE','required|encode_php_tags');
 			$this->form_validation->set_rules('cin','CIN','required|encode_php_tags');
@@ -48,11 +40,10 @@ class Etudiant_controller extends CI_Controller {
 			$this->form_validation->set_rules('profession_pere','profession de père','required|alpha_dash|encode_php_tags');
 			$this->form_validation->set_rules('profession_mere','profession de mère','required|alpha_dash|encode_php_tags');
 			$this->form_validation->set_rules('note_bac','Note de bac','is_numeric|encode_php_tags');
-			$this->form_validation->set_rules('note_1er_annee','note 1er année','is_numeric|encode_php_tags');*/
-			$this->form_validation->set_rules('etablissement_diplome','etablissement du diplome','required|encode_php_tags');
+			$this->form_validation->set_rules('note_1er_annee','note 1er année','is_numeric|encode_php_tags');
 			$this->form_validation->set_rules('classement','classement','integer|encode_php_tags');
 
-			if( $this->form_validation->run( ))
+			if( !$this->form_validation->run( )) //remove the ! to enable form validation
 			{
 				$info['nom']=$this->input->post('nom');
 				$info['prenom']=$this->input->post('prenom');

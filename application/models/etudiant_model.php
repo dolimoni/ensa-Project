@@ -99,7 +99,6 @@ class Etudiant_model extends CI_Model
 
                  $this->db->insert($this->table,$data);
                  copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
-                 
                  $this->db->set('id_etudiant',$info['cin'])
                           ->set('type_diplome',$info['type_diplome'])
                           ->set('etablissement_diplome',$info['etablissement_diplome'])
