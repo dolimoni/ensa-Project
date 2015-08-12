@@ -16,15 +16,15 @@ class Etudiant_controller extends CI_Controller {
 
 	public function inscription_ensa()
 	{
-		$this->load->view('form_ensa.html.twig');
+		$this->load->view('form_ensa.php');
 	}
 	public function inscription_cnc()
 	{
-		$this->load->view('form_cnc.html.twig');
+		$this->load->view('form_cnc.php');
 	}
 	public function inscription_3and4Year()
 	{
-		$this->load->view('form_3and4Year.html.twig');
+		$this->load->view('form_3and4Year.php');
 	}
 	
 
@@ -95,7 +95,7 @@ class Etudiant_controller extends CI_Controller {
 			}
 			else
 			{
-				$this->load->view('form_ensa.html.twig');
+				$this->load->view('form_ensa.php');
 			}
 		
 			

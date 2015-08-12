@@ -5,9 +5,12 @@
 </head>
 <body>
 <h1>Inscription ENSA</h1>
-<?= validation_errors() ?>
-<form ENCTYPE="multipart/form-data" method="post" action="<?= site_url('ensa_controller') ?>">
-	nom : <input type="text" name="nom" value="<?php if(isset($_POST['nom'])) echo $_POST['nom']; ?>" /><br/><br/>
+
+
+<!-- 
+$this->form_validation->set_message('rule', 'Error Message'); -->
+<form ENCTYPE="multipart/form-data" method="post" action="<?php echo site_url('ensa_controller'); ?>">
+	nom : <input type="text" name="nom" value="<?php if(isset($_POST['nom'])) echo $_POST['nom']; ?>" /> <?php echo form_error('nom'); ?><br/><br/>
 	prénom <input type="text" name="prenom" value="<?php if(isset($_POST['prenom'])) echo $_POST['prenom']; ?>"/><br/><br/>
 	Civilité <input type="text" name="civilite" value="<?php if(isset($_POST['civilite'])) echo $_POST['civilite']; ?>"/><br/><br/>
 	password <input type="password" name="password" /><br/><br/>

@@ -17,41 +17,18 @@ class Cnc_controller extends CI_Controller {
 	
 	public function inscription_cnc()
 	{
-		$this->load->view('form_cnc.html.twig');
+		$this->load->view('form_cnc.php');
+
 	}
 	
 
 	private  function connexion( )
 		{
 			
-			//form verification
-
-			$this->form_validation->set_rules('nom','nom','required|encode_php_tags');
-			$this->form_validation->set_rules('prenom','prenom','required|encode_php_tags');
-			$this->form_validation->set_rules('cne','CNE','required|encode_php_tags');
-			$this->form_validation->set_rules('cin','CIN','required|encode_php_tags');
-			$this->form_validation->set_rules('nationalite','nationalité','required|alpha_dash|encode_php_tags');
-			$this->form_validation->set_rules('lieu_naissance','Lieu de naissance','required|alpha|encode_php_tags');
-			$this->form_validation->set_rules('date_naissance','Date de naissance','required|encode_php_tags');
-			$this->form_validation->set_rules('tel','téléphone','required|integer|exact_length[10]|encode_php_tags');
-			$this->form_validation->set_rules('gsm','gsm','encode_php_tags');
-			$this->form_validation->set_rules('email','email','required|valid_email|encode_php_tags');
-			$this->form_validation->set_rules('adresse','adresse','required|alpha_dash|encode_php_tags');
-			$this->form_validation->set_rules('ville','ville','required|alpha_dash|encode_php_tags');
-			$this->form_validation->set_rules('profession_pere','profession de père','required|alpha_dash|encode_php_tags');
-			$this->form_validation->set_rules('profession_mere','profession de mère','required|alpha_dash|encode_php_tags');
-			$this->form_validation->set_rules('note_bac','Note de bac','is_numeric|encode_php_tags');
-
-			//information cnc
-			$this->form_validation->set_rules('filiere_cp','filière cp','required|alpha_dash|encode_php_tags');
-			$this->form_validation->set_rules('etablissement_cp','etablissement cp','is_numeric|encode_php_tags');
-			$this->form_validation->set_rules('ville_cp','ville cp','required|alpha_dash|encode_php_tags');
-			$this->form_validation->set_rules('range_cnc','rang cnc','is_numeric|encode_php_tags');
+			$this->load->library('form_validation');
 
 
-
-
-			if( !$this->form_validation->run( )) //remove the ! to enable form validation
+			if( $this->form_validation->run('cnc_rules')) //remove the ! to enable form validation
 			{
 				$info['nom']=$this->input->post('nom');
 				$info['prenom']=$this->input->post('prenom');
@@ -92,7 +69,7 @@ class Cnc_controller extends CI_Controller {
 			}
 			else
 			{
-				$this->load->view('form_cnc.html.twig');
+				$this->load->view('form_cnc.php');
 			}
 		
 			
