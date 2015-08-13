@@ -11,9 +11,10 @@
 $this->form_validation->set_message('rule', 'Error Message'); -->
 <form ENCTYPE="multipart/form-data" method="post" action="<?php echo site_url('ensa_controller'); ?>">
 	nom : <input type="text" name="nom" value="<?php if(isset($_POST['nom'])) echo $_POST['nom']; ?>" /> <?php echo form_error('nom'); ?><br/><br/>
-	prénom <input type="text" name="prenom" value="<?php if(isset($_POST['prenom'])) echo $_POST['prenom']; ?>"/><br/><br/>
+	prénom <input type="text" name="prenom" value="<?php if(isset($_POST['prenom'])) echo $_POST['prenom']; ?>"/> <br/><br/>
 	Civilité <input type="text" name="civilite" value="<?php if(isset($_POST['civilite'])) echo $_POST['civilite']; ?>"/><br/><br/>
-	password <input type="password" name="password" /><br/><br/>
+	password <input type="password" name="password" /> <?php echo form_error('password'); ?><br/><br/>
+	confirmation <input type="password" name="passconf" /> <?php echo form_error('passconf'); ?><br/><br/>
 	Photo <INPUT TYPE=HIDDEN NAME="photo" VALUE="2000000">
     <INPUT TYPE=FILE SIZE=40 NAME="photo"><br/><br/>
 	Nationalité <input type="text" name="nationalite" value="<?php if(isset($_POST['nationalite'])) echo $_POST['nationalite']; ?>"/><br/><br/>

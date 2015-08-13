@@ -23,6 +23,16 @@ $config = array(
                         'rules' => 'required|encode_php_tags'
                 ),
                 array(
+                        'field' => 'password',
+                        'label' => 'password',
+                        'rules' => 'required|matches[passconf]|encode_php_tags'
+                ),
+                 array(
+                        'field' => 'passconf',
+                        'label' => 'confirmation',
+                        'rules' => 'required|encode_php_tags'
+                ),
+                array(
                         'field' => 'nationalite',
                         'label' => 'nationalité',
                         'rules' => 'required|alpha_dash|encode_php_tags'
@@ -109,6 +119,16 @@ $config = array(
                 array(
                         'field' => 'cin',
                         'label' => 'cin',
+                        'rules' => 'required|encode_php_tags'
+                ),
+                array(
+                        'field' => 'password',
+                        'label' => 'password',
+                        'rules' => 'required|matches[passconf]|encode_php_tags'
+                ),
+                 array(
+                        'field' => 'passconf',
+                        'label' => 'confirmation',
                         'rules' => 'required|encode_php_tags'
                 ),
                 array(
@@ -208,6 +228,16 @@ $config = array(
                 array(
                         'field' => 'cin',
                         'label' => 'cin',
+                        'rules' => 'required|encode_php_tags'
+                ),
+                array(
+                        'field' => 'password',
+                        'label' => 'password',
+                        'rules' => 'required|matches[passconf]|encode_php_tags'
+                ),
+                 array(
+                        'field' => 'passconf',
+                        'label' => 'confirmation',
                         'rules' => 'required|encode_php_tags'
                 ),
                 array(
