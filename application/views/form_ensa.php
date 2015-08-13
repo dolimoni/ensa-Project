@@ -40,7 +40,29 @@ $this->form_validation->set_message('rule', 'Error Message'); -->
 	Note 1ère année : <input type="text" name="note_1er_annee" value="<?php if(isset($_POST['note_1er_annee'])) echo $_POST['note_1er_annee']; ?>"/><br/><br/>
 	Classement : <input type="text" name="classement" value="<?php if(isset($_POST['classement'])) echo $_POST['classement']; ?>"/><br/><br/>
 	<input type="hidden" value="ensa" name="who" / >
-<input type="submit" value="envoyer">
+
+	<h1>Choix de filière :</h1>
+
+		<h3>Choix 1</h3>
+			<input type="radio" name="choix1" value="Génie industriel" />Génie industriel<br/>
+			<input type="radio" name="choix1" value="Génie des procédés et M.C" />Génie des procédés et M.C<br/>
+			<input type="radio" name="choix1" value="Génie informatique" />Génie informatique<br/>
+			<input type="radio" name="choix1" value="Génie télécommunication et réseau" />Génie télécommunication et réseau<br/>
+
+		<h3>Choix 2</h3>
+			<input type="radio" name="choix2" value="Génie industriel" />Génie industriel<br/>
+			<input type="radio" name="choix2" value="Génie des procédés et M.C" />Génie des procédés et M.C<br/>
+			<input type="radio" name="choix2" value="Génie informatique" />Génie informatique<br/>
+			<input type="radio" name="choix2" value="Génie télécommunication et réseau" />Génie télécommunication et réseau<br/>
+
+
+		<h3>Choix 3</h3>
+			<input type="radio" name="choix3" value="Génie industriel" />Génie industriel<br/>
+			<input type="radio" name="choix3" value="Génie des procédés et M.C" />Génie des procédés et M.C<br/>
+			<input type="radio" name="choix3" value="Génie informatique" />Génie informatique<br/>
+			<input type="radio" name="choix3" value="Génie télécommunication et réseau" />Génie télécommunication et réseau<br/>
+
+<input type="submit" value="envoyer" />
 </form>
 </body>
 </html>

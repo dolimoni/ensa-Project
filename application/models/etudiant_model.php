@@ -3,6 +3,7 @@
 class Etudiant_model extends CI_Model
 {
 	protected $table = 'etudiant';
+
 	
 	/**
 	 *	check if user is valid
@@ -42,7 +43,7 @@ class Etudiant_model extends CI_Model
                         //'niveau' => $info['niveau'], 
                         'password'=> $info['password'],
                         'photo'=> $info['photo']['name'],
-                        'filiere'=> $info['filiere'],
+                       // 'filiere'=> $info['filiere'],
                         'civilite'=> $info['civilite'],
                         'nationalite'=> $info['nationalite'],
                         'photo'=>$info['cin'].".jpg",
@@ -61,11 +62,20 @@ class Etudiant_model extends CI_Model
 
             if($info['who']=="ensa" and $this->isValidUser($info['nom'],$info['prenom'],$info['cin'],$info['cne']))
             {
-                   
+
+              // adding chosen filiere to filiere_choix
+               $this->db->set('choix1',$info['choix1'])
+                               ->set('choix2',$info['choix2'])
+                               ->set('choix3',$info['choix3'])
+                               ->insert('filiere_choix');  
+
+
+                     $insert=$this->db->insert_id();//getting the id of the last query
+                     $data['id_choix']=$insert;
                      $this->db->where('cin',$info['cin']);
                      $this->db->update($this->table, $data); 
 
-                      copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+                     copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
 
                     // adding new student to etudiant_ensa
                     $this->db->set('id_etudiant',$this->getId($info['cin']))
@@ -75,11 +85,19 @@ class Etudiant_model extends CI_Model
                    //  $this->db->set('note_2eme_annee',$this->getId($info['note_2eme_annee']));
                              ->set('created_at','NOW()',false)
                              ->insert('etudiant_ensa') ;
-                           
+
+                                        
             }
             else if($info['who']=="cnc")
             {
-                
+                // adding chosen filiere to filiere_choix
+               $this->db->set('choix1',$info['filiere'])//in cnc controller we recieve chosen filiere in "filiere" not in "choix1"
+                               ->set('choix2',"NONE")
+                               ->set('choix3',"NONE")
+                               ->insert('filiere_choix');
+
+                               $insert=$this->db->insert_id();   //getting the id of the last query   
+                               $data['id_choix']=$insert;
                         $this->db->insert($this->table,$data);
                         copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
 
@@ -96,9 +114,16 @@ class Etudiant_model extends CI_Model
             }
             else if($info['who']=="3and4Year")
             {
+                $this->db->set('choix1',$info['filiere'])//in the3and4Year controller we recieve chosen filiere in "filiere" not in "choix1"
+                               ->set('choix2',"NONE")
+                               ->set('choix3',"NONE")
+                               ->insert('filiere_choix');
 
+                  $insert=$this->db->insert_id();   //getting the id of the last query   
+                               $data['id_choix']=$insert;
                  $this->db->insert($this->table,$data);
                  copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+                 
                  $this->db->set('id_etudiant',$info['cin'])
                           ->set('type_diplome',$info['type_diplome'])
                           ->set('etablissement_diplome',$info['etablissement_diplome'])

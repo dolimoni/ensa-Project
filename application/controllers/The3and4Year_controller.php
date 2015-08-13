@@ -24,7 +24,7 @@ class The3and4Year_controller extends CI_Controller {
 
 
 
-			if( $this->form_validation->run('3and4Year_rules')) //remove the ! to enable form validation
+			if( !$this->form_validation->run('3and4Year_rules')) //remove the ! to enable form validation
 			{
 				$info['nom']=$this->input->post('nom');
 				$info['prenom']=$this->input->post('prenom');

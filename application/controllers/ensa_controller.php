@@ -23,7 +23,7 @@ class Ensa_controller extends CI_Controller {
 	private  function connexion( )
 		{
 
-			if( $this->form_validation->run('ensa_rules')) //remove the ! to enable form validation
+			if( !$this->form_validation->run('ensa_rules')) //remove the ! to enable form validation
 			{
 				$info['nom']=$this->input->post('nom');
 				$info['prenom']=$this->input->post('prenom');
@@ -50,15 +50,9 @@ class Ensa_controller extends CI_Controller {
 				$info['note_1er_annee']=$this->input->post('note_1er_annee');
 				$info['classement']=$this->input->post('classement');
 				
-				$info['filiere_cp']=$this->input->post('filiere_cp');
-				$info['etablissement_cp']=$this->input->post('etablissement_cp');
-				$info['ville_cp']=$this->input->post('ville_cp');
-				$info['range_cnc']=$this->input->post('range_cnc');
-
-				$info['diplome']=$this->input->post('diplome');
-				$info['filiere']=$this->input->post('filiere');				
-				$info['type_diplome']=$this->input->post('type_diplome');
-				$info['etablissement_diplome']=$this->input->post('etablissement_diplome');
+				$info['choix1']=$this->input->post('choix1');
+				$info['choix2']=$this->input->post('choix2');
+				$info['choix3']=$this->input->post('choix3');
 
 				$info['who']= $this->input->post('who');
 				$this->etudiant_model->inscription($info);
