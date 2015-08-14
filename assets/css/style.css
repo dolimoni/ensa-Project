@@ -1,0 +1,14 @@
+table
+{
+    border-collapse: collapse; 
+    margin : 10px auto auto auto;
+}
+td
+{
+    border: 1px solid black;
+    width: 20%;
+}
+tr
+{
+    border: 1px solid black;
+}

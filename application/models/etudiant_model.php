@@ -123,7 +123,7 @@ class Etudiant_model extends CI_Model
                                $data['id_choix']=$insert;
                  $this->db->insert($this->table,$data);
                  copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
-                 
+
                  $this->db->set('id_etudiant',$info['cin'])
                           ->set('type_diplome',$info['type_diplome'])
                           ->set('etablissement_diplome',$info['etablissement_diplome'])
@@ -166,8 +166,8 @@ class Etudiant_model extends CI_Model
                     ->where('password',$password)
                     ->where('cin',strtolower($cin))
                     ->where('cne',strtolower($cne))
+                    ->where('isValid',"1")
                     ->get();
-        
         if ( $query->num_rows() > 0 )
         {
             return true;
