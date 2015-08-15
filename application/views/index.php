@@ -4,6 +4,8 @@
 	<title></title>
 </head>
 <body>
+(admin account : cin =1,cne=1,password=essalhi)<br/>
+(authentifaction for students is not totaly ready)<br/>
 <form method="post" action="<?php echo site_url('Etudiant_controller/login');?>">
 	<h2>Bienvenue dans le site le l'ENSA</h2>
 		cin : <input type="text" name="cin" /><br/><br/>
