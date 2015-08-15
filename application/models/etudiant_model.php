@@ -146,7 +146,8 @@ class Etudiant_model extends CI_Model
                     ->where('cin',$cin)
                     ->limit( 1)
                     ->get();
-                    $row = $query->row_array();
+                    
+        $row = $query->row_array();
                    
         return $row['id'];
     }
