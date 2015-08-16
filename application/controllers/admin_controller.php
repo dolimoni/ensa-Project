@@ -23,7 +23,8 @@ class Admin_controller extends CI_Controller
 	public function attribution()
 	{
 		$this->load->model('admin_model');
-		 $this->admin_model->attribution();
+		
+		$this->load->view('classement', $this->admin_model->attribution());
 	}
 }
 

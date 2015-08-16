@@ -21,11 +21,11 @@ class Admin_model extends CI_model{
 			$choix = array();
 
 			$choix['total']=$this->count();// total number of chosen filiere
-			$choix['industriel'] = $this->count($arrayName = array('choix1' => 'Génie industriel'));
-			$choix['informatique'] = $this->count($arrayName = array('choix1' => 'Génie informatique'));
+			$choix['industriel'] = $this->count($arrayName = array('choix1' => 'I'));
+			$choix['informatique'] = $this->count($arrayName = array('choix1' => 'F'));
 			
-			$choix['GTR'] = $this->count($arrayName = array('choix1' => 'Génie télécommunication et réseau'));
-			$choix['GPMC'] = $this->count($arrayName = array('choix1' => 'Génie des procédés et M.C'));
+			$choix['GTR'] = $this->count($arrayName = array('choix1' => 'T'));
+			$choix['GPMC'] = $this->count($arrayName = array('choix1' => 'P'));
 
 			return $choix;
 			
@@ -42,17 +42,19 @@ class Admin_model extends CI_model{
 
 		
 		# this function makes changes in the database, it will update "final_filiere" in the table "etudiant_ensa"
-		
+
 		public function attribution()
 		{
 
+			$place_number=array() ;
 			$data=$this->statistics();
 			arsort($data);
+			$place_number=$this->place_number($data);//using place_number() that find for each filiere how much place are available
 
-
-			$place_number=array() ;
+			
 			$query = $this->db->order_by("moyen","desc")->get('notes'); // getting student's name ordred by thier marks
-			$place_number=$this->place_number($data);//using place_number that find for each filiere how much place are available
+
+			
 
 				foreach ($query->result() as $row)// for each student : row->nom, row->prenom etc
 				{
@@ -90,7 +92,6 @@ class Admin_model extends CI_model{
 				    			{
 				    				$this->db->set('final_filiere',$key)->where('id_etudiant',$result['id'])->update('etudiant_ensa');
 				    				$place_number[$key]=$place_number[$key]-1;
-				    				echo "choix4";
 
 				    			}
 				    		}
@@ -98,7 +99,61 @@ class Admin_model extends CI_model{
 				    }
 				}
 			
+			/*-------------------------------------------------------------------------------------------*/
+
+
+			# recuperation of data that will be shown in the page
+
+			$query=$this->db->select('nom,prenom,moyen')->order_by('nom','asc')->get('notes');
 			
+
+			$data['information'] = array();//array that contains the informations that will be shown in the view
+			
+			$i=0;
+			foreach ($query->result() as $value) {
+
+				
+
+				$n_info=$this->db->select('id_choix,id')->where('nom', $value->nom)->where('prenom', $value->prenom)->get('etudiant');
+				$info = $n_info->row_array();
+
+				 $n_filiere = $this->db->where('id',$info['id_choix'])->get('filiere_choix');
+				 $filiere = $n_filiere->row_array();
+				
+
+				 $n_final_filiere = $this->db->where('id_etudiant',$info['id'])->get('etudiant_ensa');
+				 $final_filiere = $n_final_filiere->row_array();
+
+				 if ($final_filiere['final_filiere']=="F") {
+				 	$final_filiere['final_filiere']="Informatique";
+				 }
+				 if ($final_filiere['final_filiere']=="I") {
+				 	$final_filiere['final_filiere']="Industriel";
+				 }
+				 if ($final_filiere['final_filiere']=="T") {
+					 $final_filiere['final_filiere']="Télécom";
+				 }
+				 if ($final_filiere['final_filiere']=="P") {
+				 	$final_filiere['final_filiere']="Procédés";
+				 	
+				 }
+
+
+				 $row=array(  'nom'   	 	 =>  $value->nom,
+                              'prenom'    	 =>   $value->prenom,
+                              'moyen'   	 =>   $value->moyen ,
+                              'choix'  		 => $filiere['choix1'].$filiere['choix2'].$filiere['choix3'], // example : IFP
+                              'final_filiere'=> $final_filiere['final_filiere']); //example : informatique
+				 $data['information'][$i]=$row;
+				 $i++;
+				
+
+			}
+			
+			
+			
+			//$data['information'][0]=$array1;
+			return $data;
 		}
 
 
@@ -113,10 +168,10 @@ class Admin_model extends CI_model{
 			$a = ($this->count())%$this->filiere_number;
 			$b = ($this->count())-$a;
 
-			$place_number['Génie informatique']=$b/$this->filiere_number;
-			$place_number['Génie industriel']=$b/$this->filiere_number;
-			$place_number['Génie télécommunication et réseau']=$b/$this->filiere_number;
-			$place_number['Génie des procédés et M.C']=$b/$this->filiere_number;
+			$place_number['F']=$b/$this->filiere_number;
+			$place_number['I']=$b/$this->filiere_number;
+			$place_number['T']=$b/$this->filiere_number;
+			$place_number['P']=$b/$this->filiere_number;
 			$i = -1;
 			foreach ($data as $key => $value) {
 				
