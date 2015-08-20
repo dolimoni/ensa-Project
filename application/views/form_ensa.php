@@ -63,7 +63,8 @@ $this->form_validation->set_message('rule', 'Error Message'); -->
 			<input type="radio" name="choix3" value="Génie informatique" />Génie informatique<br/>
 			<input type="radio" name="choix3" value="Génie télécommunication et réseau" />Génie télécommunication et réseau<br/>
 
-<input type="submit" value="envoyer" />
+<input type="submit" value="envoyer" /><br/>
+<a href="<?php echo site_url('My_controllerpdf/pdfensasprepa')?>">genere pdf</a>
 </form>
 </body>
 </html>

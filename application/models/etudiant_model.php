@@ -7,7 +7,7 @@ class Etudiant_model extends CI_Model
 	
 	/**
 	 *	check if user is valid
-     *  return true if valid , else return false
+   *  return true if valid , else return false
 	 */
     public function isValidUser($nom,$prenom,$cin,$cne){
         if($nom == "" || $prenom == "" || $cin == "" || $cne == ""){
@@ -31,11 +31,13 @@ class Etudiant_model extends CI_Model
     }
     
     /**
+    *
     * add a new etudiant if isValidUser() return true
     * return true if inscription succeded
     *
-    *$info array contains all the informations given by the user
-    */
+    * $info array contains all the informations given by the user
+    *
+    **/
     public function inscription($info){
             
              $data= array(
@@ -119,7 +121,7 @@ class Etudiant_model extends CI_Model
                                ->set('choix3',"NONE")
                                ->insert('filiere_choix');
 
-                  $insert=$this->db->insert_id();   //getting the id of the last query   
+                 $insert=$this->db->insert_id();   //getting the id of the last query   
                                $data['id_choix']=$insert;
                  $this->db->insert($this->table,$data);
                  copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
@@ -152,9 +154,9 @@ class Etudiant_model extends CI_Model
         return $row['id'];
     }
 
-    /**
+   /**
 	 *	check if cne and cin and password are corrcts
-     *  return true if valid , else return false
+   *  return true if valid , else return false
 	 */
 
     public function login($cin,$cne,$password){

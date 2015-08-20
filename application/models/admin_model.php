@@ -102,7 +102,7 @@ class Admin_model extends CI_model{
 			/*-------------------------------------------------------------------------------------------*/
 
 
-			# recuperation of data that will be shown in the page
+			# recuperation of data that will be shown in the view page
 
 			$query=$this->db->select('nom,prenom,moyen')->order_by('nom','asc')->get('notes');
 			
