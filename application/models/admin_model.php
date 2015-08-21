@@ -43,15 +43,14 @@ class Admin_model extends CI_model{
 		
 		# this function makes changes in the database, it will update "final_filiere" in the table "etudiant_ensa"
 
-		public function attribution()
+		public function attribution($order)
 		{
 
 			$place_number=array() ;
 			$data=$this->statistics();
 			arsort($data);
 			$place_number=$this->place_number($data);//using place_number() that find for each filiere how much place are available
-
-			
+		
 			$query = $this->db->order_by("moyen","desc")->get('notes'); // getting student's name ordred by thier marks
 
 			
@@ -103,8 +102,11 @@ class Admin_model extends CI_model{
 
 
 			# recuperation of data that will be shown in the view page
-
+			if($order=="nom")
 			$query=$this->db->select('nom,prenom,moyen')->order_by('nom','asc')->get('notes');
+			else
+			$query=$this->db->select('nom,prenom,moyen')->order_by('moyen','desc')->get('notes');
+			
 			
 
 			$data['information'] = array();//array that contains the informations that will be shown in the view

@@ -24,7 +24,17 @@ class Admin_controller extends CI_Controller
 	{
 		$this->load->model('admin_model');
 		
-		$this->load->view('classement', $this->admin_model->attribution());
+		$this->load->view('classement', $this->admin_model->attribution("moyen"));
+
+		
+	}
+
+	public function test()
+	{
+		 $order=$this->input->post('name');
+		  $this->load->model('admin_model');
+		$this->load->view('array.php', $this->admin_model->attribution($order));
+
 	}
 }
 
