@@ -189,6 +189,17 @@ class Admin_model extends CI_model{
 			}
 			return $place_number;
 		}
+    
+        /* By Essaidi : this fct insert students in db */
+        public function insertStudentsFromExcelFile($students){
+            foreach($students as $student){
+                $this->db->set('nom',$student['B'])
+                               ->set('prenom',$student['C'])
+                               ->set('cne',$student['E'])
+                               ->set('cin',$student['D'])
+                               ->insert('etudiant'); 
+            }
+        }
 
 }
 
