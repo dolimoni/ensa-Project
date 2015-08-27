@@ -87,7 +87,8 @@ class Etudiant_model extends CI_Model
                    //  $this->db->set('note_2eme_annee',$this->getId($info['note_2eme_annee']));
                              ->set('created_at','NOW()',false)
                              ->insert('etudiant_ensa') ;
-
+                
+                $this->sendEmailtoUser($info['email'],"Inscription réussie","Votre compte est bien activé avec le mot de passe suivant «".$info['password']." », voilà vos 3choix à propos de filière : Choix1 : ".$info['choix1'].", choix2 : ".$info['choix2']." choix3 : ".$info['choix3'].".");
                                         
             }
             else if($info['who']=="cnc")
@@ -138,6 +139,31 @@ class Etudiant_model extends CI_Model
               
             return true;
     }
+    
+    
+    /* By Essaidi : this function sends email */
+    private function sendEmailtoUser($to,$subject,$message){
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'modisoft1@gmail.com',
+            'smtp_pass' => 'casamoha',
+            'mailtype'  => 'html', 
+            'charset'   => 'iso-8859-1'
+        );
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+
+        $this->email->from('modisoft1@gmail.com', 'myname');
+        $this->email->to($to); 
+
+        $this->email->subject($subject);
+        $this->email->message($message);  
+
+        $result = $this->email->send();
+    }
+    
     /*
     *   return the id of a given cin
     */

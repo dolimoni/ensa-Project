@@ -23,7 +23,7 @@ class Ensa_controller extends CI_Controller {
 	private  function connexion( )
 		{
 
-			if( !$this->form_validation->run('ensa_rules')) //remove the ! to enable form validation
+			if( $this->form_validation->run('ensa_rules')) //remove the ! to enable form validation
 			{
 				$info['nom']=$this->input->post('nom');
 				$info['prenom']=$this->input->post('prenom');

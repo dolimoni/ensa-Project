@@ -24,6 +24,7 @@ class Etudiant_controller extends CI_Controller {
 			
 		
 	}
-
+    
+    
 	
 }
