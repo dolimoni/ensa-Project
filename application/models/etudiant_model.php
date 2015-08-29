@@ -147,8 +147,8 @@ class Etudiant_model extends CI_Model
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
             'smtp_port' => 465,
-            'smtp_user' => 'modisoft1@gmail.com',
-            'smtp_pass' => 'casamoha',
+            'smtp_user' => 'modisoft1@gmail.com',// Change this to admin Email
+            'smtp_pass' => 'casamoha',// Change this to admin pass
             'mailtype'  => 'html', 
             'charset'   => 'iso-8859-1'
         );
