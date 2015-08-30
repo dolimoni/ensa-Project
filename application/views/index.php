@@ -12,7 +12,6 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,600,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/icons/flaticon.css" />
         
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/cummon.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/signup.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/login.css" />
     </head>
@@ -23,6 +22,30 @@
                 <div class="e_title col-sm-4 col-sm-offset-2">
                     <h3>Authentification</h3>
                 </div>
+                <table class="table table-bordered table-calendrier">
+                  <tbody>
+                    <tr>
+                      <th scope="row">25 Juin</th>
+                      <td>Ouverture des choix de filliere en ligne sur le site web</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">03 juillet</th>
+                      <td>Date de limite des choix de filliere</td>
+                    </tr>
+                      <tr>
+                      <th scope="row">25 Juin</th>
+                      <td>Ouverture des choix de filliere en ligne sur le site web</td>
+                    </tr>
+                      <tr>
+                      <th scope="row">25 Juin</th>
+                      <td>Ouverture des choix de filliere en ligne sur le site web</td>
+                    </tr>
+                      <tr>
+                      <th scope="row">25 Juin</th>
+                      <td>Ouverture des choix de filliere en ligne sur le site web</td>
+                    </tr>
+                  </tbody>
+                </table>
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
                         <form method="post" action="<?php echo site_url('Etudiant_controller/login');?>">

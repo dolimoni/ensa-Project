@@ -8,31 +8,6 @@ body{
 img{
     max-width: 100%;
 }
-.e_binatna{
-    color:#6cd9aa;
-}
-.e_ma{
-    font-size: 18px;
-}
-.e_desc{
-    color: #b5b5b5;
-    font-size: 16px;
-    font-weight: 400;
-}
-.e_desc2{
-    color: #767676;
-    font-size: 14px;
-    font-weight: 600;
-}
-.e_separateur_line{
-    display: block;
-    width: 100%;
-    border-bottom: 4px solid #9f9f9f;
-    position: relative;
-    bottom:20px;
-    z-index: 0;
-}
-
 /* Inscription */
 #e_signup .container{
     background-color:#fff;
