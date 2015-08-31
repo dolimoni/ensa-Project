@@ -172,6 +172,7 @@
                                 <input type="radio" name="choix3" value="Génie informatique" />Génie informatique<br/>
                                 <input type="radio" name="choix3" value="Génie télécommunication et réseau" />Génie télécommunication et réseau<br/>
                             </div>
+                                    <input type="hidden" value="ensa" name="who" / >
                             <div class="e_login_btn col-md-4 col-md-offset-8 text-right">
                                 <input type="submit" name="submit" value="Inscription" id="e_inscription" class='btn btn-success'/>
                             </div>
