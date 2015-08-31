@@ -20,7 +20,7 @@
         <div id="e_signup">
             <div class="container">
                 <div class="e_title col-sm-4 col-sm-offset-2">
-                    <h3>Inscription 2eme année</h3>
+                    <h3>Inscription 3eme ou 4eme année</h3>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
