@@ -155,11 +155,10 @@
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 <span> Choix de la filiere</span>
-                                <select name="filiere">
-                                    <option>PC</option>
-                                    <option>SVT</option>
-                                    <option>Sn Math</option>
-                                </select>
+                                <input type="radio" name="filiere" value="Génie industriel" />Génie industriel<br/>
+                                <input type="radio" name="filiere" value="Génie des procédés et M.C" />Génie des procédés et M.C<br/>
+                                <input type="radio" name="filiere" value="Génie informatique" />Génie informatique<br/>
+                                <input type="radio" name="filiere" value="Génie télécommunication et réseau" />Génie télécommunication et
                             </div>
                                     <input type="hidden" value="3and4Year" name="who" / >
                             <div class="e_login_btn col-md-4 col-md-offset-8 text-right">

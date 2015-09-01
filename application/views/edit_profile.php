@@ -20,7 +20,7 @@
         <div id="e_signup">
             <div class="container">
                 <div class="e_title col-sm-4 col-sm-offset-2">
-                    <h3>Inscription CNC</h3>
+                    <h3>Modification des informations personnels</h3>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
@@ -32,36 +32,29 @@
                             
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-user"></span>
-                                <input type="text" name="nom" value="<?php if(isset($_POST['nom'])) echo $_POST['nom']; ?>" placeholder="Nom"/> 
+                                <input type="text" name="nom" value="<?php echo $nom; ?>" placeholder="Nom"/> 
                                 <?php echo form_error('nom'); ?>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-user"></span>
-                                <input type="text" name="prenom" value="<?php if(isset($_POST['prenom'])) echo $_POST['prenom']; ?>" placeholder="Prénom"/>
+                                <input type="text" name="prenom" value="<?php echo $prenom ?>" placeholder="Prénom"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-bookmark"></span>
                                 <span> Civilite</span>
-                                <input type="radio" name="civilite" value="homme"/> Homme
-                                <input type="radio" name="civilite" value="femme"/> Femme
-                            </div>
-                            <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-asterisk"></span>
-                                <input type="password" name="password" placeholder="Mot de passe"/> <?php echo form_error('password'); ?>
-                            </div>
-                            <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-asterisk"></span>
-                                <input type="password" name="passconf" placeholder="Confirmation du mot de passe"/> <?php echo form_error('passconf'); ?>
+                                <input type="radio" name="civilite" value="homme" <?php echoChecked($civilite,"homme") ?> /> Homme
+                                <input type="radio" name="civilite" value="femme" <?php echoChecked($civilite,"femme") ?>/> Femme
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-camera"></span>
                                 <span> Photo</span>
                                 <INPUT TYPE="HIDDEN" NAME="photo" VALUE="2000000">
                                 <INPUT TYPE="FILE" SIZE="40" NAME="photo">
+                                <img src="<?php echo img_url($photo); ?>" class="profile-img-small"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-flag"></span>
-                                <input type="text" name="nationalite" value="<?php if(isset($_POST['nationalite'])) echo $_POST['nationalite']; ?>" placeholder="Nationalité" />
+                                <input type="text" name="nationalite" value="<?php echo $nationalite ?>" placeholder="Nationalité" />
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -86,89 +79,103 @@
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-map-marker"></span>
-                                <input type="text" name="lieu_naissance" value="<?php if(isset($_POST['lieu_naissance'])) echo $_POST['lieu_naissance']; ?>" placeholder="Lieu de naissance"/>
+                                <input type="text" name="lieu_naissance" value="<?php echo $lieu_naissance ?>" placeholder="Lieu de naissance"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="cin" value="<?php if(isset($_POST['cin'])) echo $_POST['cin']; ?>" placeholder="CIN"/>
+                                <input type="text" name="cin" value="<?php echo $cin; ?>" placeholder="CIN"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-earphone"></span>
-                                <input type="text" name="tel" value="<?php if(isset($_POST['tel'])) echo $_POST['tel']; ?>" placeholder="Tel"/>
+                                <input type="text" name="tel" value="<?php echo $tel ?>" placeholder="Tel"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-phone"></span>
-                                <input type="text" name="gsm" value="<?php if(isset($_POST['gsm'])) echo $_POST['gsm']; ?>" placeholder="GSM"/>
+                                <input type="text" name="gsm" value="<?php echo $gsm; ?>" placeholder="GSM"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-envelope"></span>
-                                <input type="text" name="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" placeholder="Email"/>
+                                <input type="text" name="email" value="<?php echo $email; ?>" placeholder="Email"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-map-marker"></span>
-                                <input type="text" name="adresse" value="<?php if(isset($_POST['adresse'])) echo $_POST['adresse']; ?>" placeholder="Adresse"/>
+                                <input type="text" name="adresse" value="<?php echo $adresse ?>" placeholder="Adresse"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-map-marker"></span>
-                                <input type="text" name="ville" value="<?php if(isset($_POST['ville'])) echo $_POST['ville']; ?>" placeholder="Ville"/>
+                                <input type="text" name="ville" value="<?php echo $ville ?>" placeholder="Ville"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-info-sign"></span>
-                                <input type="text" name="profession_pere" value="<?php if(isset($_POST['profession_pere'])) echo $_POST['profession_pere']; ?>" placeholder="Profession du père"/>
+                                <input type="text" name="profession_pere" value="<?php echo $profession_pere ?>" placeholder="Profession du père"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-info-sign"></span>
-                                <input type="text" name="profession_mere" value="<?php if(isset($_POST['profession_mere'])) echo $_POST['profession_mere']; ?>" placeholder="Profession du mère"/>
+                                <input type="text" name="profession_mere" value="<?php echo $profession_mere ?>" placeholder="Profession du mère"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="cne" value="<?php if(isset($_POST['cne'])) echo $_POST['cne']; ?>" placeholder="CNE"/>
+                                <input type="text" name="cne" value="<?php echo $cne ?>" placeholder="CNE"/>
                             </div>
+                            <?php
+                            // If Who == ENSA
+                            if($who == "ensa"){
+                            ?>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 <span> Type du bac</span>
                                 <select name="type_bac">
-                                    <option>PC</option>
-                                    <option>SVT</option>
-                                    <option>Sn Math</option>
+                                    <option value="PC" <?php echoSelected($type_bac,"PC") ?>>PC</option>
+                                    <option value="SVT" <?php echoSelected($type_bac,"SVT") ?>>SVT</option>
+                                    <option value="Sn Math" <?php echoSelected($type_bac,"Sn Math") ?>>Sn Math</option>
                                 </select>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="note_bac" value="<?php if(isset($_POST['note_bac'])) echo $_POST['note_bac']; ?>" placeholder="Note du bac"/>
+                                <input type="text" name="note_bac" value="<?php echo $note_bac; ?>" placeholder="Note du bac"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="filiere_cp" value="<?php if(isset($_POST['filiere_cp'])) echo $_POST['filiere_cp']; ?>" placeholder="Filiere CP"/>
+                                <input type="text" name="note_1er_annee" value="<?php echo $note_1er_annee; ?>" placeholder="Note 1er année"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="etablissement_cp" value="<?php if(isset($_POST['etablissement_cp'])) echo $_POST['etablissement_cp']; ?>" placeholder="Etablissement CP"/>
-                            </div>
-                            <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="ville_cp" value="<?php if(isset($_POST['ville_cp'])) echo $_POST['ville_cp']; ?>" placeholder="Ville"/>
-                            </div>
-                            <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="range_cnc" value="<?php if(isset($_POST['range_cnc'])) echo $_POST['range_cnc']; ?>" placeholder="Range CNC"/>
+                                <input type="text" name="classement" value="<?php echo $classement_1er_annee; ?>" placeholder="Classement"/>
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <h3>Choix de la filliere:</h3>
                             </div>
                             <div class="e_input e_date col-md-12">
-                                <span class="glyphicon glyphicon-list-alt"></span>
-                                <span> Choix de la filiere</span>
-                                <input type="radio" name="filiere" value="Génie industriel" />Génie industriel<br/>
-                                <input type="radio" name="filiere" value="Génie des procédés et M.C" />Génie des procédés et M.C<br/>
-                                <input type="radio" name="filiere" value="Génie informatique" />Génie informatique<br/>
-                                <input type="radio" name="filiere" value="Génie télécommunication et réseau" />Génie télécommunication et
+                                <span class="glyphicon glyphicon-certificate"></span>
+                                <span> Choix 1</span><br/>
+                                <input type="radio" name="choix1" value="Génie industriel" <?php echoChecked($choix1,"Génie industriel") ?> />Génie industriel<br/>
+                                <input type="radio" name="choix1" value="Génie des procédés et M.C" <?php echoChecked($choix1,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
+                                <input type="radio" name="choix1" value="Génie informatique" <?php echoChecked($choix1,"Génie informatique") ?> />Génie informatique<br/>
+                                <input type="radio" name="choix1" value="Génie télécommunication et réseau" <?php echoChecked($choix1,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
                             </div>
-                                    <input type="hidden" value="cnc" name="who" / >
+                            <div class="e_input e_date col-md-12">
+                                <span class="glyphicon glyphicon-certificate"></span>
+                                <span> Choix 2</span><br/>
+                                <input type="radio" name="choix2" value="Génie industriel" <?php echoChecked($choix2,"Génie industriel") ?> />Génie industriel<br/>
+                                <input type="radio" name="choix2" value="Génie des procédés et M.C" <?php echoChecked($choix2,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
+                                <input type="radio" name="choix2" value="Génie informatique" <?php echoChecked($choix2,"Génie informatique") ?> />Génie informatique<br/>
+                                <input type="radio" name="choix2" value="Génie télécommunication et réseau" <?php echoChecked($choix2,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
+                            </div>
+                            <div class="e_input e_date col-md-12">
+                                <span class="glyphicon glyphicon-certificate"></span>
+                                <span> Choix 3</span><br/>
+                                <input type="radio" name="choix3" value="Génie industriel" <?php echoChecked($choix3,"Génie industriel") ?> />Génie industriel<br/>
+                                <input type="radio" name="choix3" value="Génie des procédés et M.C" <?php echoChecked($choix3,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
+                                <input type="radio" name="choix3" value="Génie informatique" <?php echoChecked($choix3,"Génie informatique") ?> />Génie informatique<br/>
+                                <input type="radio" name="choix3" value="Génie télécommunication et réseau" <?php echoChecked($choix3,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
+                            </div>
+                            <input type="hidden" value="ensa" name="who" / >
+                            <?php
+                            }
+                            ?>
                             <div class="e_login_btn col-md-4 col-md-offset-8 text-right">
-                                <input type="submit" name="submit" value="Inscription" id="e_inscription" class='btn btn-success'/>
+                                <input type="submit" name="submit" value="Valider les modifications" id="e_inscription" class='btn btn-success'/>
                             </div>
-                            <p class="pull-right"><a href="<?php echo site_url('My_controllerpdf/pdfensasprepa')?>">genere pdf</a>.</p>
                         </form>
                     </div>
                 </div>

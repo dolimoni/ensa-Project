@@ -167,7 +167,7 @@ class Etudiant_model extends CI_Model
     /*
     *   return the id of a given cin
     */
-    private function getId($cin)
+    public function getId($cin)
     {
         $query = $this->db->select("*")
                     ->from($this->table)
@@ -203,6 +203,95 @@ class Etudiant_model extends CI_Model
         }else{
             return false;
         }
+    }
+    
+    /* By Essaidi : This fct returns the type of the Etudiant (ensa,cnc...) */
+    public function getEtudiantWho($id){
+        if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_ensa") > 0){
+            return "ensa";
+        }else if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_cnc") > 0){
+            return "ensa";
+        }else if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_3eme_4eme") > 0){
+            return "3and4Year";
+        }
+    }
+    
+    /* By Essaidi : Returns an array with etudiant's info */
+    public function getProfile($id){
+        $query = $this->db->select("*")
+                    ->from($this->table)
+                    ->where('id',$id)
+                    ->limit( 1)
+                    ->get();
+                    
+        $row = $query->row_array();
+        
+        if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_ensa") > 0){
+            $row["who"]= "ensa";
+            
+            $query2 = $this->db->select("*")
+                    ->from("etudiant_ensa")
+                    ->where('id_etudiant',$id)
+                    ->limit( 1)
+                    ->get();
+                    
+            $row2 = $query2->row_array();
+            
+            $row["type_bac"] = $row2["type_bac"];
+            $row["note_bac"] = $row2["note_bac"];
+            $row["note_1er_annee"] = $row2["note_1er_annee"];
+            $row["classement_1er_annee"] = $row2["classement_1er_annee"];
+            $row["note_2eme_annee"] = $row2["note_2eme_annee"];
+            
+            $query3 = $this->db->select("*")
+                    ->from("filiere_choix")
+                    ->where('id',$row["id_choix"])
+                    ->limit(1)
+                    ->get();
+                    
+            $row3 = $query3->row_array();
+            
+            $row["choix1"] = $row3["choix1"];
+            $row["choix2"] = $row3["choix2"];
+            $row["choix3"] = $row3["choix3"];
+            
+        }else if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_cnc") > 0){
+            $row["who"]= "cnc";
+            
+            $query2 = $this->db->select("*")
+                    ->from("etudiant_cnc")
+                    ->where('id_etudiant',$id)
+                    ->limit( 1)
+                    ->get();
+                    
+            $row2 = $query2->row_array();
+            
+            $row["type_bac"] = $row2["type_bac"];
+            $row["note_bac"] = $row2["note_bac"];
+            $row["filiere_cp"] = $row2["filiere_cp"];
+            $row["etablissement_cp"] = $row2["etablissement_cp"];
+            $row["ville_cp"] = $row2["ville_cp"];
+            $row["range_cnc"] = $row2["range_cnc"];
+            
+            // A faire : Add the filiere
+        }else if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_3eme_4eme") > 0){
+            $row["who"]= "3and4Year";
+            
+            $query2 = $this->db->select("*")
+                    ->from("etudiant_3eme_4eme")
+                    ->where('id_etudiant',$id)
+                    ->limit( 1)
+                    ->get();
+                    
+            $row2 = $query2->row_array();
+            
+            $row["type_diplome"] = $row2["type_diplome"];
+            $row["etablissement_diplome"] = $row2["etablissement_diplome"];
+            
+            // A faire : Add the filiere
+        }
+        
+        return $row;
     }
 	
 }
