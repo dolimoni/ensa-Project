@@ -29,11 +29,10 @@
                                 <span class="glyphicon glyphicon-remove-sign"></span>
                                 Veuillez remplir tous les champs obligatoires
                             </div>
-                            
+                            <?php echo $this->form_validation->first_error();?>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-user"></span>
                                 <input type="text" name="nom" value="<?php if(isset($_POST['nom'])) echo $_POST['nom']; ?>" placeholder="Nom"/> 
-                                <?php echo form_error('nom'); ?>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-user"></span>
@@ -47,11 +46,11 @@
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-asterisk"></span>
-                                <input type="password" name="password" placeholder="Mot de passe"/> <?php echo form_error('password'); ?>
+                                <input type="password" name="password" placeholder="Mot de passe"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-asterisk"></span>
-                                <input type="password" name="passconf" placeholder="Confirmation du mot de passe"/> <?php echo form_error('passconf'); ?>
+                                <input type="password" name="passconf" placeholder="Confirmation du mot de passe"/>
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-camera"></span>
