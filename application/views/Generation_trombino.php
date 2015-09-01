@@ -1,44 +1,23 @@
 <html>
 <head>
-    <meta charset="UTF-8">
-<script type="text/javascript">
-	function actif() {
-		if(document.form1.et[4].checked)
-		{    
-			document.form1.choix1[4].disabled=false;
-			for (var i=0; i<4;i++)
-			{
-				document.form1.choix1[i].disabled=true;
-				
-			}
-		}
-		else
-		{   document.form1.choix1[4].disabled=true;
-			for (var i=0; i<4;i++)
-			{
-				document.form1.choix1[i].disabled=false;
-			}
-		}
-}
-</script>
-<title></title>    
 </head>
-<body OnClick="actif();">
-<h1>GÃ©nÃ©ration des Trombinoscopes</h1>
+<title></title>
+<body>
+<h1>Génération des Trombinoscopes</h1>
 
 
 <form name="form1" ENCTYPE="multipart/form-data" method="post" action="<?php echo site_url('cntrTrombino'); ?>">
 	
 <h3>Choix de type d'eleves :</h3>
 <?php echo form_error('et'); ?>
-<input type="radio" name="et" value="ensas" />Les Ã©lÃ¨ves issus de la 2Ã¨me annÃ©e cycle prÃ©pa de l'ENSAS<br/>
-<input type="radio" name="et" value="cnc" />Les Ã©lÃ¨ves issus du cnc<br/>
-<input type="radio" name="et" value="concours3" />Les Ã©lÃ¨ves issus du concours d'accÃ¨s 3eme annÃ©e<br/>
-<input type="radio" name="et" value="concours4" />Les Ã©lÃ¨ves issus du concours d'accÃ¨s 4eme annÃ©e<br/>
-<input type="radio" name="et" value="ts" />Tous les Ã©tudiants 3eme annÃ©e <br/>
+<input type="radio" name="et" value="ensas" />Les élèves issus de la 2ème année cycle prépa de l'ENSAS<br/>
+<input type="radio" name="et" value="cnc" />Les élèves issus du cnc<br/>
+<input type="radio" name="et" value="concours3" />Les élèves issus du concours d'accès 3eme année<br/>
+<input type="radio" name="et" value="concours4" />Les élèves issus du concours d'accès 4eme année<br/>
+<input type="radio" name="et" value="ts" />Tous les étudiants de la 3eme année <br/>
 
 
-<h3>AnnÃ©e universitaire :</h3> 
+<h3>Année universitaire :</h3> 
 	<?php
     echo form_error('AU'); 
 	echo'<select name="AU">';
@@ -47,22 +26,21 @@
 		$au2=$au+1;
 		echo'<option>'.$au.'-'.$au2.'</option>';
 	}
-	echo '</select>';
+	echo '</select>'; 
 	?>
 	 <br/>
 	 <br/>
- <h3>Choix de filiÃ¨re :</h3>
+ <h3>Choix de filière :</h3>
 <?php 
 
 echo form_error('choix1'); ?>
 
-<input type="radio" name="choix1"  value="D" />GÃ©nie industriel<br/>
-<input type="radio" name="choix1"  value="P" />GÃ©nie des procÃ©dÃ©s et M.C<br/>
-<input type="radio" name="choix1" value="F" />GÃ©nie informatique<br/>
-<input type="radio" name="choix1"  value="T" />GÃ©nie tÃ©lÃ©communication et rÃ©seau<br/>
-<input type="radio" name="choix1" disabled="disabled" value="all" />Toutes les filiÃ¨res<br/>
+<input type="radio" name="choix1"  value="D" />Génie industriel<br/>
+<input type="radio" name="choix1"  value="P" />Génie des procédés et M.C<br/>
+<input type="radio" name="choix1" value="F" />Génie informatique<br/>
+<input type="radio" name="choix1"  value="T" />Génie télécommunication et réseau<br/>
 
-<input type="submit" value="GÃ©nÃ©rer" /><br/>
+<input type="submit" value="Générer" /><br/>
 </form>
 </body>
 </html>

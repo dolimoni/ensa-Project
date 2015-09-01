@@ -46,6 +46,8 @@ ob_start();
 	
 	
 	$pdf->Cell(200,7,'de tous les élèves de la 3ème année de l\'ENSAS',0,1,'C');
+	
+	
 	//verifier la date
 	$annee=explode('-',$results[0]->created_at);
 	$an=((int)$annee[0])+1;
@@ -55,15 +57,32 @@ ob_start();
 	//bleu
 	$pdf->SetTextColor(63,72,204);
 	$pdf->SetFont('Arial','B',12);
-	$pdf->Cell(90,7,''.count($results).'',0,0,'R');
+	$pdf->Cell(60,7,''.count($results).'',0,0,'R');
 	
 	//noir
 	$pdf->SetTextColor(0,0,0);
 	$pdf->SetFont('Arial','',12);
 	$pdf->Cell(20,7,' Elèves .',0,0,'R');
-
-	$pdf->SetFont('Arial','B',12);
+	$pdf->Cell(20,7,' Filière : ',0,0,'R');
+    $pdf->SetFont('Arial','B',12);
 	
+	//changer le titre selon la filiere choisie
+	if($results[0]->titre=='F')
+	{
+	$pdf->Cell(50,7,'Génie Informatique',0,1,'L');
+	}
+	if($results[0]->titre=='D')
+	{
+	$pdf->Cell(50,7,'Génie Industriel',0,1,'L');
+	}
+	if($results[0]->titre=='P')
+	{
+	$pdf->Cell(50,7,'Génie des Procédés et M.C',0,1,'L');
+	}
+	if($results[0]->titre=='T')
+	{
+	$pdf->Cell(50,7,'Génie Télécom et Réseaux',0,1,'L');
+	}
 	// Saut de ligne
     $pdf->Ln();
 	$pdf->Ln();
@@ -75,7 +94,7 @@ ob_start();
 	$saut=0;
 	$pdf->SetFont('Times','B',10);
 
-	/* ----------------les corr du rect----*/
+	/* ----------------les corr du rect-----*/
 	
 	//augmenter la valeur de x et y(selon w et h du rect precedent) du rect apres chache affichage pr obtenir un rect pr chaque personne 
 	$xrect=4;

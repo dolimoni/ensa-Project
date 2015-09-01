@@ -9,7 +9,7 @@ class ModelTrombino extends CI_Model
 		$this->load->database('ensa_project');
 		$this->load->helper('url');
 	}
-
+ 
 	
 //*************************etudiant ensas**************************
 	
@@ -98,7 +98,7 @@ class ModelTrombino extends CI_Model
 			$this->db->select('e.photo,e.nom,e.prenom,e.cin,e.tel,e.gsm,e.email,e.ville,e.matricule,e.filiere,e.niveau,f.titre,e.created_at');
 			$this->db->from('etudiant e');
 			$this->db->join('filiere f','f.id=e.filiere');
-			$this->db->where(array('e.niveau'=>3,'year(e.created_at)'=>$AU[0]));
+			$this->db->where(array('f.titre' =>$choix_fil,'e.niveau'=>3,'year(e.created_at)'=>$AU[0]));
 			$this->db->order_by('e.nom asc, e.prenom asc'); 
 			$query = $this->db->get();
 		

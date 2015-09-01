@@ -16,12 +16,12 @@ class CntrTrombino extends CI_Controller
 	}
 public function connexion()
 	{ $this->load->model('ModelTrombino') ;
-		// Chargement de la bibliothÃ¨que
+		// Chargement de la bibliothèque
 		$this->load->library('form_validation');
 		
-		$this->form_validation->set_rules('et', '"Choix de type d etudiants"','trim|required|encode_php_tags');
-		$this->form_validation->set_rules('AU', '"AnnÃ©e universitaire"','trim|required|encode_php_tags');
-		$this->form_validation->set_rules('choix1', '"Choix de filiÃ¨re"','trim|required|encode_php_tags');
+		$this->form_validation->set_rules('et', '"Choix de type d etudiants"','trim|required|encode_php_tags|xss_clean');
+		$this->form_validation->set_rules('AU', '"Année universitaire"','trim|required|encode_php_tags|xss_clean');
+		$this->form_validation->set_rules('choix1', '"Choix de filière"','trim|required|encode_php_tags|xss_clean');
 
 		if($this->form_validation->run())
 		{
@@ -41,7 +41,7 @@ public function connexion()
 		        $this->load->view('viewTrombCnc',$data);
 			}
 			if($info['et']=='concours3')
-			{
+			{ 
 				$data['results'] = $this->ModelTrombino->TrombinoConcours3Tab4($info);
 		        $this->load->view('viewTrombC3',$data);
 			}
@@ -65,3 +65,6 @@ public function connexion()
 	}	
 	
 }
+
+?>
+		
