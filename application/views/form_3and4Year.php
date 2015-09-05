@@ -24,7 +24,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <form ENCTYPE="multipart/form-data" method="post" action="<?php echo site_url('ensa_controller'); ?>">
+                        <form ENCTYPE="multipart/form-data" method="post" action="<?php echo site_url('The3and4Year_controller'); ?>">
                             <div class="alert alert-danger text-center" role="alert">
                                 <span class="glyphicon glyphicon-remove-sign"></span>
                                 Veuillez remplir tous les champs obligatoires
@@ -160,7 +160,7 @@
                                 <input type="radio" name="filiere" value="Génie informatique" />Génie informatique<br/>
                                 <input type="radio" name="filiere" value="Génie télécommunication et réseau" />Génie télécommunication et
                             </div>
-                                    <input type="hidden" value="3and4Year" name="who" / >
+                                    <input type="hidden" value="3and4Year" name="who" />
                             <div class="e_login_btn col-md-4 col-md-offset-8 text-right">
                                 <input type="submit" name="submit" value="Inscription" id="e_inscription" class='btn btn-success'/>
                             </div>

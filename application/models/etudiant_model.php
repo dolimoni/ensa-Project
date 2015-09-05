@@ -39,109 +39,209 @@ class Etudiant_model extends CI_Model
     *
     **/
     public function inscription($info){
-            
-             $data= array(
-                        'email' => $info['email'], 
-                        //'niveau' => $info['niveau'], 
-                        'password'=> $info['password'],
-                        'photo'=> $info['photo']['name'],
-                       // 'filiere'=> $info['filiere'],
-                        'civilite'=> $info['civilite'],
-                        'nationalite'=> $info['nationalite'],
-                        'photo'=>$info['cin'].".jpg",
-                        'date_naissance'=> $info['date_naissance'],
-                        'lieu_naissance'=> $info['lieu_naissance'],
-                        'tel'=> $info['tel'],
-                        'gsm'=> $info['gsm'],
-                        'adresse'=> $info['adresse'],
-                        'ville'=> $info['ville'],
-                        'profession_pere' =>$info['profession_pere'],
-                        'profession_mere'=> $info['profession_mere'],
-                        'matricule' =>'1',
-                        'isValid'=>1,
-                        'created_at'=>date("Y-m-d H:i:s")
-                        );
+        $data= array(
+                   'email' => $info['email'], 
+                   //'niveau' => $info['niveau'], 
+                   'password'=> $info['password'],
+                   'photo'=> $info['photo']['name'],
+                  // 'filiere'=> $info['filiere'],
+                   'civilite'=> $info['civilite'],
+                   'nationalite'=> $info['nationalite'],
+                   'photo'=>$info['cin'].".jpg",
+                   'date_naissance'=> $info['date_naissance'],
+                   'lieu_naissance'=> $info['lieu_naissance'],
+                   'tel'=> $info['tel'],
+                   'gsm'=> $info['gsm'],
+                   'adresse'=> $info['adresse'],
+                   'ville'=> $info['ville'],
+                   'profession_pere' =>$info['profession_pere'],
+                   'profession_mere'=> $info['profession_mere'],
+                   'matricule' =>'1',
+                   'isValid'=>1,
+                   'created_at'=>date("Y-m-d H:i:s")
+                   );
 
-            if($info['who']=="ensa" and $this->isValidUser($info['nom'],$info['prenom'],$info['cin'],$info['cne']))
-            {
+       if($info['who']=="ensa" and $this->isValidUser($info['nom'],$info['prenom'],$info['cin'],$info['cne']))
+       {
 
-              // adding chosen filiere to filiere_choix
-               $this->db->set('choix1',$info['choix1'])
-                               ->set('choix2',$info['choix2'])
-                               ->set('choix3',$info['choix3'])
-                               ->insert('filiere_choix');  
+         // adding chosen filiere to filiere_choix
+          $this->db->set('choix1',$info['choix1'])
+                          ->set('choix2',$info['choix2'])
+                          ->set('choix3',$info['choix3'])
+                          ->insert('filiere_choix');  
 
 
-                     $insert=$this->db->insert_id();//getting the id of the last query
-                     $data['id_choix']=$insert;
-                     $this->db->where('cin',$info['cin']);
-                     $this->db->update($this->table, $data); 
+                $insert=$this->db->insert_id();//getting the id of the last query
+                $data['id_choix']=$insert;
+                $this->db->where('cin',$info['cin']);
+                $this->db->update($this->table, $data); 
 
-                     copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+                copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
 
-                    // adding new student to etudiant_ensa
-                    $this->db->set('id_etudiant',$this->getId($info['cin']))
-                             ->set('type_bac',$info['type_bac'])
-                             ->set('note_bac',$info['note_bac'])
-                             ->set('note_1er_annee',$info['note_1er_annee'])
-                   //  $this->db->set('note_2eme_annee',$this->getId($info['note_2eme_annee']));
-                             ->set('created_at','NOW()',false)
-                             ->insert('etudiant_ensa') ;
-                
-                $this->sendEmailtoUser($info['email'],"Inscription réussie","Votre compte est bien activé avec le mot de passe suivant «".$info['password']." », voilà vos 3choix à propos de filière : Choix1 : ".$info['choix1'].", choix2 : ".$info['choix2']." choix3 : ".$info['choix3'].".");
-                                        
-            }
-            else if($info['who']=="cnc")
-            {
-                // adding chosen filiere to filiere_choix
-               $this->db->set('choix1',$info['filiere'])//in cnc controller we recieve chosen filiere in "filiere" not in "choix1"
-                               ->set('choix2',"NONE")
-                               ->set('choix3',"NONE")
-                               ->insert('filiere_choix');
+               // adding new student to etudiant_ensa
+               $this->db->set('id_etudiant',$this->getId($info['cin']))
+                        ->set('type_bac',$info['type_bac'])
+                        ->set('note_bac',$info['note_bac'])
+                        ->set('note_1er_annee',$info['note_1er_annee'])
+              //  $this->db->set('note_2eme_annee',$this->getId($info['note_2eme_annee']));
+                        ->set('created_at','NOW()',false)
+                        ->insert('etudiant_ensa') ;
 
-                               $insert=$this->db->insert_id();   //getting the id of the last query   
-                               $data['id_choix']=$insert;
-                        $this->db->insert($this->table,$data);
-                        copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+           $this->sendEmailtoUser($info['email'],"Inscription réussie","Votre compte est bien activé avec le mot de passe suivant «".$info['password']." », voilà vos 3choix à propos de filière : Choix1 : ".$info['choix1'].", choix2 : ".$info['choix2']." choix3 : ".$info['choix3'].".");
 
-                 $this->db->set('id_etudiant',$this->getId($info['cin']))
-                          ->set('type_bac',$info['type_bac'])
-                          ->set('note_bac',$info['note_bac'])
-                          ->set('filiere_cp',$info['filiere_cp'])
-                          ->set('etablissement_cp',$info['etablissement_cp'])
-                          ->set('ville_cp',$info['ville_cp'])
-                          ->set('range_cnc',$info['range_cnc'])
-                         // ->set('filiere',$info['filiere'])
-                          ->set('created_at','NOW()',false)
-                          ->insert('etudiant_cnc') ;
-            }
-            else if($info['who']=="3and4Year")
-            {
-                $this->db->set('choix1',$info['filiere'])//in the3and4Year controller we recieve chosen filiere in "filiere" not in "choix1"
-                               ->set('choix2',"NONE")
-                               ->set('choix3',"NONE")
-                               ->insert('filiere_choix');
+       }
+       else if($info['who']=="cnc")
+       {
+           // adding chosen filiere to filiere_choix
+          $this->db->set('choix1',$info['filiere'])//in cnc controller we recieve chosen filiere in "filiere" not in "choix1"
+                          ->set('choix2',"NONE")
+                          ->set('choix3',"NONE")
+                          ->insert('filiere_choix');
 
-                 $insert=$this->db->insert_id();   //getting the id of the last query   
-                               $data['id_choix']=$insert;
-                 $this->db->insert($this->table,$data);
-                 copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+                          $insert=$this->db->insert_id();   //getting the id of the last query   
+                          $data['id_choix']=$insert;
+                   $this->db->insert($this->table,$data);
+                   copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
 
-                 $this->db->set('id_etudiant',$info['cin'])
-                          ->set('type_diplome',$info['type_diplome'])
-                          ->set('etablissement_diplome',$info['etablissement_diplome'])
-                          ->set('created_at','NOW()',false)
-                          ->insert('etudiant_3eme_4eme') ;
-                          
-            }
-            else
-                return false;
-              
-            return true;
+            $this->db->set('id_etudiant',$this->getId($info['cin']))
+                     ->set('type_bac',$info['type_bac'])
+                     ->set('note_bac',$info['note_bac'])
+                     ->set('filiere_cp',$info['filiere_cp'])
+                     ->set('etablissement_cp',$info['etablissement_cp'])
+                     ->set('ville_cp',$info['ville_cp'])
+                     ->set('range_cnc',$info['range_cnc'])
+                    // ->set('filiere',$info['filiere'])
+                     ->set('created_at','NOW()',false)
+                     ->insert('etudiant_cnc') ;
+       }
+       else if($info['who']=="3and4Year")
+       {
+           $this->db->set('choix1',$info['filiere'])//in the3and4Year controller we recieve chosen filiere in "filiere" not in "choix1"
+                          ->set('choix2',"NONE")
+                          ->set('choix3',"NONE")
+                          ->insert('filiere_choix');
+
+            $insert=$this->db->insert_id();   //getting the id of the last query   
+                          $data['id_choix']=$insert;
+            $this->db->insert($this->table,$data);
+            copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+
+            $this->db->set('id_etudiant',$info['cin'])
+                     ->set('type_diplome',$info['type_diplome'])
+                     ->set('etablissement_diplome',$info['etablissement_diplome'])
+                     ->set('created_at','NOW()',false)
+                     ->insert('etudiant_3eme_4eme') ;
+
+       }
+       else
+           return false;
+
+       return true;
     }
     
+    /* this fct edites the profile of a student */
+    public function editProfile(){
+        $data= array(
+                   'email' => $info['email'], 
+                   //'niveau' => $info['niveau'], 
+                   'password'=> $info['password'],
+                   'photo'=> $info['photo']['name'],
+                  // 'filiere'=> $info['filiere'],
+                   'civilite'=> $info['civilite'],
+                   'nationalite'=> $info['nationalite'],
+                   'photo'=>$info['cin'].".jpg",
+                   'date_naissance'=> $info['date_naissance'],
+                   'lieu_naissance'=> $info['lieu_naissance'],
+                   'tel'=> $info['tel'],
+                   'gsm'=> $info['gsm'],
+                   'adresse'=> $info['adresse'],
+                   'ville'=> $info['ville'],
+                   'profession_pere' =>$info['profession_pere'],
+                   'profession_mere'=> $info['profession_mere'],
+                   'matricule' =>'1',
+                   'isValid'=>1,
+                   'created_at'=>date("Y-m-d H:i:s")
+                   );
+
+       if($info['who']=="ensa")
+       {
+
+         // adding chosen filiere to filiere_choix
+          $this->db->set('choix1',$info['choix1'])
+                          ->set('choix2',$info['choix2'])
+                          ->set('choix3',$info['choix3'])
+                          ->insert('filiere_choix');  
+
+
+                $insert=$this->db->insert_id();//getting the id of the last query
+                $data['id_choix']=$insert;
+                $this->db->where('cin',$info['cin']);
+                $this->db->update($this->table, $data); 
+
+                copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+
+               // adding new student to etudiant_ensa
+               $this->db->set('id_etudiant',$this->getId($info['cin']))
+                        ->set('type_bac',$info['type_bac'])
+                        ->set('note_bac',$info['note_bac'])
+                        ->set('note_1er_annee',$info['note_1er_annee'])
+              //  $this->db->set('note_2eme_annee',$this->getId($info['note_2eme_annee']));
+                        ->set('created_at','NOW()',false)
+                        ->insert('etudiant_ensa') ;
+
+           $this->sendEmailtoUser($info['email'],"Inscription réussie","Votre compte est bien activé avec le mot de passe suivant «".$info['password']." », voilà vos 3choix à propos de filière : Choix1 : ".$info['choix1'].", choix2 : ".$info['choix2']." choix3 : ".$info['choix3'].".");
+
+       }
+       else if($info['who']=="cnc")
+       {
+           // adding chosen filiere to filiere_choix
+          $this->db->set('choix1',$info['filiere'])//in cnc controller we recieve chosen filiere in "filiere" not in "choix1"
+                          ->set('choix2',"NONE")
+                          ->set('choix3',"NONE")
+                          ->insert('filiere_choix');
+
+                          $insert=$this->db->insert_id();   //getting the id of the last query   
+                          $data['id_choix']=$insert;
+                   $this->db->insert($this->table,$data);
+                   copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+
+            $this->db->set('id_etudiant',$this->getId($info['cin']))
+                     ->set('type_bac',$info['type_bac'])
+                     ->set('note_bac',$info['note_bac'])
+                     ->set('filiere_cp',$info['filiere_cp'])
+                     ->set('etablissement_cp',$info['etablissement_cp'])
+                     ->set('ville_cp',$info['ville_cp'])
+                     ->set('range_cnc',$info['range_cnc'])
+                    // ->set('filiere',$info['filiere'])
+                     ->set('created_at','NOW()',false)
+                     ->insert('etudiant_cnc') ;
+       }
+       else if($info['who']=="3and4Year")
+       {
+           $this->db->set('choix1',$info['filiere'])//in the3and4Year controller we recieve chosen filiere in "filiere" not in "choix1"
+                          ->set('choix2',"NONE")
+                          ->set('choix3',"NONE")
+                          ->insert('filiere_choix');
+
+            $insert=$this->db->insert_id();   //getting the id of the last query   
+                          $data['id_choix']=$insert;
+            $this->db->insert($this->table,$data);
+            copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+
+            $this->db->set('id_etudiant',$info['cin'])
+                     ->set('type_diplome',$info['type_diplome'])
+                     ->set('etablissement_diplome',$info['etablissement_diplome'])
+                     ->set('created_at','NOW()',false)
+                     ->insert('etudiant_3eme_4eme') ;
+
+       }
+       else
+           return false;
+
+       return true;
+    }
     
-    /* By Essaidi : this function sends email */
+    /* this function sends email */
     private function sendEmailtoUser($to,$subject,$message){
         $config = Array(
             'protocol' => 'smtp',
@@ -205,7 +305,7 @@ class Etudiant_model extends CI_Model
         }
     }
     
-    /* By Essaidi : This fct returns the type of the Etudiant (ensa,cnc...) */
+    /*  This fct returns the type of the Etudiant (ensa,cnc...) */
     public function getEtudiantWho($id){
         if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_ensa") > 0){
             return "ensa";
@@ -216,7 +316,7 @@ class Etudiant_model extends CI_Model
         }
     }
     
-    /* By Essaidi : Returns an array with etudiant's info */
+    /*  Returns an array with etudiant's info */
     public function getProfile($id){
         $query = $this->db->select("*")
                     ->from($this->table)
