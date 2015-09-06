@@ -46,4 +46,16 @@ class MY_Form_validation extends CI_Form_validation {
 
 	    return $str;
 	}
+	public function username_check($str)
+    {
+        if ($str == 'test')
+        {
+            $this->form_validation->set_message('nom', 'The %s field can not be the word "test"');
+            return FALSE;
+        }
+        else
+        {
+            return TRUE;
+        }
+    }
 }

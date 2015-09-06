@@ -4,7 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Ensa_controller extends CI_Controller {
 
 	
-	 
+	 function __construct()
+	{
+		parent::__construct();
+	}
+
 	public function index()
 	{
 
@@ -16,14 +20,17 @@ class Ensa_controller extends CI_Controller {
 
 	public function inscription_ensa()
 	{
+		
+
 		$this->load->view('form_ensa.php');
 	}
 	
 
 	private  function connexion( )
 		{
-
-			if( $this->form_validation->run('ensa_rules')) //remove the ! to enable form validation
+			
+		
+	 	if( $this->form_validation->run('ensa_rules'))
 			{
 				$info['nom']=$this->input->post('nom');
 				$info['prenom']=$this->input->post('prenom');
@@ -55,11 +62,33 @@ class Ensa_controller extends CI_Controller {
 				$info['choix3']=$this->input->post('choix3');
 
 				$info['who']= $this->input->post('who');
-				$this->etudiant_model->inscription($info);
-				$this->load->view('index');
+
+
+				$config['upload_path'] = './assets/img';
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size']	= '100';
+				$config['max_width']  = '1024';
+				$config['max_height']  = '768';
+				$this->load->library('upload', $config);
+
+				if ( ! $this->upload->do_upload('photo')) // verify image errors
+				{
+					$error = array('error' => $this->upload->display_errors());
+
+					$this->load->view('form_ensa.php', $error);
+				}
+				else if($this->etudiant_model->inscription($info))
+					$this->load->view('index');
+				else
+				{
+					$message = array('inexistant' =>  true );
+					$this->load->view('form_ensa.php',$message);
+				}
+				
 			}
 			else
 			{
+				
 				$this->load->view('form_ensa.php');
 			}
 		
