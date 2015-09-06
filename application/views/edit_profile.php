@@ -229,10 +229,10 @@
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 <span> Choix de la filiere</span>
-                                <input type="radio" name="filiere" value="Génie industriel" />Génie industriel<br/>
-                                <input type="radio" name="filiere" value="Génie des procédés et M.C" />Génie des procédés et M.C<br/>
-                                <input type="radio" name="filiere" value="Génie informatique" />Génie informatique<br/>
-                                <input type="radio" name="filiere" value="Génie télécommunication et réseau" />Génie télécommunication et
+                                <input type="radio" name="choix3" value="Génie industriel" <?php echoChecked($choix1,"Génie industriel") ?> />Génie industriel<br/>
+                                <input type="radio" name="choix3" value="Génie des procédés et M.C" <?php echoChecked($choix1,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
+                                <input type="radio" name="choix3" value="Génie informatique" <?php echoChecked($choix1,"Génie informatique") ?> />Génie informatique<br/>
+                                <input type="radio" name="choix3" value="Génie télécommunication et réseau" <?php echoChecked($choix1,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
                             </div>
                             <?php
                             }else{
@@ -268,10 +268,10 @@
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 <span> Choix de la filiere</span>
-                                <input type="radio" name="filiere" value="Génie industriel" />Génie industriel<br/>
-                                <input type="radio" name="filiere" value="Génie des procédés et M.C" />Génie des procédés et M.C<br/>
-                                <input type="radio" name="filiere" value="Génie informatique" />Génie informatique<br/>
-                                <input type="radio" name="filiere" value="Génie télécommunication et réseau" />Génie télécommunication et
+                                <input type="radio" name="choix3" value="Génie industriel" <?php echoChecked($choix1,"Génie industriel") ?> />Génie industriel<br/>
+                                <input type="radio" name="choix3" value="Génie des procédés et M.C" <?php echoChecked($choix1,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
+                                <input type="radio" name="choix3" value="Génie informatique" <?php echoChecked($choix1,"Génie informatique") ?> />Génie informatique<br/>
+                                <input type="radio" name="choix3" value="Génie télécommunication et réseau" <?php echoChecked($choix1,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
                             </div>
                             <?php
                             }

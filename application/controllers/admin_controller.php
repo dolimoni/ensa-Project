@@ -73,6 +73,12 @@ class Admin_controller extends CI_Controller
         
         $this->load->view('vue', $data);
     }
+    
+    public function gestionEtudiants(){
+        $this->load->model("etudiant_model");
+        $data = $this->etudiant_model->getListEtudiants();
+        $this->load->view('gestionEtudiants',$data);
+    }
 }
 
 ?>
