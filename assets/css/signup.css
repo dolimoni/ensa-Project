@@ -107,3 +107,9 @@ img{
 .e_input_entreprise{
     display: none;
 }
+.disabled{
+    background-color: rgb(208, 208, 208) !important;
+}
+.disabled input{
+    background-color: rgb(208, 208, 208) !important;
+}

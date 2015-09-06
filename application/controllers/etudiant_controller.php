@@ -44,7 +44,7 @@ class Etudiant_controller extends CI_Controller {
         
         if(!empty($this->session->userdata("cin"))){
             if(isset($_POST["submit"])){
-
+                
             }else{
                 $data = $this->etudiant_model->getProfile($id);
                 //$data["who"] = $this->etudiant_model->getEtudiantWho($id);
