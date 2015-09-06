@@ -34,19 +34,27 @@
                                 echo site_url('The3and4Year_controller/editProfile');
                             }
                             ?>">
+                            <?php
+                            $validationErrors = validation_errors();
+                            if(!empty($validationErrors)){
+                            ?>
                             <div class="alert alert-danger text-center" role="alert">
                                 <span class="glyphicon glyphicon-remove-sign"></span>
-                                Veuillez remplir tous les champs obligatoires
+                                <?php echo $validationErrors; ?>
                             </div>
-                            
+                            <?php
+                            }
+                            ?>
                             <div class="e_input col-md-12 disabled">
                                 <span class="glyphicon glyphicon-user"></span>
-                                <input type="text" name="nom" value="<?php echo $nom; ?>" placeholder="Nom" disabled="disabled"/> 
+                                <input type="text" name="nomD" value="<?php echo $nom; ?>" placeholder="Nom" disabled="disabled"/> 
+                                <input type="hidden" name="nom" value="<?php echo $nom; ?>" placeholder="Nom"/> 
                                 <?php echo form_error('nom'); ?>
                             </div>
                             <div class="e_input col-md-12 disabled">
                                 <span class="glyphicon glyphicon-user"></span>
-                                <input type="text" name="prenom" value="<?php echo $prenom ?>" placeholder="Prénom" disabled="disabled"/>
+                                <input type="text" name="prenomD" value="<?php echo $prenom ?>" placeholder="Prénom" disabled="disabled"/>
+                                <input type="hidden" name="prenom" value="<?php echo $prenom ?>" placeholder="Prénom"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-bookmark"></span>
@@ -68,23 +76,25 @@
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-calendar"></span>
                                 <span> Date de naissance</span>
-                                <input type="text" name="date_naissance_day" placeholder="jour" id="e_jour"/>
+                                <input type="text" name="date_naissance_day" placeholder="jour" id="e_jour"
+                                       value="<?php echo date('d', strtotime($date_naissance)); ?>"/>
                                 <select name="date_naissance_month">
-                                    <option value="0">Mois</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
+                                    <option value="0" <?php echoSelected("0",date('m', strtotime($date_naissance))) ?>>Mois</option>
+                                    <option value="1" <?php echoSelected("1",date('m', strtotime($date_naissance))) ?>>1</option>
+                                    <option value="2" <?php echoSelected("2",date('m', strtotime($date_naissance))) ?>>2</option>
+                                    <option value="3" <?php echoSelected("3",date('m', strtotime($date_naissance))) ?>>3</option>
+                                    <option value="4" <?php echoSelected("4",date('m', strtotime($date_naissance))) ?>>4</option>
+                                    <option value="5" <?php echoSelected("5",date('m', strtotime($date_naissance))) ?>>5</option>
+                                    <option value="6" <?php echoSelected("6",date('m', strtotime($date_naissance))) ?>>6</option>
+                                    <option value="7" <?php echoSelected("7",date('m', strtotime($date_naissance))) ?>>7</option>
+                                    <option value="8" <?php echoSelected("8",date('m', strtotime($date_naissance))) ?>>8</option>
+                                    <option value="9" <?php echoSelected("9",date('m', strtotime($date_naissance))) ?>>9</option>
+                                    <option value="10" <?php echoSelected("10",date('m', strtotime($date_naissance))) ?>>10</option>
+                                    <option value="11" <?php echoSelected("11",date('m', strtotime($date_naissance))) ?>>11</option>
+                                    <option value="12" <?php echoSelected("12",date('m', strtotime($date_naissance))) ?>>12</option>
                                 </select>
-                                <input type="text" name="date_naissance_year" placeholder="Annee"/>
+                                <input type="text" name="date_naissance_year" placeholder="Annee"
+                                       value="<?php echo date('Y', strtotime($date_naissance)); ?>"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-map-marker"></span>
@@ -92,7 +102,8 @@
                             </div>
                             <div class="e_input col-md-12 disabled">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="cin" value="<?php echo $cin; ?>" placeholder="CIN" disabled="disabled"/>
+                                <input type="text" name="cinD" value="<?php echo $cin; ?>" placeholder="CIN" disabled="disabled"/>
+                                <input type="hidden" name="cin" value="<?php echo $cin; ?>" placeholder="CIN"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-earphone"></span>
@@ -124,7 +135,8 @@
                             </div>
                             <div class="e_input col-md-12 disabled">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="cne" value="<?php echo $cne ?>" placeholder="CNE" disabled="disabled"/>
+                                <input type="text" name="cneD" value="<?php echo $cne ?>" placeholder="CNE" disabled="disabled"/>
+                                <input type="hidden" name="cne" value="<?php echo $cne ?>" placeholder="CNE"/>
                             </div>
                             <?php
                             // If Who == ENSA

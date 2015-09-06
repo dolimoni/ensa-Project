@@ -140,11 +140,10 @@ class Etudiant_model extends CI_Model
     }
     
     /* this fct edites the profile of a student */
-    public function editProfile(){
+    public function editProfile($info){
         $data= array(
                    'email' => $info['email'], 
                    //'niveau' => $info['niveau'], 
-                   'password'=> $info['password'],
                    'photo'=> $info['photo']['name'],
                   // 'filiere'=> $info['filiere'],
                    'civilite'=> $info['civilite'],
@@ -178,7 +177,9 @@ class Etudiant_model extends CI_Model
                 $this->db->where('cin',$info['cin']);
                 $this->db->update($this->table, $data); 
 
-                copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+                if(!empty($info['photo']['tmp_name'])){
+                    copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+                }
 
                // adding new student to etudiant_ensa
                $this->db->set('id_etudiant',$this->getId($info['cin']))
@@ -203,7 +204,10 @@ class Etudiant_model extends CI_Model
                           $insert=$this->db->insert_id();   //getting the id of the last query   
                           $data['id_choix']=$insert;
                    $this->db->insert($this->table,$data);
-                   copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+                   
+                   if(!empty($info['photo']['tmp_name'])){
+                    copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+                }
 
             $this->db->set('id_etudiant',$this->getId($info['cin']))
                      ->set('type_bac',$info['type_bac'])
@@ -226,7 +230,9 @@ class Etudiant_model extends CI_Model
             $insert=$this->db->insert_id();   //getting the id of the last query   
                           $data['id_choix']=$insert;
             $this->db->insert($this->table,$data);
-            copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+            if(!empty($info['photo']['tmp_name'])){
+                    copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+                }
 
             $this->db->set('id_etudiant',$info['cin'])
                      ->set('type_diplome',$info['type_diplome'])

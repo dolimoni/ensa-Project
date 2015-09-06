@@ -77,8 +77,8 @@ class Cnc_controller extends CI_Controller {
     private  function editProfile( )
     {
         $this->load->library('form_validation');
-        
-        if( !$this->form_validation->run('cnc_rules')) //remove the ! to enable form validation
+        $this->load->model("etudiant_model");
+        if( !$this->form_validation->run('cnc_rules_edit')) //remove the ! to enable form validation
         {
                 $info['nom']=$this->input->post('nom');
                 $info['prenom']=$this->input->post('prenom');
@@ -89,9 +89,9 @@ class Cnc_controller extends CI_Controller {
                 $info['cin']=$this->input->post('cin');
                 $info['nationalite']=$this->input->post('nationalite');
                 $info['lieu_naissance']=$this->input->post('lieu_naissance');
-                $info['date_naissance']=$this->input->post('date_naissance_day')
+                $info['date_naissance']=$this->input->post('date_naissance_year')
                                     ."-".$this->input->post('date_naissance_month')
-                                    ."-".$this->input->post('date_naissance_year');
+                                    ."-".$this->input->post('date_naissance_day');
                 $info['tel']=$this->input->post('tel');
 
                 $info['gsm']=$this->input->post('gsm');
@@ -121,7 +121,9 @@ class Cnc_controller extends CI_Controller {
         }
         else
         {
-                $this->load->view('form_cnc.php');
+            $id = $this->session->userdata("id");
+            $data = $this->etudiant_model->getProfile($id);
+            $this->load->view('edit_profile',$data);
         }
     }
 }
