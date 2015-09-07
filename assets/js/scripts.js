@@ -3,6 +3,12 @@ function e_doScripts(){
     if (typeof $('#e_signup').offset() !== "undefined") {
         $('#e_signup .e_title').css('top',-$('#e_signup .e_title').height()/2+"px");
     }
+    
+    $(".btn-delete").on("click",function(e){
+        if(!confirm("Veuillez confirmer cette action :")){
+            e.preventDefault();
+        }
+    });
 }
 
 // Square Elm => width = height

@@ -428,7 +428,7 @@ class Etudiant_model extends CI_Model
                     ->where("isValid",1)
                     ->get()
                     ->result();
-        $rows = array("etudiants");
+        $rows = array("etudiants" => array());
         foreach($etudiants as $etudiant){
             $rows["etudiants"][$etudiant->id] = array(
                 "id" => $etudiant->id,
@@ -540,6 +540,11 @@ class Etudiant_model extends CI_Model
             }
         }
         return $rows;
+    }
+    
+    public function delete($idEtudiant){
+        $this->db->where('id', $idEtudiant);
+        $this->db->update($this->table, array("deleted" => 1)); 
     }
 	
 }
