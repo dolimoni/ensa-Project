@@ -74,18 +74,18 @@
                                 <span> Date de naissance</span>
                                 <input type="text" name="date_naissance_day" placeholder="jour" id="e_jour" value="<?php if(isset($_POST['date_naissance_day'])) echo $_POST['date_naissance_day']; ?>"/>
                                 <select name="date_naissance_month">
-                                    <option value="Janvier" <?php if ( isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Janvier') echo ' selected="selected"'; ?> >Janvier</option>
-                                    <option value="Février" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Février') echo ' selected="selected"'; ?> >Février</option>
-                                    <option value="Mars" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Mars') echo ' selected="selected"'; ?> >Mars</option>
-                                    <option value="Avril" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Avril') echo ' selected="selected"'; ?> >Avril</option>
-                                    <option value="Mai" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Mai') echo ' selected="selected"'; ?> >Mai</option>
-                                    <option value="Juin" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Juin') echo ' selected="selected"'; ?> >Juin</option>
-                                    <option value="Juillet" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Juillet') echo ' selected="selected"'; ?> >Juillet</option>
-                                    <option value="Aout" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Aout') echo ' selected="selected"'; ?> >Aout</option>
-                                    <option value="Septembre" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Septembre') echo ' selected="selected"'; ?> >Septembre</option>
-                                    <option value="Octobre" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Octobre') echo ' selected="selected"'; ?> >Octobre</option>
-                                    <option value="Novembre" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Novembre') echo ' selected="selected"'; ?> >Novembre</option>
-                                    <option value="Décembre" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Décembre') echo ' selected="selected"'; ?>>Décembre</option>
+                                    <option value="01" <?php if ( isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Janvier') echo ' selected="selected"'; ?> >Janvier</option>
+                                    <option value="02" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Février') echo ' selected="selected"'; ?> >Février</option>
+                                    <option value="03" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Mars') echo ' selected="selected"'; ?> >Mars</option>
+                                    <option value="04" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Avril') echo ' selected="selected"'; ?> >Avril</option>
+                                    <option value="05" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Mai') echo ' selected="selected"'; ?> >Mai</option>
+                                    <option value="06" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Juin') echo ' selected="selected"'; ?> >Juin</option>
+                                    <option value="07" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Juillet') echo ' selected="selected"'; ?> >Juillet</option>
+                                    <option value="08" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Aout') echo ' selected="selected"'; ?> >Aout</option>
+                                    <option value="09" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Septembre') echo ' selected="selected"'; ?> >Septembre</option>
+                                    <option value="10" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Octobre') echo ' selected="selected"'; ?> >Octobre</option>
+                                    <option value="11" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Novembre') echo ' selected="selected"'; ?> >Novembre</option>
+                                    <option value="12" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Décembre') echo ' selected="selected"'; ?>>Décembre</option>
                                 </select>
                                 <input type="text" name="date_naissance_year" placeholder="Annee" value="<?php if(isset($_POST['date_naissance_year'])) echo $_POST['date_naissance_year']; ?>"/>
                             </div>

@@ -34,56 +34,22 @@
                             ?>
                             <?php if (isset($error)) echo $error;?>
                             <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-user"></span>
-                                <input type="text" name="nom" value="<?php echo $nom; ?>" placeholder="Nom"/> 
+                                <span class="glyphicon glyphicon-user"></span><?php echo $nom; ?>
                             </div>
                             <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-user"></span>
-                                <input type="text" name="prenom" value="<?php if(isset($_POST['prenom'])) echo $_POST['prenom']; ?>" placeholder="Prénom"/>
+                                <span class="glyphicon glyphicon-user"></span><?php echo $prenom; ?>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-bookmark"></span>
-                                <span> Civilite</span>
-                                <input type="radio" name="civilite" value="homme" checked="checked" /> Homme
-                                <input type="radio" name="civilite" value="femme"/> Femme
+                                <span> Civilite</span><?php echo $civilite; ?>
                             </div>
                             <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-asterisk"></span>
-                                <input type="password" name="password" placeholder="Mot de passe"/>
-                            </div>
-                            <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-asterisk"></span>
-                                <input type="password" name="passconf" placeholder="Confirmation du mot de passe"/>
-                            </div>
-                            <div class="e_input e_date col-md-12">
-                                <span class="glyphicon glyphicon-camera"></span>
-                                <span> Photo</span>
-                                <INPUT TYPE="HIDDEN" NAME="photo" VALUE="2000000">
-                                <INPUT TYPE="FILE" SIZE="40" NAME="photo">
-                            </div>
-                            <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-flag"></span>
-                                <input type="text" name="nationalite" value="<?php if(isset($_POST['nationalite'])) echo $_POST['nationalite']; ?>" placeholder="Nationalité" />
+                                <span class="glyphicon glyphicon-flag"></span><?php echo $nationalite; ?>
+                               
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-calendar"></span>
                                 <span> Date de naissance</span>
-                                <input type="text" name="date_naissance_day" placeholder="jour" id="e_jour" value="<?php if(isset($_POST['date_naissance_day'])) echo $_POST['date_naissance_day']; ?>"/>
-                                <select name="date_naissance_month">
-                                    <option value="Janvier" <?php if ( isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Janvier') echo ' selected="selected"'; ?> >Janvier</option>
-                                    <option value="Février" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Février') echo ' selected="selected"'; ?> >Février</option>
-                                    <option value="Mars" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Mars') echo ' selected="selected"'; ?> >Mars</option>
-                                    <option value="Avril" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Avril') echo ' selected="selected"'; ?> >Avril</option>
-                                    <option value="Mai" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Mai') echo ' selected="selected"'; ?> >Mai</option>
-                                    <option value="Juin" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Juin') echo ' selected="selected"'; ?> >Juin</option>
-                                    <option value="Juillet" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Juillet') echo ' selected="selected"'; ?> >Juillet</option>
-                                    <option value="Aout" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Aout') echo ' selected="selected"'; ?> >Aout</option>
-                                    <option value="Septembre" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Septembre') echo ' selected="selected"'; ?> >Septembre</option>
-                                    <option value="Octobre" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Octobre') echo ' selected="selected"'; ?> >Octobre</option>
-                                    <option value="Novembre" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Novembre') echo ' selected="selected"'; ?> >Novembre</option>
-                                    <option value="Décembre" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Décembre') echo ' selected="selected"'; ?>>Décembre</option>
-                                </select>
-                                <input type="text" name="date_naissance_year" placeholder="Annee" value="<?php if(isset($_POST['date_naissance_year'])) echo $_POST['date_naissance_year']; ?>"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-map-marker"></span>

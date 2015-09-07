@@ -25,7 +25,9 @@ class Ensa_controller extends CI_Controller {
             $info['cin']=$this->input->post('cin');
             $info['nationalite']=$this->input->post('nationalite');
             $info['lieu_naissance']=$this->input->post('lieu_naissance');
-            $info['date_naissance']=$this->input->post('date_naissance');
+            $info['date_naissance']=$this->input->post('date_naissance_year')
+                                    ."-".$this->input->post('date_naissance_month')
+                                    ."-".$this->input->post('date_naissance_day');
             $info['tel']=$this->input->post('tel');
 
             $info['gsm']=$this->input->post('gsm');
