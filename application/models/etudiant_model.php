@@ -55,6 +55,7 @@ class Etudiant_model extends CI_Model
                         'gsm'=> $info['gsm'],
                         'adresse'=> $info['adresse'],
                         'ville'=> $info['ville'],
+
                         'profession_pere' =>$info['profession_pere'],
                         'profession_mere'=> $info['profession_mere'],
                         'matricule' =>'1',
@@ -251,9 +252,14 @@ class Etudiant_model extends CI_Model
                     
             $row3 = $query3->row_array();
             
-            $row["choix1"] = $row3["choix1"];
-            $row["choix2"] = $row3["choix2"];
-            $row["choix3"] = $row3["choix3"];
+            $tranlation = array( 'F' => "Génie informatique", 
+            					 'I' => "Génie industriel", 
+            					 'P' => "Génie des procédés et M.C", 
+            					 'T' => "Génie télécommunication et réseau");
+
+            $row["choix1"] = $tranlation[$row3["choix1"]];
+            $row["choix2"] = $tranlation[$row3["choix2"]];
+            $row["choix3"] = $tranlation[$row3["choix3"]];
             
         }else if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_cnc") > 0){
             $row["who"]= "cnc";

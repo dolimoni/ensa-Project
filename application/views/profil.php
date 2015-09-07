@@ -24,7 +24,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <?php echo form_open_multipart('ensa_controller');?>
+                      <br/><br/><br/><br/>
 
                             <?php 
                             if(isset($inexistant) and $inexistant==true)
@@ -34,116 +34,105 @@
                             ?>
                             <?php if (isset($error)) echo $error;?>
                             <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-user"></span><?php echo $nom; ?>
+                                <span class="glyphicon glyphicon-bookmark"></span>
+                                <span> nom </span><?php echo $nom; ?>
                             </div>
                             <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-user"></span><?php echo $prenom; ?>
+                                <span class="glyphicon glyphicon-bookmark"><span> prénom </span></span><?php echo $prenom; ?>
+                            </div>
+                            <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                <span> CIN</span><?php echo $cin; ?>
+                            </div>
+                             <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span><span> CNE</span><?php echo $cne; ?>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-bookmark"></span>
-                                <span> Civilite</span><?php echo $civilite; ?>
+                                <span> Civilité</span><?php echo $civilite; ?>
                             </div>
                             <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-flag"></span><?php echo $nationalite; ?>
+                                <span class="glyphicon glyphicon-flag">
+                                 <span> Nationalité</span></span><?php echo $nationalite; ?>
                                
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-calendar"></span>
-                                <span> Date de naissance</span>
+                                <span> Date de naissance</span><?php echo $date_naissance; ?>
                             </div>
                             <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-map-marker"></span>
-                                <input type="text" name="lieu_naissance" value="<?php if(isset($_POST['lieu_naissance'])) echo $_POST['lieu_naissance']; ?>" placeholder="Lieu de naissance"/>
+                                <span class="glyphicon glyphicon-map-marker">
+                                <span> Lieu de naissance</span></span><?php echo $lieu_naissance; ?>
                             </div>
+
                             <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="cin" value="<?php if(isset($_POST['cin'])) echo $_POST['cin']; ?>" placeholder="CIN"/>
-                            </div>
-                            <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-earphone"></span>
-                                <input type="text" name="tel" value="<?php if(isset($_POST['tel'])) echo $_POST['tel']; ?>" placeholder="Tel"/>
+                                <span class="glyphicon glyphicon-earphone">
+                                <span> Téléphone</span></span><?php echo $tel; ?>
+                                
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-phone"></span>
-                                <input type="text" name="gsm" value="<?php if(isset($_POST['gsm'])) echo $_POST['gsm']; ?>" placeholder="GSM"/>
+                                <span> GSM</span><?php echo $gsm; ?>
+                                
                             </div>
                             <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-envelope"></span>
-                                <input type="text" name="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" placeholder="Email"/>
-                            </div>
-                            <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-map-marker"></span>
-                                <input type="text" name="adresse" value="<?php if(isset($_POST['adresse'])) echo $_POST['adresse']; ?>" placeholder="Adresse"/>
+                                <span class="glyphicon glyphicon-envelope">
+                                <span> Email</span></span><?php echo $email; ?>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-map-marker"></span>
-                                <input type="text" name="ville" value="<?php if(isset($_POST['ville'])) echo $_POST['ville']; ?>" placeholder="Ville"/>
+                                <span> Adresse</span><?php echo $adresse; ?>
+                            </div>
+                            <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-map-marker"></span>
+                                <span> Ville</span><?php echo $ville; ?>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-info-sign"></span>
-                                <input type="text" name="profession_pere" value="<?php if(isset($_POST['profession_pere'])) echo $_POST['profession_pere']; ?>" placeholder="Profession du père"/>
+                                <span>Profession du père</span><?php echo $profession_pere; ?>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-info-sign"></span>
-                                <input type="text" name="profession_mere" value="<?php if(isset($_POST['profession_mere'])) echo $_POST['profession_mere']; ?>" placeholder="Profession du mère"/>
+                                <span> Porfession de la mère</span><?php echo $profession_mere; ?>
                             </div>
-                            <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="cne" value="<?php if(isset($_POST['cne'])) echo $_POST['cne']; ?>" placeholder="CNE"/>
-                            </div>
+                           
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-list-alt"></span>
-                                <span> Type du bac</span>
-                                <select name="type_bac" value=<?php if(isset($_POST['type_bac'])) echo $_POST['type_bac']; ?>>
-                                    <option <?php if (isset($_POST['type_bac']) and $_POST['type_bac'] == 'PC') echo ' selected="selected"'; ?> >PC</option>
-                                    <option <?php if (isset($_POST['type_bac']) and $_POST['type_bac'] == 'SVT') echo ' selected="selected"'; ?> >SVT</option>
-                                    <option <?php if (isset($_POST['type_bac']) and $_POST['type_bac'] == 'Sn Math') echo ' selected="selected"'; ?>>Sn Math</option>
-                                </select>
+                                <span>Type de bac</span><?php echo $type_bac; ?>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="note_bac" value="<?php if(isset($_POST['note_bac'])) echo $_POST['note_bac']; ?>" placeholder="Note du bac"/>
+                                <span>Note de bac</span><?php echo $note_bac; ?>
                             </div>
                             <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="note_1er_annee" value="<?php if(isset($_POST['note_1er_annee'])) echo $_POST['note_1er_annee']; ?>" placeholder="Note 1er année"/>
+                                <span class="glyphicon glyphicon-lock"></span><span>Note de la 1er année</span><?php echo $note_1er_annee; ?>
                             </div>
                             <div class="e_input col-md-12">
-                                <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="classement" value="<?php if(isset($_POST['classement'])) echo $_POST['classement']; ?>" placeholder="Classement"/>
+                                <span class="glyphicon glyphicon-lock"></span>// à faire le classement
                             </div>
-                            <div class="e_input e_date col-md-12">
-                                <h3>Choix de la filliere:</h3>
-                            </div>
-                            <div class="e_input e_date col-md-12">
-                                <span class="glyphicon glyphicon-certificate"></span>
-                                <span> Choix 1</span><br/>
-                                <input type="radio" name="choix1" value="I" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
-                                <input type="radio" name="choix1" value="P" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix1" value="F" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
-                                <input type="radio" name="choix1" value="T" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
-                            </div>
-                            <div class="e_input e_date col-md-12">
-                                <span class="glyphicon glyphicon-certificate"></span>
-                                <span> Choix 2</span><br/>
-                                <input type="radio" name="choix2" value="I" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
-                                <input type="radio" name="choix2" value="P" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix2" value="F" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
-                                <input type="radio" name="choix2" value="T" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
-                            </div>
-                            <div class="e_input e_date col-md-12">
-                                <span class="glyphicon glyphicon-certificate"></span>
-                                <span> Choix 3</span><br/>
-                                <input type="radio" name="choix3" value="I" <?php if (isset($_POST['choix3']) and $_POST['choix3']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
-                                <input type="radio" name="choix3" value="P"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix3" value="F"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
-                                <input type="radio" name="choix3" value="T"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
-                            </div>
-                                    <input type="hidden" value="ensa" name="who" / >
-                            <div class="e_login_btn col-md-4 col-md-offset-8 text-right">
-                                <input type="submit" name="submit" value="Inscription" id="e_inscription" class='btn btn-success'/>
-                            </div>
-                            <p class="pull-right"><a href="<?php echo site_url('My_controllerpdf/pdfensasprepa')?>">genere pdf</a>.</p>
+                            Choix de filière : <br/>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>1er choix</th>
+                                                    <th>2éme choix</th>
+                                                    <th>3éme choix</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><?php echo $choix1; ?></td>
+                                                    <td><?php echo $choix2; ?></td>
+                                                    <td><?php echo $choix3; ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                           
+                            <p class="pull-left"><a href="<?php echo site_url('My_controllerpdf/pdfensasprepa')?>">télécharger</a></p>
+                            <p class="pull-right"><input type="button" value="modifier" class="btn-primary" OnClick="window.location.href='<?php echo site_url('etudiant_controller/edit')?>'"/></p>
                         </form>
                     </div>
                 </div>
