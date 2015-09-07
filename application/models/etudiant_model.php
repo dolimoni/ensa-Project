@@ -293,5 +293,133 @@ class Etudiant_model extends CI_Model
         
         return $row;
     }
+
+    
+    /* Retourne la liste des etudiants selon le type */
+    public function getListEtudiants(){
+        $etudiants = $this->db->select("*")
+                    ->from($this->table)
+                    ->where("deleted",0)
+                    ->where("isValid",1)
+                    ->get()
+                    ->result();
+        $rows = array("etudiants" => array());
+        foreach($etudiants as $etudiant){
+            $rows["etudiants"][$etudiant->id] = array(
+                "id" => $etudiant->id,
+                "email" => $etudiant->email,
+                "nom" => $etudiant->nom,
+                "prenom" => $etudiant->prenom,
+                "cne" => $etudiant->cne,
+                "cin" => $etudiant->cin,
+                "niveau" => $etudiant->niveau,
+                "filiere" => $etudiant->filiere,
+                "civilite" => $etudiant->civilite,
+                "nationalite" => $etudiant->nationalite,
+                "photo" => $etudiant->photo,
+                "date_naissance" => $etudiant->date_naissance,
+                "lieu_naissance" => $etudiant->lieu_naissance,
+                "tel" => $etudiant->tel,
+                "gsm" => $etudiant->gsm,
+                "adresse" => $etudiant->adresse,
+                "ville" => $etudiant->ville,
+                "profession_pere" => $etudiant->profession_pere,
+                "profession_mere" => $etudiant->profession_mere,
+                "matricule" => $etudiant->matricule,
+                "created_at" => $etudiant->created_at,
+                "id_choix" => $etudiant->id_choix
+            );
+            if((int) $this->db->where("id_etudiant",$etudiant->id)->count_all_results("etudiant_ensa") > 0){
+                $rows["etudiants"][$etudiant->id]["who"]= "ensa";
+
+                $query2 = $this->db->select("*")
+                        ->from("etudiant_ensa")
+                        ->where('id_etudiant',$etudiant->id)
+                        ->limit( 1)
+                        ->get();
+
+                $row2 = $query2->row_array();
+
+                $rows["etudiants"][$etudiant->id]["type_bac"] = $row2["type_bac"];
+                $rows["etudiants"][$etudiant->id]["note_bac"] = $row2["note_bac"];
+                $rows["etudiants"][$etudiant->id]["note_1er_annee"] = $row2["note_1er_annee"];
+                $rows["etudiants"][$etudiant->id]["classement_1er_annee"] = $row2["classement_1er_annee"];
+                $rows["etudiants"][$etudiant->id]["note_2eme_annee"] = $row2["note_2eme_annee"];
+
+                $query3 = $this->db->select("*")
+                        ->from("filiere_choix")
+                        ->where('id',$rows["etudiants"][$etudiant->id]["id_choix"])
+                        ->limit(1)
+                        ->get();
+
+                $row3 = $query3->row_array();
+
+                $rows["etudiants"][$etudiant->id]["choix1"] = $row3["choix1"];
+                $rows["etudiants"][$etudiant->id]["choix2"] = $row3["choix2"];
+                $rows["etudiants"][$etudiant->id]["choix3"] = $row3["choix3"];
+
+            }else if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_cnc") > 0){
+                $rows["etudiants"][$etudiant->id]["who"]= "cnc";
+
+                $query2 = $this->db->select("*")
+                        ->from("etudiant_cnc")
+                        ->where('id_etudiant',$id)
+                        ->limit( 1)
+                        ->get();
+
+                $row2 = $query2->row_array();
+
+                $rows["etudiants"][$etudiant->id]["type_bac"] = $row2["type_bac"];
+                $rows["etudiants"][$etudiant->id]["note_bac"] = $row2["note_bac"];
+                $rows["etudiants"][$etudiant->id]["filiere_cp"] = $row2["filiere_cp"];
+                $rows["etudiants"][$etudiant->id]["etablissement_cp"] = $row2["etablissement_cp"];
+                $rows["etudiants"][$etudiant->id]["ville_cp"] = $row2["ville_cp"];
+                $rows["etudiants"][$etudiant->id]["range_cnc"] = $row2["range_cnc"];
+
+                $query3 = $this->db->select("*")
+                        ->from("filiere_choix")
+                        ->where('id',$row["id_choix"])
+                        ->limit(1)
+                        ->get();
+
+                $row3 = $query3->row_array();
+
+                $rows["etudiants"][$etudiant->id]["choix1"] = $row3["choix1"];
+                $rows["etudiants"][$etudiant->id]["choix2"] = $row3["choix2"];
+                $rows["etudiants"][$etudiant->id]["choix3"] = $row3["choix3"];
+            }else if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_3eme_4eme") > 0){
+                $rows["etudiants"][$etudiant->id]["who"]= "3and4Year";
+
+                $query2 = $this->db->select("*")
+                        ->from("etudiant_3eme_4eme")
+                        ->where('id_etudiant',$id)
+                        ->limit( 1)
+                        ->get();
+
+                $row2 = $query2->row_array();
+
+                $rows["etudiants"][$etudiant->id]["type_diplome"] = $row2["type_diplome"];
+                $rows["etudiants"][$etudiant->id]["etablissement_diplome"] = $row2["etablissement_diplome"];
+
+                $query3 = $this->db->select("*")
+                        ->from("filiere_choix")
+                        ->where('id',$row["id_choix"])
+                        ->limit(1)
+                        ->get();
+
+                $row3 = $query3->row_array();
+
+                $rows["etudiants"][$etudiant->id]["choix1"] = $row3["choix1"];
+                $rows["etudiants"][$etudiant->id]["choix2"] = $row3["choix2"];
+                $rows["etudiants"][$etudiant->id]["choix3"] = $row3["choix3"];
+            }
+        }
+        return $rows;
+    }
+    
+    public function delete($idEtudiant){
+        $this->db->where('id', $idEtudiant);
+        $this->db->update($this->table, array("deleted" => 1)); 
+    }
 	
 }

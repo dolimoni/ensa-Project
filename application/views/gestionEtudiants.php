@@ -46,8 +46,8 @@
                         <td><?php echo $etudiant["cin"] ?></td>
                         <td>
                             <a href="#" title="Afficher le profile" class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></a>
-                            <a href="#" title="Modifier les information" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span></a>
-                            <a href="#" title="Supprimer" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            <a href="<?php echo site_url("admin_controller/editProfile/".$etudiant["id"]); ?>" title="Modifier les information" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a href="<?php echo site_url("admin_controller/supprimerEtudiant/".$etudiant["id"]); ?>" title="Supprimer" class="btn btn-danger btn-delete"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
                     <?php

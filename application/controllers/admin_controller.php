@@ -36,9 +36,7 @@ class Admin_controller extends CI_Controller
 		$this->load->view('array.php', $this->admin_model->attribution($order));
 
 	}
-<<<<<<< HEAD
-=======
-    
+
     /*By Essaidi : this fct opens a view that contains a browse button, where admin can choose the EXCEL file */
     public function administration(){
         $this->load->view('admin-import');
@@ -81,7 +79,30 @@ class Admin_controller extends CI_Controller
         $data = $this->etudiant_model->getListEtudiants();
         $this->load->view('gestionEtudiants',$data);
     }
->>>>>>> 61f98b4778601eb824906adb708c2eeac930fcb2
+
+    
+    public function editProfile($id){
+        $this->load->model('etudiant_model') ;
+        
+        if(!empty($this->session->userdata("cin"))){
+            if(isset($_POST["submit"])){
+                
+            }else{
+                $data = $this->etudiant_model->getProfile($id);
+                //$data["who"] = $this->etudiant_model->getEtudiantWho($id);
+                $this->load->view('edit_profile',$data);
+            }
+        }else{
+            redirect();
+        }
+    }
+    
+    public function supprimerEtudiant($id){
+        $this->load->model('etudiant_model') ;
+        $this->etudiant_model->delete($id);
+        redirect('admin_controller/gestionEtudiants');
+    }
+
 }
 
 ?>
