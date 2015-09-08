@@ -47,7 +47,7 @@ class Etudiant_model extends CI_Model
                        // 'filiere'=> $info['filiere'],
                         'civilite'=> $info['civilite'],
                         'nationalite'=> $info['nationalite'],
-                        'photo'=>$info['cin']."_".$info['photo'].'jpg',
+                        'photo'=>$info['cin'].'.jpg',
                         'date_naissance'=> $info['date_naissance'],
                         'lieu_naissance'=> $info['lieu_naissance'],
                         'tel'=> $info['tel'],
@@ -141,7 +141,7 @@ class Etudiant_model extends CI_Model
     }
     
     
-    /* By Essaidi : this function sends email */
+    /* this function sends email */
     private function sendEmailtoUser($to,$subject,$message){
         $config = Array(
             'protocol' => 'smtp',
@@ -196,6 +196,7 @@ class Etudiant_model extends CI_Model
                     ->where('cin',strtolower($cin))
                     ->where('cne',strtolower($cne))
                     ->where('isValid',"1")
+                    ->where('deleted',0)
                     ->get();
         if ( $query->num_rows() > 0 )
         {
@@ -205,7 +206,7 @@ class Etudiant_model extends CI_Model
         }
     }
     
-    /* By Essaidi : This fct returns the type of the Etudiant (ensa,cnc...) */
+    /* This fct returns the type of the Etudiant (ensa,cnc...) */
     public function getEtudiantWho($id){
         if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_ensa") > 0){
             return "ensa";
@@ -216,8 +217,7 @@ class Etudiant_model extends CI_Model
         }
     }
     
-    /* By Essaidi : Returns an array with etudiant's info */
-    /*wach nta khayfna lanchefrok !!!!*/
+    /* Returns an array with etudiant's info */
     public function getProfile($id){
         $query = $this->db->select("*")
                     ->from($this->table)

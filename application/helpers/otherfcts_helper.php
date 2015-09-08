@@ -19,3 +19,30 @@ if ( ! function_exists('echoSelected'))
         }
 	}
 }
+if ( ! function_exists('isConnected'))
+{
+    function isConnected()
+    {
+        $CI = & get_instance();  //get instance, access the CI superobject
+        $cne = $CI->session->userdata('cne');
+        if(!empty($cne)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+if ( ! function_exists('isAdmin'))
+{
+    function isAdmin()
+    {
+        $CI = & get_instance();  //get instance, access the CI superobject
+        $admin_username = $CI->session->userdata('admin_username');
+        if(!empty($admin_username)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
