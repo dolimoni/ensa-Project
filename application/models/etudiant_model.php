@@ -383,7 +383,7 @@ class Etudiant_model extends CI_Model
 
                 $query3 = $this->db->select("*")
                         ->from("filiere_choix")
-                        ->where('id',$row["id_choix"])
+                        ->where('id',$rows["etudiants"][$etudiant->id]["id_choix"])
                         ->limit(1)
                         ->get();
 
@@ -408,7 +408,7 @@ class Etudiant_model extends CI_Model
 
                 $query3 = $this->db->select("*")
                         ->from("filiere_choix")
-                        ->where('id',$row["id_choix"])
+                        ->where('id',$rows["etudiants"][$etudiant->id]["id_choix"])
                         ->limit(1)
                         ->get();
 
