@@ -103,17 +103,13 @@ class Admin_controller extends CI_Controller
     }
 
     
-    public function editProfile($id){
+   public function editProfile(){
         $this->load->model('etudiant_model') ;
-        
-        if(!empty($this->session->userdata("cin"))){
-            if(isset($_POST["submit"])){
-                
-            }else{
-                $data = $this->etudiant_model->getProfile($id);
-                //$data["who"] = $this->etudiant_model->getEtudiantWho($id);
-                $this->load->view('edit_profile',$data);
-            }
+        $id = $this->session->userdata("id");
+        $cin = $this->session->userdata("cin");
+        if(!empty($cin)){
+            $data = $this->etudiant_model->getProfile($id);
+            $this->load->view('edit_profile',$data);
         }else{
             redirect();
         }

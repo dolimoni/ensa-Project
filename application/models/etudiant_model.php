@@ -295,7 +295,7 @@ class Etudiant_model extends CI_Model
             
             // A faire : Add the filiere
         }
-        
+        print_r($row);
         return $row;
     }
 
