@@ -6,18 +6,7 @@ class My_controllerpdf extends CI_Controller
 		{
 		parent::__construct();
 		} 
-public function accueil()
-{
-	echo "cc";
-}
-public function insert()
-{
-    $this->load->model('my_modelpdf');
 
-    $data['results'] = $this->my_modelpdf->getAll(); 
-    $this->load->view('my_viewpdf', $data);
-    
-}
 //********************************* ensas*****************
 
 public function pdfensasprepa()
@@ -29,7 +18,7 @@ public function pdfensasprepa()
 	'nom' => 'aaaaaaa',
 	'prenom' => 'bbbbbbb',
 	'date_naissance' => '03-08-1992',
-	'lieu_naissance' => 'kech',
+	'lieu_naissance' => 'kéch',
 	'nationalite' => 'Marocaine',
 	'cin' => 'w021365',
 	'tel' => '06 70 37 12 46',
@@ -65,7 +54,7 @@ public function pdfelevescnc()
 	'nom' => 'xxxxxxx',
 	'prenom' => 'yyyyyyy',
 	'date_naissance' => '31-07-1994',
-	'lieu_naissance' => 'Fes',
+	'lieu_naissance' => 'Fès',
 	'nationalite' => 'Marocaine',
 	'cin' => 'w021365',
 	'tel' => '06 77 77 77 77',
@@ -116,5 +105,6 @@ $results= array(
 );
 	$this->my_modelpdf->concoursPDF($results); 	
 }
+
 }
 ?>

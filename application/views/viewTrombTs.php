@@ -1,14 +1,16 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 //*****************Generation des pdf**************
 if(count($results)==0)
 {
-	echo 'aucun resultat';
+	$this->load->view('aucunResultat.php');
 }
 else
 {
 ob_start();
-	define('FPDF_FONTPATH',$this->config->item('fonts_path'));
-	
+	define('FPDF_FONTPATH','fonts/');
+	//define('FPDF_FONTPATH','font/');
+//above line is import to define, otherwise it gives an error : Could not include font metric file
+//require('fpdf.php');
 	$this->load->library(array('fpdf','fpdf_rotate','pdf'));
 	$pdf = new FPDF();
 	$pdf->AliasNbPages();

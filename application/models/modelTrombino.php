@@ -1,4 +1,4 @@
-<?php if(!defined ('BASEPATH')) exit ('No direct script access allowed');
+﻿<?php if(!defined ('BASEPATH')) exit ('No direct script access allowed');
 class ModelTrombino extends CI_Model
 {
 	private $table = 'etudiant';
@@ -22,10 +22,10 @@ class ModelTrombino extends CI_Model
 	
 			$results=array(); 
     
-		   $this->db->select('e.photo,e.nom,e.prenom,e.cin,e.tel,e.gsm,e.email,e.ville,e.matricule,s.final_filiere,s.created_at');
+		   $this->db->select('e.photo,e.nom,e.prenom,e.cin,e.tel,e.gsm,e.email,e.ville,e.matricule,s.final_filiere,s.created_at,s.deleted');
 			$this->db->from('etudiant e');
 			$this->db->join('etudiant_ensa s', 'e.id=s.id_etudiant');
-			$this->db->where(array('s.final_filiere' =>$choix_fil,'year(s.created_at)'=>$AU[0]));
+			$this->db->where(array('s.final_filiere' =>$choix_fil,'year(s.created_at)'=>$AU[0],'s.deleted'=>0));
 			$this->db->order_by('e.nom asc, e.prenom asc'); 
 			$query = $this->db->get();
 		   
@@ -43,11 +43,11 @@ class ModelTrombino extends CI_Model
 		$choix_fil=$info['choix1'];
 		
 		
-			$this->db->select('e.photo,e.nom,e.prenom,e.cin,e.tel,e.gsm,e.email,e.ville,e.matricule,e.filiere,f.titre,s.created_at');
+			$this->db->select('e.photo,e.nom,e.prenom,e.cin,e.tel,e.gsm,e.email,e.ville,e.matricule,e.filiere,f.titre,s.created_at,s.deleted');
 			$this->db->from('etudiant e');
 			$this->db->join('etudiant_cnc s', 'e.id=s.id_etudiant');
 			$this->db->join('filiere f', 'f.id=e.filiere');
-			$this->db->where(array('f.titre' =>$choix_fil,'year(s.created_at)'=>$AU[0]));
+			$this->db->where(array('f.titre' =>$choix_fil,'year(s.created_at)'=>$AU[0],'s.deleted'=>0));
 			$this->db->order_by('e.nom asc, e.prenom asc'); 
 			$query = $this->db->get();
 		    
@@ -73,11 +73,11 @@ class ModelTrombino extends CI_Model
 		$choix_fil=$info['choix1'];
 		
 			
-			$this->db->select('e.photo,e.nom,e.prenom,e.cin,e.tel,e.gsm,e.email,e.ville,e.matricule,e.filiere,e.niveau,f.titre,s.created_at');
+			$this->db->select('e.photo,e.nom,e.prenom,e.cin,e.tel,e.gsm,e.email,e.ville,e.matricule,e.filiere,e.niveau,f.titre,s.created_at,s.deleted');
 			$this->db->from('etudiant e');
 			$this->db->join('etudiant_3eme_4eme s', 'e.id=s.id_etudiant');
 			$this->db->join('filiere f','f.id=e.filiere');
-			$this->db->where(array('f.titre' =>$choix_fil,'e.niveau'=>$niv,'year(s.created_at)'=>$AU[0]));
+			$this->db->where(array('f.titre' =>$choix_fil,'e.niveau'=>$niv,'year(s.created_at)'=>$AU[0],'s.deleted'=>0));
 			$this->db->order_by('e.nom asc, e.prenom asc'); 
 			$query = $this->db->get();
 		   
@@ -95,10 +95,10 @@ class ModelTrombino extends CI_Model
 		$AU= explode("-",$info['AU']);
 		$choix_fil=$info['choix1'];
 		
-			$this->db->select('e.photo,e.nom,e.prenom,e.cin,e.tel,e.gsm,e.email,e.ville,e.matricule,e.filiere,e.niveau,f.titre,e.created_at');
+			$this->db->select('e.photo,e.nom,e.prenom,e.cin,e.tel,e.gsm,e.email,e.ville,e.matricule,e.filiere,e.niveau,f.titre,e.created_at,e.deleted');
 			$this->db->from('etudiant e');
 			$this->db->join('filiere f','f.id=e.filiere');
-			$this->db->where(array('f.titre' =>$choix_fil,'e.niveau'=>3,'year(e.created_at)'=>$AU[0]));
+			$this->db->where(array('f.titre' =>$choix_fil,'e.niveau'=>3,'year(e.created_at)'=>$AU[0],'e.deleted'=>0));
 			$this->db->order_by('e.nom asc, e.prenom asc'); 
 			$query = $this->db->get();
 		
