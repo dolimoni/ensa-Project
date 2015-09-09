@@ -55,6 +55,7 @@ class Filiere_model extends CI_Model
    
 	}
 	//ajout
+	// ajouter une nouvelle filiere
 	public function addfiliere($filiere)
 	{
 	$titre=$filiere['titre'];	
