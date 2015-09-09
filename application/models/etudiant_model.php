@@ -363,7 +363,7 @@ class Etudiant_model extends CI_Model
                 $rows["etudiants"][$etudiant->id]["choix2"] = $row3["choix2"];
                 $rows["etudiants"][$etudiant->id]["choix3"] = $row3["choix3"];
 
-            }else if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_cnc") > 0){
+            }else if((int) $this->db->where("id_etudiant",$etudiant->id)->count_all_results("etudiant_cnc") > 0){
                 $rows["etudiants"][$etudiant->id]["who"]= "cnc";
 
                 $query2 = $this->db->select("*")
@@ -392,7 +392,7 @@ class Etudiant_model extends CI_Model
                 $rows["etudiants"][$etudiant->id]["choix1"] = $row3["choix1"];
                 $rows["etudiants"][$etudiant->id]["choix2"] = $row3["choix2"];
                 $rows["etudiants"][$etudiant->id]["choix3"] = $row3["choix3"];
-            }else if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_3eme_4eme") > 0){
+            }else if((int) $this->db->where("id_etudiant",$etudiant->id)->count_all_results("etudiant_3eme_4eme") > 0){
                 $rows["etudiants"][$etudiant->id]["who"]= "3and4Year";
 
                 $query2 = $this->db->select("*")
