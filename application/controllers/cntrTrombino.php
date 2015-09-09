@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ï»¿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class CntrTrombino extends CI_Controller
 {
 	
@@ -16,12 +16,12 @@ class CntrTrombino extends CI_Controller
 	}
 public function connexion()
 	{ $this->load->model('ModelTrombino') ;
-		// Chargement de la bibliothèque
+		// Chargement de la bibliothÃ¨que
 		$this->load->library('form_validation');
 		
-		$this->form_validation->set_rules('et', '"Choix de type d etudiants"','trim|required|encode_php_tags|xss_clean');
-		$this->form_validation->set_rules('AU', '"Année universitaire"','trim|required|encode_php_tags|xss_clean');
-		$this->form_validation->set_rules('choix1', '"Choix de filière"','trim|required|encode_php_tags|xss_clean');
+		$this->form_validation->set_rules('et', '"Choix de type d etudiants"','trim|required');
+		$this->form_validation->set_rules('AU', '"AnnÃ©e universitaire"','trim|required');
+		$this->form_validation->set_rules('choix1', '"Choix de filiere"','trim|required');
 
 		if($this->form_validation->run())
 		{
@@ -61,6 +61,8 @@ public function connexion()
 		{
 			// Le formulaire est invalide ou vide
 			$this->load->view('Generation_trombino.php');
+			//redirect('cntrTrombino/connexion');
+			
 		}
 	}	
 	

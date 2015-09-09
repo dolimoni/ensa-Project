@@ -16,15 +16,17 @@ public function EnsasPDF($results)
  
  
 	ob_start();
-	define('FPDF_FONTPATH',$this->config->item('fonts_path'));
+	//define('FPDF_FONTPATH',$this->config->item('fonts_path'));
+	define('FPDF_FONTPATH','fonts/');
 	
 	$this->load->library(array('fpdf','fpdf_rotate','pdf'));
 	$pdf = new FPDF();
+	$pdf->AliasNbPages();
 	$pdf->AddPage();
 	$pdf->SetFont('Arial','',12);
 
 	//recupérer l'URL de l'image  
-	$pdf->Image('C:\wamp\www\ensa-Project\assets\img\logo.png',10,6,30);
+	$pdf->Image('C:\wamp\www\ensa-Project\assets\img\logo.jpg',10,6,30,34);
 	
     // Titre
     $pdf->Cell(200,5,'Université Cadi Ayyad',0,1,'C');
@@ -119,8 +121,8 @@ public function EnsasPDF($results)
 				
 				$pdf->SetFont('Arial','',10);
 				
-				$pdf->Cell(90,8,'Note 1ere annee ',0,0,'C');//C pr centrer
-				$pdf->Cell(60,8,' Note 2eme annee',0,1,'C');
+				$pdf->Cell(90,8,'Note 1ere année ',0,0,'C');//C pr centrer
+				$pdf->Cell(60,8,' Note 2eme année',0,1,'C');
 				
 				$pdf->SetFont('Arial','B',10);
 			    $pdf->Cell(90,8,' '.$results['note_1er_annee'],0,0,'C');
@@ -184,15 +186,17 @@ ob_end_flush ();
 public function concoursPDF($results)
 { 
 	ob_start();
-	define('FPDF_FONTPATH',$this->config->item('fonts_path'));
+	//define('FPDF_FONTPATH',$this->config->item('fonts_path'));
+	define('FPDF_FONTPATH','fonts/');
+	
 	$this->load->library(array('fpdf','fpdf_rotate','pdf'));
 	$pdf = new FPDF();
+	$pdf->AliasNbPages();
 	$pdf->AddPage();
 	$pdf->SetFont('Arial','',12);
 
 	//recupérer l'URL de l'image  
-	$pdf->Image('C:\wamp\www\code\application\views\logo.png',10,6,30);
-	
+	$pdf->Image('C:\wamp\www\ensa-Project\assets\img\logo.jpg',10,6,30,34);
     // Titre
     $pdf->Cell(200,5,'Université Cadi Ayyad',0,1,'C');
 	
@@ -316,7 +320,7 @@ public function concoursPDF($results)
 			
 			//inserer l'inmage de la signature
 			
-			$pdf->Image('C:\wamp\www\code\application\views\signature.png',150,250,0);
+			$pdf->Image('C:\wamp\www\ensa-Project\assets\img\signature.png',150,250,0);
 			
 	
 			$pdf->Output();
@@ -339,15 +343,17 @@ public function cncPDF($results)
 {   
 
 	ob_start();
-	define('FPDF_FONTPATH',$this->config->item('fonts_path'));
+	//define('FPDF_FONTPATH',$this->config->item('fonts_path'));
+	define('FPDF_FONTPATH','fonts/');
 	
 	$this->load->library(array('fpdf','fpdf_rotate','pdf'));
 	$pdf = new FPDF();
+	$pdf->AliasNbPages();
 	$pdf->AddPage();
 	$pdf->SetFont('Arial','',12);
 
 	//recupérer l'URL de l'image  
-	$pdf->Image('C:\wamp\www\code\application\views\logo.png',10,6,30);
+	$pdf->Image('C:\wamp\www\ensa-Project\assets\img\logo.jpg',10,6,30,34);
 	
     // Titre
     $pdf->Cell(200,5,'Université Cadi Ayyad',0,1,'C');
@@ -460,7 +466,7 @@ public function cncPDF($results)
 			
 			//inserer l'inmage de la signature
 			
-			$pdf->Image('C:\wamp\www\code\application\views\signature.png',150,230,0);
+			$pdf->Image('C:\wamp\www\ensa-Project\assets\img\signature.png',150,230,0);
 			
 	
 			$pdf->Output();
@@ -473,37 +479,5 @@ ob_end_flush ();
 }
 
 
-
-
-
-
-
-public function getAll()
-{
-$results=array();   
-  
-
-   /*
-   requete avec jointure 
-   */
-   
-   $this->db->select('e.nom,e.prenom,e.date_naissance,e.lieu_naissance,e.nationalite,e.cin,e.tel,e.gsm,e.email,e.adresse,e.ville,e.cne,s.type_bac,s.note_bac,s.note_1er_annee,s.note_2eme_annee,s.classement_1er_annee,e.id_choix,e.created_at,e.matricule');
-    $this->db->from('etudiant e');
-    $this->db->join('etudiant_ensa s', 'e.id=s.id_etudiant');
-    $this->db->join('filiere_choix f', 'f.id=e.id_choix');
-	 //ajouter la cdt de choix de l'etudiant
-	$query = $this->db->get();
-
-	if($query->num_rows()>0)
-		//if(count($query)>0)
-    {
-        $results = $query->result();
-		//echo "resltat dispo";
-       
-    }
-	//else echo "non dispo";
-	 return $results;
-	
-}//fin getAll
 }
 ?>

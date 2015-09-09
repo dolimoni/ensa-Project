@@ -1,15 +1,15 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 if(count($results)==0)
 {
-	echo 'aucun resultat';
+	$this->load->view('aucunResultat.php');
 }
 else
 {
 //*****************Generation du pdf**************
 
 ob_start();
-	define('FPDF_FONTPATH',$this->config->item('fonts_path'));
-	
+	//define('FPDF_FONTPATH',$this->config->item('fonts_path'));
+	define('FPDF_FONTPATH','fonts/');
 	$this->load->library(array('fpdf','fpdf_rotate','pdf'));
 	$pdf = new FPDF();
 	$pdf->AliasNbPages();
