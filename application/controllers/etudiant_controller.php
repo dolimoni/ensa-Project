@@ -45,7 +45,7 @@ class Etudiant_controller extends CI_Controller {
        $this->load->view('edit_profile');
     }
     
-    /*public function editProfile(){
+    public function editProfile(){
         $this->load->model('etudiant_model') ;
         $id = $this->session->userdata("id");
         
@@ -60,5 +60,5 @@ class Etudiant_controller extends CI_Controller {
         }else{
             redirect();
         }
-    }*/
+    }
 }

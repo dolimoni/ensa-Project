@@ -136,7 +136,7 @@
 
                            
                             <p class="pull-left"><a href="<?php echo site_url('My_controllerpdf/pdfensasprepa')?>">télécharger</a></p>
-                            <p class="pull-right"><input type="button" value="modifier" class="btn-primary" OnClick="window.location.href='<?php echo site_url('etudiant_controller/edit')?>'"/></p>
+                            <p class="pull-right"><input type="button" value="modifier" class="btn-primary" OnClick="window.location.href='<?php echo site_url('etudiant_controller/editProfile')?>'"/></p>
                         </form>
                     </div>
                 </div>

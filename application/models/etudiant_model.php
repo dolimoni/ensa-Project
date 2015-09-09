@@ -47,7 +47,7 @@ class Etudiant_model extends CI_Model
                        // 'filiere'=> $info['filiere'],
                         'civilite'=> $info['civilite'],
                         'nationalite'=> $info['nationalite'],
-                        'photo'=>$info['cin']."_".$info['photo'].'jpg',
+                        'photo'=>$info['cin']."_".$info['photo']['name'].'jpg',
                         'date_naissance'=> $info['date_naissance'],
                         'lieu_naissance'=> $info['lieu_naissance'],
                         'tel'=> $info['tel'],
