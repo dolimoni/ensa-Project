@@ -39,8 +39,8 @@ class Etudiant_controller extends CI_Controller {
     public function editProfile(){
         $this->load->model('etudiant_model') ;
         $id = $this->session->userdata("id");
-        
-        if(!empty($this->session->userdata("cin"))){
+        $cin = $this->session->userdata("cin");
+        if(!empty($cin)){
             $data = $this->etudiant_model->getProfile($id);
             $this->load->view('edit_profile',$data);
         }else{

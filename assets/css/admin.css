@@ -1,0 +1,59 @@
+#e_signup .container{
+    padding: 20px;
+}
+.admin{
+    margin-top: 40px;
+}
+.admin .sidebar{
+    background-image: url('../img/bg-default.jpg');
+    padding: 0;
+}
+.admin .sidebar ul{
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+.admin .sidebar ul li{
+    display: block;
+    margin: 0 0 1px 0;
+    padding: 0;
+    border: 0px;
+    line-height: 30px;
+    background-image: url('../img/side-bar-list-bg.png');
+}
+.admin .sidebar li a{
+    color : #fff;
+    display: block;
+    position: relative;
+    margin: 0;
+    border: 0px;
+    padding: 0px 0 0px 15px;
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+}
+.admin .sidebar li a span{
+    padding: 20px;
+    margin-left: 10px;
+    background-color:  rgb(85,96,110);
+    color: #fff;
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+}
+.admin .sidebar li a:hover{
+    text-decoration: none;
+}
+.admin .content .page-title{
+    font-size: 28px;
+    font-weight: normal !important;
+    margin: 13px 0px 8px 0px;
+    font-family: 'Droid Arabic Kufi';
+    color: #868686;
+}
+.admin .content .page-title span{
+    font-size: 14px;
+}
