@@ -5,7 +5,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin_controller extends CI_Controller
 {
 
+    public function index(){
+        if(isAdmin()){
+            $this->load->view("admin");
+        }else{
+            $this->load->view("admin_login");
+        }
+    }
+    
+    public function login()
+    {
+        $this->load->model('admin_model') ;
 
+        $password=$this->input->post('password');
+        $username =$this->input->post('username');
+       
+        if($this->admin_model->login($username,$password)){
+            $this->session->set_userdata("admin_username",$username);
+            $this->session->set_userdata("id",$this->admin_model->getId($username));
+            redirect('/admin_controller');
+        }else{
+            redirect('/admin_controller');
+        }
+    }
 	public function statistics(){
 
 
@@ -37,12 +59,12 @@ class Admin_controller extends CI_Controller
 
 	}
 
-    /*By Essaidi : this fct opens a view that contains a browse button, where admin can choose the EXCEL file */
+    /* this fct opens a view that contains a browse button, where admin can choose the EXCEL file */
     public function administration(){
         $this->load->view('admin-import');
     }
     
-    /*By Essaidi : this fct uploads the excel file & sends data to model in order to insert it in db */
+    /* this fct uploads the excel file & sends data to model in order to insert it in db */
     public function importExcel(){
         $filename = 'files/'.date("Ymd").'.xlsx';
         copy($_FILES['excelfile']['tmp_name'], $filename);

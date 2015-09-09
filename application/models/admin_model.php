@@ -179,7 +179,7 @@ class Admin_model extends CI_model{
 			return $place_number;
 		}
     
-        /* By Essaidi : this fct insert students in db */
+        /* this fct insert students in db */
         public function insertStudentsFromExcelFile($students){
             foreach($students as $student){
                 $this->db->set('nom',$student['B'])
@@ -189,6 +189,38 @@ class Admin_model extends CI_model{
                                ->insert('etudiant'); 
             }
         }
+        
+    public function login($username,$password){
+        if($password == "" || $username == ""){
+            return false;
+        }
+        
+        $query = $this->db->select("id")
+                    ->from("admin")
+                    ->where('password',$password)
+                    ->where('username',strtolower($username))
+                    ->where('deleted',0)
+                    ->get();
+        if ( $query->num_rows() > 0 )
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function getId($username)
+    {
+        $query = $this->db->select("*")
+                    ->from("admin")
+                    ->where('username',$username)
+                    ->limit( 1)
+                    ->get();
+                    
+        $row = $query->row_array();
+                   
+        return $row['id'];
+    }
 
 }
 
