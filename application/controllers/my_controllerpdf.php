@@ -12,6 +12,8 @@ class My_controllerpdf extends CI_Controller
 public function pdfensasprepa()
 {
     $this->load->model('my_modelpdf');
+      $this->load->model('etudiant_model') ;
+
 
 	$results= array(
 	'matricule'	=> 'q123489q',
@@ -33,11 +35,11 @@ public function pdfensasprepa()
 	'note_2eme_annee' => '14',
 	'classement_1er_annee' => '11',
 	'id_choix' => '1',
-	'create_at' => '12-12-2015'
+	'created_at' => '12-12-2015'
 	);
 	
 	
-    $this->my_modelpdf->EnsasPDF($results); 
+    $this->my_modelpdf->EnsasPDF($this->etudiant_model->getProfile($this->session->userdata("id"))); 
     //$this->load->view('my_viewpdf', $data);   
 }
 

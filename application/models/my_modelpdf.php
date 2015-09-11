@@ -26,7 +26,7 @@ public function EnsasPDF($results)
 	$pdf->SetFont('Arial','',12);
 
 	//recupérer l'URL de l'image  
-	$pdf->Image('C:\wamp\www\ensa-Project\assets\img\logo.jpg',10,6,30,34);
+	$pdf->Image('C:\wamp\www\ensa-Project\assets\img\a.jpg',10,6,30,34);
 	
     // Titre
     $pdf->Cell(200,5,'Université Cadi Ayyad',0,1,'C');
@@ -163,7 +163,7 @@ public function EnsasPDF($results)
 			   $pdf->Cell(50,8,' Date de création du compte :',0,0);
 			   $pdf->SetFont('Arial','B',10);
 
-			$pdf->Cell(40,8,' '.$results['create_at'],0,0);
+			$pdf->Cell(40,8,' '.$results['created_at'],0,0);
 			$pdf->Cell(40,8,'  Signature  ',0,0);
 			//inserer l'inmage de la signature
 			
@@ -196,7 +196,7 @@ public function concoursPDF($results)
 	$pdf->SetFont('Arial','',12);
 
 	//recupérer l'URL de l'image  
-	$pdf->Image('C:\wamp\www\ensa-Project\assets\img\logo.jpg',10,6,30,34);
+	$pdf->Image('C:\wamp\www\ensa-Project\assets\img\a.jpg',10,6,30,34);
     // Titre
     $pdf->Cell(200,5,'Université Cadi Ayyad',0,1,'C');
 	
@@ -353,7 +353,7 @@ public function cncPDF($results)
 	$pdf->SetFont('Arial','',12);
 
 	//recupérer l'URL de l'image  
-	$pdf->Image('C:\wamp\www\ensa-Project\assets\img\logo.jpg',10,6,30,34);
+	$pdf->Image('C:\wamp\www\ensa-Project\assets\img\1.jpg',10,6,30,34);
 	
     // Titre
     $pdf->Cell(200,5,'Université Cadi Ayyad',0,1,'C');
