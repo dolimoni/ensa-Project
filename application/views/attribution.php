@@ -30,12 +30,17 @@
                             <li><a href="<?php echo site_url("admin_controller/gestionEtudiants"); ?>"><span class="glyphicon glyphicon-user"></span> Gestion des etudiants</a></li>
                             <li><a href="<?php echo site_url("Admin/adsManagement"); ?>"><span class="glyphicon glyphicon-picture"></span> Gestion des fillieres</a></li>
                             <li><a href="<?php echo site_url("admin_controller/statistics"); ?>"><span class="glyphicon glyphicon-file"></span> Statistiques</a></li>
-                            <li><a href="<?php echo site_url("admin_controller/attributionUpload"); ?>"><span class="glyphicon glyphicon-file"></span> Attribution des filières</a></li>
+                            <li><a href="<?php echo site_url("admin_controller/attribution"); ?>"><span class="glyphicon glyphicon-file"></span> Attribution des filières</a></li>
                             <li><a href="<?php echo site_url("etudiant_controller/deconnexion"); ?>"><span class="glyphicon glyphicon-file"></span> Deconnexion</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-9 content">
-                        <h3 class="page-title">Dashboard <span> Information generale </span></h3>
+                        <h3 class="page-title">Dashboard <span> Attribution des fillieres </span></h3>
+                        <h3>Upload excel file (2eme annee) that contains the list of second year students and their classment</h3>
+                        <form enctype="multipart/form-data" method="post" action="<?php echo site_url('admin_controller/importExcelAttribution'); ?>">
+                            <input type="file"  name="excelfile">
+                            <input type="submit"  name="submit" value="upload">
+                        </form>
                     </div>
                 </div>
             </div>

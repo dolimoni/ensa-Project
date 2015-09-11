@@ -190,6 +190,17 @@ class Admin_model extends CI_model{
             }
         }
         
+        /* this fct insert notes in db */
+        public function insertNotesFromExcelFile($notes){
+            foreach($notes as $note){
+                $this->db->set('nom',$note['B'])
+                               ->set('prenom',$note['C'])
+                               ->set('moyen',$note['E'])
+                               ->set('cin',$note['D'])
+                               ->insert('notes'); 
+            }
+        }
+        
     public function login($username,$password){
         if($password == "" || $username == ""){
             return false;
