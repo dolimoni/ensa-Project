@@ -24,16 +24,18 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <form ENCTYPE="multipart/form-data" method="post" action="<?php echo site_url('cnc_controller'); ?>">
+                         <?php echo form_open_multipart('cnc_controller');?>
                             <div class="alert alert-danger text-center" role="alert">
                                 <span class="glyphicon glyphicon-remove-sign"></span>
                                 Veuillez remplir tous les champs obligatoires
                             </div>
-                            
+                             <?php 
+                                 echo $this->form_validation->first_error();
+                             ?>
+                            <?php if (isset($error)) echo $error;?>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-user"></span>
                                 <input type="text" name="nom" value="<?php if(isset($_POST['nom'])) echo $_POST['nom']; ?>" placeholder="Nom"/> 
-                                <?php echo form_error('nom'); ?>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-user"></span>
@@ -42,16 +44,16 @@
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-bookmark"></span>
                                 <span> Civilite</span>
-                                <input type="radio" name="civilite" value="homme"/> Homme
-                                <input type="radio" name="civilite" value="femme"/> Femme
+                                <input type="radio" name="civilite" value="homme" <?php if (isset($_POST['civilite']) and $_POST['civilite']=="homme") echo 'checked="checked"';?>  checked="checked"/> Homme
+                                <input type="radio" name="civilite" value="femme" <?php if (isset($_POST['civilite']) and $_POST['civilite']=="femme") echo 'checked="checked"';?> /> Femme
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-asterisk"></span>
-                                <input type="password" name="password" placeholder="Mot de passe"/> <?php echo form_error('password'); ?>
+                                <input type="password" name="password" placeholder="Mot de passe"/> 
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-asterisk"></span>
-                                <input type="password" name="passconf" placeholder="Confirmation du mot de passe"/> <?php echo form_error('passconf'); ?>
+                                <input type="password" name="passconf" placeholder="Confirmation du mot de passe"/>
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-camera"></span>
@@ -66,23 +68,22 @@
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-calendar"></span>
                                 <span> Date de naissance</span>
-                                <input type="text" name="date_naissance_day" placeholder="jour" id="e_jour"/>
+                               <input type="text" name="date_naissance_day" placeholder="jour" id="e_jour" value="<?php if(isset($_POST['date_naissance_day'])) echo $_POST['date_naissance_day']; ?>"/>
                                 <select name="date_naissance_month">
-                                    <option value="0">Mois</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
+                                    <option value="01" <?php if ( isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Janvier') echo ' selected="selected"'; ?> >Janvier</option>
+                                    <option value="02" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Février') echo ' selected="selected"'; ?> >Février</option>
+                                    <option value="03" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Mars') echo ' selected="selected"'; ?> >Mars</option>
+                                    <option value="04" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Avril') echo ' selected="selected"'; ?> >Avril</option>
+                                    <option value="05" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Mai') echo ' selected="selected"'; ?> >Mai</option>
+                                    <option value="06" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Juin') echo ' selected="selected"'; ?> >Juin</option>
+                                    <option value="07" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Juillet') echo ' selected="selected"'; ?> >Juillet</option>
+                                    <option value="08" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Aout') echo ' selected="selected"'; ?> >Aout</option>
+                                    <option value="09" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Septembre') echo ' selected="selected"'; ?> >Septembre</option>
+                                    <option value="10" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Octobre') echo ' selected="selected"'; ?> >Octobre</option>
+                                    <option value="11" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Novembre') echo ' selected="selected"'; ?> >Novembre</option>
+                                    <option value="12" <?php if (isset($_POST['date_naissance_month']) and $_POST['date_naissance_month'] == 'Décembre') echo ' selected="selected"'; ?>>Décembre</option>
                                 </select>
-                                <input type="text" name="date_naissance_year" placeholder="Annee"/>
+                                <input type="text" name="date_naissance_year" placeholder="Annee" value="<?php if(isset($_POST['date_naissance_year'])) echo $_POST['date_naissance_year']; ?>"/>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-map-marker"></span>
@@ -158,11 +159,11 @@
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-list-alt"></span>
-                                <span> Choix de la filiere</span>
-                                <input type="radio" name="filiere" value="Génie industriel" />Génie industriel<br/>
-                                <input type="radio" name="filiere" value="Génie des procédés et M.C" />Génie des procédés et M.C<br/>
-                                <input type="radio" name="filiere" value="Génie informatique" />Génie informatique<br/>
-                                <input type="radio" name="filiere" value="Génie télécommunication et réseau" />Génie télécommunication et
+                                <span> Choix de la filiere</span><br/>
+                                <input type="radio" name="choix1" value="D" />Génie industriel<br/>
+                                <input type="radio" name="choix1" value="P" />Génie des procédés et M.C<br/>
+                                <input type="radio" name="choix1" value="I" />Génie informatique<br/>
+                                <input type="radio" name="choix1" value="T" />Génie télécommunication et réseau<br/>
                             </div>
                                     <input type="hidden" value="cnc" name="who" />
                             <div class="e_login_btn col-md-4 col-md-offset-8 text-right">

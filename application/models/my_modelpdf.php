@@ -163,7 +163,8 @@ public function EnsasPDF($results)
 			   $pdf->Cell(50,8,' Date de création du compte :',0,0);
 			   $pdf->SetFont('Arial','B',10);
 
-			$pdf->Cell(40,8,' '.$results['created_at'],0,0);
+			$array = explode(" ", $results['created_at']);
+			$pdf->Cell(60,8,$array[0],0,0);
 			$pdf->Cell(40,8,'  Signature  ',0,0);
 			//inserer l'inmage de la signature
 			
@@ -298,10 +299,10 @@ public function concoursPDF($results)
 			   $pdf->Ln();
 			   $pdf->SetFont('Arial','B',14);
 			   
-			$pdf->Cell(0,8,'Filière ..... à l\'ENSAS','B',1);
+			$pdf->Cell(0,8,'Filière à l\'ENSAS','B',1);
 		
 			   $pdf->SetFont('Arial','B',12);
-			   $pdf->Cell(190,8,' à selectionner de la bdd',0,0,'C');
+			   $pdf->Cell(190,8,$results['choix1'],0,0,'C');
 			  
 				$pdf->Ln();
 				$pdf->Ln();
@@ -313,7 +314,8 @@ public function concoursPDF($results)
 			   $pdf->Cell(60,8,' Date d\'enregistrement en ligne :',0,0);
 			   $pdf->SetFont('Arial','B',10);
         
-			$pdf->Cell(60,8,' '.$results['create_at'],0,0);
+			$array = explode(" ", $results['created_at']);
+			$pdf->Cell(60,8,$array[0],0,0);
 			$pdf->Line(10, 210, 200, 210);
 			$pdf->Cell(40,8,'  Signature  ',0,0);
 			
@@ -437,7 +439,7 @@ public function cncPDF($results)
 		$pdf->Cell(80,8,': '.$results['ville'] ,0,1);
 		
 			$pdf->Cell(60,8,'Rang CNC ',0,0);
-		$pdf->Cell(80,8,': '.$results['rang_cnc'] ,0,1);
+		$pdf->Cell(80,8,': '.$results['range_cnc'] ,0,1);
 		
 	  //cette partie à refaire pr extraire les choix 
 			   $pdf->Ln();
@@ -446,7 +448,7 @@ public function cncPDF($results)
 			$pdf->Cell(0,8,'Filière d\'affectation à l\'ENSAS','B',1);
 
 		 $pdf->SetFont('Arial','B',12);
-		$pdf->Cell(190,8,' à selectionner de la bdd',0,0,'C');
+		$pdf->Cell(190,8,$results['choix1'],0,0,'C');
 
 		$pdf->Ln();
 		$pdf->Ln();
@@ -457,8 +459,9 @@ public function cncPDF($results)
 			   
 			$pdf->Cell(60,8,' Date d\'enregistrement en ligne :',0,0);
 			$pdf->SetFont('Arial','B',10);
-        
-			$pdf->Cell(60,8,' '.$results['create_at'],0,0);
+        	
+        	$array = explode(" ", $results['created_at']);
+			$pdf->Cell(60,8,$array[0],0,0);
 			$pdf->Line(10, 210, 200, 210);
 			
 			$pdf->Cell(40,8,'  Signature  ',0,0);

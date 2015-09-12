@@ -24,7 +24,7 @@ class The3and4Year_controller extends CI_Controller {
 
 
 
-			if( !$this->form_validation->run('3and4Year_rules')) //remove the ! to enable form validation
+			if( $this->form_validation->run('3and4Year_rules')) //remove the ! to enable form validation
 			{
 				$info['nom']=$this->input->post('nom');
 				$info['prenom']=$this->input->post('prenom');
@@ -35,7 +35,9 @@ class The3and4Year_controller extends CI_Controller {
 				$info['cin']=$this->input->post('cin');
 				$info['nationalite']=$this->input->post('nationalite');
 				$info['lieu_naissance']=$this->input->post('lieu_naissance');
-				$info['date_naissance']=$this->input->post('date_naissance');
+				$info['date_naissance']=$this->input->post('date_naissance_year')
+				                                   ."-".$this->input->post('date_naissance_month')
+				                                   ."-".$this->input->post('date_naissance_day');
 				$info['tel']=$this->input->post('tel');
 
 				$info['gsm']=$this->input->post('gsm');
@@ -53,11 +55,30 @@ class The3and4Year_controller extends CI_Controller {
 				$info['etablissement_diplome']=$this->input->post('etablissement_diplome');
 
 				//filière
-				$info['filiere']=$this->input->post('filiere');	
+				$info['choix1']=$this->input->post('choix1');	
 
 				$info['who']= $this->input->post('who');
-				$this->etudiant_model->inscription($info);
-				$this->load->view('index');
+
+				$config['upload_path'] 	= './assets/img';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '3024';
+                $config['max_width']  = '2024';
+                $config['max_height']  = '2768';
+                $this->load->library('upload', $config);
+                
+                if ( ! $this->upload->do_upload('photo')) // verify image errors
+                {
+                    $error = array('error' => $this->upload->display_errors());
+
+                    $this->load->view('form_3and4Year.php', $error);
+                }
+                else if($this->etudiant_model->isRegistredUser($info['nom'],$info['prenom'],$info['cin'],$info['cne']))
+                {
+                    $error = array('error' => "L'inscription a été déja effectuée");
+                    $this->load->view('form_3and4Year.php', $error);
+                }
+                else if($this->etudiant_model->inscription($info))
+                    $this->load->view('index');
 			}
 			else
 			{

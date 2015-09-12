@@ -65,6 +65,11 @@ class Ensa_controller extends CI_Controller {
 
                     $this->load->view('form_ensa.php', $error);
                 }
+                else if($this->etudiant_model->isRegistredUser($info['nom'],$info['prenom'],$info['cin'],$info['cne']))
+                {
+                    $error = array('error' => "L'inscription a été déja effectuée");
+                    $this->load->view('form_ensa.php', $error);
+                }
                 else if($this->etudiant_model->inscription($info))
                     $this->load->view('index');
                 else
