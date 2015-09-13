@@ -28,7 +28,7 @@ class Cnc_controller extends CI_Controller {
 			$this->load->library('form_validation');
 
 
-			if( !$this->form_validation->run('cnc_rules')) //remove the ! to enable form validation
+			if( $this->form_validation->run('cnc_rules')) //remove the ! to enable form validation
 			{
 				$info['nom']=$this->input->post('nom');
 				$info['prenom']=$this->input->post('prenom');
@@ -39,9 +39,10 @@ class Cnc_controller extends CI_Controller {
 				$info['cin']=$this->input->post('cin');
 				$info['nationalite']=$this->input->post('nationalite');
 				$info['lieu_naissance']=$this->input->post('lieu_naissance');
-				$info['date_naissance']=$this->input->post('date_naissance');
+				$info['date_naissance']=$this->input->post('date_naissance_year')
+                                    ."-".$this->input->post('date_naissance_month')
+                                    ."-".$this->input->post('date_naissance_day');
 				$info['tel']=$this->input->post('tel');
-
 				$info['gsm']=$this->input->post('gsm');
 				$info['email']=$this->input->post('email');
 				$info['adresse']=$this->input->post('adresse');
@@ -60,12 +61,36 @@ class Cnc_controller extends CI_Controller {
 				$info['range_cnc']=$this->input->post('range_cnc');
 
 				//filière
-				$info['filiere']=$this->input->post('filiere');
+				$info['choix1']=$this->input->post('choix1');
 
 
 				$info['who']= $this->input->post('who');
-				$this->etudiant_model->inscription($info);
-				$this->load->view('index');
+
+                $config['upload_path'] 	= './assets/img';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '1024';
+                $config['max_width']  = '1024';
+                $config['max_height']  = '768';
+                $this->load->library('upload', $config);
+
+                if ( ! $this->upload->do_upload('photo')) // verify image errors
+                {
+                    $error = array('error' => $this->upload->display_errors());
+
+                    $this->load->view('form_cnc.php', $error);
+                }
+                else if($this->etudiant_model->isRegistredUser($info['nom'],$info['prenom'],$info['cin'],$info['cne']))
+                {
+                    $error = array('error' => "L'inscription a été déja effectuée");
+                    $this->load->view('form_cnc.php', $error);
+                }
+                else if($this->etudiant_model->inscription($info))
+                    $this->load->view('index');
+                else
+                {
+                    $message = array('inexistant' =>  true );
+                    $this->load->view('form_cnc.php',$message);
+                }
 			}
 			else
 			{

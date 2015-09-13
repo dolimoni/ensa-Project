@@ -48,8 +48,8 @@
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-bookmark"></span>
                                 <span> Civilite</span>
-                                <input type="radio" name="civilite" value="homme" checked="checked" /> Homme
-                                <input type="radio" name="civilite" value="femme"/> Femme
+                               <input type="radio" name="civilite" value="homme" <?php if (isset($_POST['civilite']) and $_POST['civilite']=="homme") echo 'checked="checked"';?>  checked="checked"/> Homme
+                                <input type="radio" name="civilite" value="femme" <?php if (isset($_POST['civilite']) and $_POST['civilite']=="femme") echo 'checked="checked"';?> /> Femme
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-asterisk"></span>
@@ -156,25 +156,25 @@
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-certificate"></span>
                                 <span> Choix 1</span><br/>
-                                <input type="radio" name="choix1" value="I" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
+                                <input type="radio" name="choix1" value="D" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
                                 <input type="radio" name="choix1" value="P" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix1" value="F" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
+                                <input type="radio" name="choix1" value="I" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
                                 <input type="radio" name="choix1" value="T" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-certificate"></span>
                                 <span> Choix 2</span><br/>
-                                <input type="radio" name="choix2" value="I" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
+                                <input type="radio" name="choix2" value="D" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
                                 <input type="radio" name="choix2" value="P" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix2" value="F" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
+                                <input type="radio" name="choix2" value="I" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
                                 <input type="radio" name="choix2" value="T" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-certificate"></span>
                                 <span> Choix 3</span><br/>
-                                <input type="radio" name="choix3" value="I" <?php if (isset($_POST['choix3']) and $_POST['choix3']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
+                                <input type="radio" name="choix3" value="D" <?php if (isset($_POST['choix3']) and $_POST['choix3']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
                                 <input type="radio" name="choix3" value="P"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix3" value="F"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
+                                <input type="radio" name="choix3" value="I"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
                                 <input type="radio" name="choix3" value="T"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
                             </div>
                                     <input type="hidden" value="ensa" name="who" / >

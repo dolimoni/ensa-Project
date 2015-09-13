@@ -241,9 +241,14 @@ $config = array(
                         'rules' => 'required|encode_php_tags'
                 ),
                 array(
-                        'field' => 'date_naissance',
-                        'label' => 'date de naissance',
-                        'rules' => 'required|encode_php_tags'
+                        'field' => 'date_naissance_day',
+                        'label' => 'jour de naissance',
+                        'rules' => 'required|integer|greater_than_equal_to[0]|less_than_equal_to[31]|encode_php_tags',
+                ),
+                array(
+                        'field' => 'date_naissance_year',
+                        'label' => 'année de naissance',
+                        'rules' => 'required|integer|encode_php_tags'
                 ),
                 array(
                         'field' => 'tel',
@@ -439,9 +444,14 @@ $config = array(
                         'rules' => 'required|encode_php_tags'
                 ),
                 array(
-                        'field' => 'date_naissance',
-                        'label' => 'date de naissance',
-                        'rules' => 'required|encode_php_tags'
+                        'field' => 'date_naissance_day',
+                        'label' => 'jour de naissance',
+                        'rules' => 'required|integer|greater_than_equal_to[0]|less_than_equal_to[31]|encode_php_tags',
+                ),
+                array(
+                        'field' => 'date_naissance_year',
+                        'label' => 'année de naissance',
+                        'rules' => 'required|integer|encode_php_tags'
                 ),
                 array(
                         'field' => 'tel',

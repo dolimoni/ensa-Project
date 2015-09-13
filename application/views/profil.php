@@ -28,13 +28,7 @@
                     <div class="col-sm-6 col-sm-offset-3">
                       <br/><br/><br/><br/>
                          
-                            <?php 
-                            if(isset($inexistant) and $inexistant==true)
-                                echo "Votre nom ne figure pas dans la liste des étudiants, vérifiez votre nom, prénom, CNE et CIN";
-                            else
-                            echo $this->form_validation->first_error();
-                            ?>
-                            <?php if (isset($error)) echo $error;?>
+                            <form method="post" action="<?php echo site_url('etudiant_controller/editProfile')?>">
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-bookmark"></span>
                                 <span> nom </span><div class="pull-right"><?php echo $nom; ?></div>
@@ -83,7 +77,7 @@
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-map-marker"></span>
-                                <span> Adresse</span><div class="pull-right"><?php echo $adresse; ?></div>/
+                                <span> Adresse</span><div class="pull-right"><?php echo $adresse; ?></div>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-map-marker"></span>
@@ -97,7 +91,9 @@
                                 <span class="glyphicon glyphicon-info-sign"></span>
                                 <span> Porfession de la mère</span><div class="pull-right"><?php echo $profession_mere; ?></div>
                             </div>
-                           
+                           <?php
+                           if($who == "ensa"){
+                           ?>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 <span>Type de bac</span><div class="pull-right"><?php echo $type_bac; ?></div>
@@ -114,6 +110,7 @@
                                 <span class="glyphicon glyphicon-lock"></span>
                                 <div class="pull-right">// à faire le classement</div>
                             </div>
+
                             Choix de filière : <br/>
                                     <div class="table-responsive">
                                         <table class="table table-hover">
@@ -133,10 +130,71 @@
                                             </tbody>
                                         </table>
                                     </div>
-
+                                     <input type="hidden" value="ensa" name="who" />
+                                      <p class="pull-left"><a href="<?php echo site_url('My_controllerpdf/pdfensasprepa')?>">télécharger</a></p>
+                             <?php }
+                             else if($who == "cnc"){
+                             ?>
+                              <div class="e_input e_date col-md-12">
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                                <span>Type de bac</span><div class="pull-right"><?php echo $type_bac; ?></div>
+                            </div>
+                            <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                <span>Note de bac</span><div class="pull-right"><?php echo $note_bac; ?></div>
+                            </div>
+                             <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                 <span>filiere cp</span><div class="pull-right"><?php echo $filiere_cp; ?></div>
+                            </div>
+                            <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                 <span>etablissement cp</span><div class="pull-right"><?php echo $etablissement_cp; ?></div>
+                            </div>
+                            <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                 <span>ville_cp</span><div class="pull-right"><?php echo $ville_cp; ?></div>
+                            </div>
+                            <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                 <span>range cp</span><div class="pull-right"><?php echo $range_cnc; ?></div>
+                            </div>
+                            <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                 <span>filière ENSA</span><div class="pull-right"><?php echo $choix1; ?></div>
+                            </div>
+                             <input type="hidden" value="ensa" name="cnc" />
+                              <p class="pull-left"><a href="<?php echo site_url('My_controllerpdf/pdfelevescnc')?>">télécharger</a></p>
+                             <?php }
+                             else {
+                             ?>
+                              <div class="e_input e_date col-md-12">
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                                <span>Type de bac</span><div class="pull-right"><?php echo $type_bac; ?></div>
+                            </div>
+                            <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                <span>Note de bac</span><div class="pull-right"><?php echo $note_bac; ?></div>
+                            </div>
+                             <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                 <span>type de diplome</span><div class="pull-right"><?php echo $type_diplome; ?></div>
+                            </div>
+                            <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                 <span>etablissement du diplome</span><div class="pull-right"><?php echo $etablissement_diplome; ?></div>
+                            </div>
+                            <div class="e_input col-md-12">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                 <span>filière ENSA</span><div class="pull-right"><?php echo $choix1; ?></div>
+                            </div>
+                             <input type="hidden" value="ensa" name="3and4Year" />
+                             <p class="pull-left"><a href="<?php echo site_url('My_controllerpdf/pdfconcours')?>">télécharger</a></p>
+                             <?php
+                             }
+                             ?>
                            
-                            <p class="pull-left"><a href="<?php echo site_url('My_controllerpdf/pdfensasprepa')?>">télécharger</a></p>
-                            <p class="pull-right"><input type="button" value="modifier" class="btn-primary" OnClick="window.location.href='<?php echo site_url('etudiant_controller/editProfile')?>'"/></p>
+                            <p class="pull-right"><input type="submit" value="modifier" class="btn-primary" /></p>
                         </form>
                     </div>
                 </div>

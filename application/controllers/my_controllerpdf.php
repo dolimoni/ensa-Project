@@ -5,15 +5,16 @@ class My_controllerpdf extends CI_Controller
 	public function __construct()
 		{
 		parent::__construct();
+		$this->load->model('my_modelpdf');
+      $this->load->model('etudiant_model') ;
+
 		} 
 
 //********************************* ensas*****************
 
 public function pdfensasprepa()
 {
-    $this->load->model('my_modelpdf');
-      $this->load->model('etudiant_model') ;
-
+    
 
 	$results= array(
 	'matricule'	=> 'q123489q',
@@ -73,7 +74,7 @@ public function pdfelevescnc()
 	'filiere_aff' => 'G info',
 	'create_at' => '12-12-2015'
 );
-    $this->my_modelpdf->cncPDF($results); 
+    $this->my_modelpdf->cncPDF($this->etudiant_model->getProfile($this->session->userdata("id"))); 
     //$this->load->view('my_viewpdf', $data);   
 }
 
@@ -105,7 +106,8 @@ $results= array(
 	'etablissement_diplome' => 'Université HASAN I',
 	'create_at' => '12-12-2015'
 );
-	$this->my_modelpdf->concoursPDF($results); 	
+	print_r($this->etudiant_model->getProfile($this->session->userdata("id")));
+	$this->my_modelpdf->concoursPDF($this->etudiant_model->getProfile($this->session->userdata("id"))); 	
 }
 
 }

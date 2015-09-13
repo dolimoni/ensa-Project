@@ -29,6 +29,29 @@ class Etudiant_model extends CI_Model
             return false;
         }
     }
+
+     public function isRegistredUser($nom,$prenom,$cin,$cne){
+        if($nom == "" || $prenom == "" || $cin == "" || $cne == ""){
+            return false;
+        }
+        
+        $query = $this->db->select("id")
+                    ->from($this->table)
+                    ->where('nom',strtolower($nom))
+                    ->where('prenom',strtolower($prenom))
+                    ->where('cin',strtolower($cin))
+                    ->where('cne',strtolower($cne))
+                     ->where('isValid',"1")
+                    ->get();
+        
+        if ( $query->num_rows() > 0 )
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     
     /**
     *
@@ -61,7 +84,7 @@ class Etudiant_model extends CI_Model
                         'isValid'=>1,
                         'created_at'=>date("Y-m-d H:i:s")
                         );
-
+				
             if($info['who']=="ensa" and $this->isValidUser($info['nom'],$info['prenom'],$info['cin'],$info['cne']))
             {
 
@@ -94,13 +117,17 @@ class Etudiant_model extends CI_Model
             else if($info['who']=="cnc")
             {
                 // adding chosen filiere to filiere_choix
-               $this->db->set('choix1',$info['filiere'])//in cnc controller we recieve chosen filiere in "filiere" not in "choix1"
+               $this->db->set('choix1',$info['choix1'])//in cnc controller we recieve chosen filiere in "filiere" not in "choix1"
                                ->set('choix2',"NONE")
                                ->set('choix3',"NONE")
                                ->insert('filiere_choix');
 
                                $insert=$this->db->insert_id();   //getting the id of the last query   
                                $data['id_choix']=$insert;
+                               $data['nom']=$info['nom'];
+                               $data['prenom']=$info['prenom'];
+                               $data['cin']=$info['cin'];
+                               $data['cne']=$info['cne'];
                         $this->db->insert($this->table,$data);
                         copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
 
@@ -117,17 +144,23 @@ class Etudiant_model extends CI_Model
             }
             else if($info['who']=="3and4Year")
             {
-                $this->db->set('choix1',$info['filiere'])//in the3and4Year controller we recieve chosen filiere in "filiere" not in "choix1"
+                $this->db->set('choix1',$info['choix1'])//in the3and4Year controller we recieve chosen filiere in "filiere" not in "choix1"
                                ->set('choix2',"NONE")
                                ->set('choix3',"NONE")
                                ->insert('filiere_choix');
 
                  $insert=$this->db->insert_id();   //getting the id of the last query   
                                $data['id_choix']=$insert;
+                               $data['nom']=$info['nom'];
+                               $data['prenom']=$info['prenom'];
+                               $data['cin']=$info['cin'];
+                               $data['cne']=$info['cne'];
                  $this->db->insert($this->table,$data);
                  copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
 
-                 $this->db->set('id_etudiant',$info['cin'])
+                 $this->db->set('id_etudiant',$this->getId($info['cin']))
+                 		  ->set('type_bac',$info['type_bac'])
+                          ->set('note_bac',$info['note_bac'])
                           ->set('type_diplome',$info['type_diplome'])
                           ->set('etablissement_diplome',$info['etablissement_diplome'])
                           ->set('created_at','NOW()',false)
@@ -278,7 +311,21 @@ class Etudiant_model extends CI_Model
             $row["ville_cp"] = $row2["ville_cp"];
             $row["range_cnc"] = $row2["range_cnc"];
             
-            // A faire : Add the filiere
+             $query3 = $this->db->select("*")
+                    ->from("filiere_choix")
+                    ->where('id',$row["id_choix"])
+                    ->limit(1)
+                    ->get();
+                    
+            $row3 = $query3->row_array();
+            
+            $tranlation = array( 'F' => "Génie informatique", 
+            					 'I' => "Génie industriel", 
+            					 'P' => "Génie des procédés et M.C", 
+            					 'T' => "Génie télécommunication et réseau");
+
+            $row["choix1"] = $tranlation[$row3["choix1"]];
+           
         }else if((int) $this->db->where("id_etudiant",$id)->count_all_results("etudiant_3eme_4eme") > 0){
             $row["who"]= "3and4Year";
             
@@ -290,12 +337,28 @@ class Etudiant_model extends CI_Model
                     
             $row2 = $query2->row_array();
             
+
+            $row["type_bac"] = $row2["type_bac"];
+            $row["note_bac"] = $row2["note_bac"];
             $row["type_diplome"] = $row2["type_diplome"];
             $row["etablissement_diplome"] = $row2["etablissement_diplome"];
             
-            // A faire : Add the filiere
+             $query3 = $this->db->select("*")
+                    ->from("filiere_choix")
+                    ->where('id',$row["id_choix"])
+                    ->limit(1)
+                    ->get();
+                    
+            $row3 = $query3->row_array();
+            
+            $tranlation = array( 'F' => "Génie informatique", 
+            					 'I' => "Génie industriel", 
+            					 'P' => "Génie des procédés et M.C", 
+            					 'T' => "Génie télécommunication et réseau");
+
+            $row["choix1"] = $tranlation[$row3["choix1"]];
+            
         }
-        print_r($row);
         return $row;
     }
 
