@@ -284,8 +284,8 @@ class Etudiant_model extends CI_Model
                     
             $row3 = $query3->row_array();
             
-            $tranlation = array( 'F' => "Génie informatique", 
-            					 'I' => "Génie industriel", 
+            $tranlation = array( 'I' => "Génie informatique", 
+            					 'D' => "Génie industriel", 
             					 'P' => "Génie des procédés et M.C", 
             					 'T' => "Génie télécommunication et réseau");
 
@@ -319,8 +319,8 @@ class Etudiant_model extends CI_Model
                     
             $row3 = $query3->row_array();
             
-            $tranlation = array( 'F' => "Génie informatique", 
-            					 'I' => "Génie industriel", 
+            $tranlation = array( 'I' => "Génie informatique", 
+            					 'D' => "Génie industriel", 
             					 'P' => "Génie des procédés et M.C", 
             					 'T' => "Génie télécommunication et réseau");
 
@@ -351,8 +351,8 @@ class Etudiant_model extends CI_Model
                     
             $row3 = $query3->row_array();
             
-            $tranlation = array( 'F' => "Génie informatique", 
-            					 'I' => "Génie industriel", 
+            $tranlation = array( 'I' => "Génie informatique", 
+            					 'D' => "Génie industriel", 
             					 'P' => "Génie des procédés et M.C", 
             					 'T' => "Génie télécommunication et réseau");
 
