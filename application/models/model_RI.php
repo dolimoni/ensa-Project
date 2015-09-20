@@ -51,7 +51,7 @@ if (!$this->upload->do_upload())
 else
 {
 	//echo 'bien ajouté';
-	$this->load->view('ajout_admin.php');
+	$this->load->view('ajout_file_admin.php');
 
 }
 }

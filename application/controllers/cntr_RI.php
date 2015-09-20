@@ -14,7 +14,7 @@ class Cntr_RI extends CI_Controller
 public function supp_fichier($file){
 		$this->Model_RI->supprimerFichier($file);
 		//redirect('cntr_RI/');
-		$this->load->view('ajout_admin.php');
+		$this->load->view('ajout_file_admin.php');
 }
 public function gestionRI_admin(){
         

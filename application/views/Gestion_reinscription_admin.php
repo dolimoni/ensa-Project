@@ -40,8 +40,8 @@
                             <div class="e_input e_date col-md-12">
                                <?php echo form_error('fichier'); ?>
                                 
-                                <input type="radio" name="fichier" value="1CP" />Fiche de renseignements -1ere année cycle Préparatoir<br/>
-                                <input type="radio" name="fichier" value="2CP" /> Fiche de renseignements-2eme année Cycle Préparatoir<br/>
+                                <input type="radio" name="fichier" value="1CP" />Fiche de renseignements -1ere année cycle Préparatoire<br/>
+                                <input type="radio" name="fichier" value="2CP" /> Fiche de renseignements-2eme année Cycle Préparatoire<br/>
                                 <input type="radio" name="fichier" value="1CI" /> Fiche de renseignements-1eme année Cycle Ingénieur<br/>
                                 <input type="radio" name="fichier" value="2CI" /> Fiche de renseignements-2eme année Cycle Ingénieur<br/>
                                 <input type="radio" name="fichier" value="3CI" /> Fiche de renseignements-3eme année Cycle Ingénieur<br/>
