@@ -45,12 +45,13 @@ $this->load->library('upload', $config);
 if (!$this->upload->do_upload())
 {
 
-	 echo "action échouée";
-	 $this->load->view('Gestion_reinscription_admin.php');
+	 
+	 $this->load->view('erreur_admin.php');
 }
 else
 {
-	echo 'bien ajouté';
+	//echo 'bien ajouté';
+	$this->load->view('ajout_admin.php');
 
 }
 }
@@ -58,8 +59,27 @@ else
 ///supprimer un fichier 
 public function supprimerFichier($file)
 {
-unlink($file);
-
+unlink('telechargements/'.$file);
 }
+
+//afficher le contenu d'un repertoire et des ss repertoire
+
+function ScanDirectory($Directory){
+
+  $MyDirectory = opendir($Directory) or die('Erreur');
+ while($Entry = @readdir($MyDirectory)) {
+  if(is_dir($Directory.'/'.$Entry)&& $Entry != '.' && $Entry != '..') {
+                         echo '<ul>'.$Directory;
+   ScanDirectory($Directory.'/'.$Entry);
+                        echo '</ul>';
+  }
+  else {
+   echo '<li>'.$Entry.'</li>';
+                }
+ }
+  closedir($MyDirectory);
+}
+
+//ScanDirectory('.');
 	
 }

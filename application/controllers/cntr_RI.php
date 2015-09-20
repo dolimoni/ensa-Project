@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class cntr_RI extends CI_Controller
+class Cntr_RI extends CI_Controller
 {
 	
 	public function __construct()
@@ -7,7 +7,15 @@ class cntr_RI extends CI_Controller
 		parent::__construct();
 		$this->load->database('ensa_project');
 		$this->load->helper('url');
+		$this->load->model('Model_RI') ;
 		}
+		
+		
+public function supp_fichier($file){
+		$this->Model_RI->supprimerFichier($file);
+		//redirect('cntr_RI/');
+		$this->load->view('ajout_admin.php');
+}
 public function gestionRI_admin(){
         
 		//$this->load->model("filiere_model");
