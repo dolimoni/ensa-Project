@@ -189,12 +189,16 @@
                                  <span>filière ENSA</span><div class="pull-right"><?php echo $choix1; ?></div>
                             </div>
                              <input type="hidden" value="ensa" name="3and4Year" />
-                             <p class="pull-left"><a href="<?php echo site_url('My_controllerpdf/pdfconcours')?>">télécharger</a></p>
+                             <p class="pull-left"><a href="<?php echo site_url('My_controllerpdf/pdfconcours')?>">Télécharger format PDF</a></p>
                              <?php
                              }
                              ?>
                            
                             <p class="pull-right"><input type="submit" value="modifier" class="btn-primary" /></p>
+                            <br/>
+                            <br/>
+                            <a href="<?php echo site_url("etudiant_controller/deconnexion"); ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Deconnexion</a>
+                            <br/>
                         </form>
                     </div>
                 </div>

@@ -69,15 +69,14 @@
                             <div class="e_login_btn col-md-4 col-md-offset-8 text-right">
                                 <input type="submit" name="submit" value="Connexion" id="e_inscription" class='btn btn-success'/>
                             </div>
-                            <p class="pull-right">Vous n'avez pas de compte ? <a href="signup.php">Insciption</a>.</p>
+                            <p class="pull-right text-right">
+                                <a href="<?php echo site_url('ensa_controller/inscription_ensa') ?>">inscription 2eme année</a><br/>
+                                <a href="<?php echo site_url('cnc_controller/inscription_cnc') ?>">inscription cnc</a><br/>
+                                <a href="<?php echo site_url('The3and4Year_controller/inscription_3and4Year') ?>">inscription 3eme et 4eme année</a><br/><br/>
+                            </p>
                         </form>
                     </div>
                 </div>
-                (admin account : cin =1,cne=1,password=essalhi)<br/>
-                (authentifaction for students is not totaly ready)<br/>
-                <a href="<?php echo site_url('ensa_controller/inscription_ensa') ?>">inscription 2eme année</a><br/>
-                <a href="<?php echo site_url('cnc_controller/inscription_cnc') ?>">inscription cnc</a><br/>
-                <a href="<?php echo site_url('The3and4Year_controller/inscription_3and4Year') ?>">inscription 3eme et 4eme année</a><br/><br/>
                 <a href="<?php echo site_url('admin_controller/administration') ?>">Administration - upload the excel File</a><br/><br/>
                 <a href="<?php echo site_url('cntrTrombino') ?>">Acceder au trombinoscope</a><br/>
             </div>

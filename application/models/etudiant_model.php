@@ -159,8 +159,7 @@ class Etudiant_model extends CI_Model
                  copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
 
                  $this->db->set('id_etudiant',$this->getId($info['cin']))
-                 		  ->set('type_bac',$info['type_bac'])
-                          ->set('note_bac',$info['note_bac'])
+                          ->set('note_diplome',$info['note_diplome'])
                           ->set('type_diplome',$info['type_diplome'])
                           ->set('etablissement_diplome',$info['etablissement_diplome'])
                           ->set('created_at','NOW()',false)
