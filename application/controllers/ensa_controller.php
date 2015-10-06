@@ -125,7 +125,10 @@ class Ensa_controller extends CI_Controller {
 
             $info['who']= $this->input->post('who');
             $this->etudiant_model->editProfile($info);
-            $this->load->view('index');
+            
+            $message = "Votre profile a été modifié avec succés, Vous ouver le conulter içi";
+            sendEmail($info['email'], "Modification du profile - Administration ENSA Safi", $message);
+            redirect("welcome");
         }
         else
         {
