@@ -17,7 +17,7 @@
     </head>
     <body>
         <!-- Inscription -->
-        <div id="e_signup">
+        <div id="e_signup" class="no_border">
             <div class="container">
                 <div class="e_title col-sm-4 col-sm-offset-2">
                     <h3>Authentification</h3>
