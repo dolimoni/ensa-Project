@@ -53,10 +53,10 @@ img{
 #e_signup .e_input input[type="password"],
 #e_signup .e_input input[type="date"],
 #e_signup .e_input input[type="number"]{
-    background-color: rgb(241,241,241);
-    border:none;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 5px;
-    width:80%;
+    width:60%;
 }
 #e_signup .e_date input[type="text"]{
     width:80px;
@@ -80,8 +80,7 @@ img{
 #e_signup .e_input input[type="number"]:active,
 #e_signup .e_input input[type="number"]:default,
 #e_signup .e_input input[type="number"]:focus{
-    border:none;
-    outline: 0;
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 #e_signup .e_date input[type="text"]:hover,#e_signup .e_date input[type="text"]:focus,#e_signup .e_date input[type="text"]:active,#e_signup .e_date input[type="text"]:default,#e_signup .e_date input[type="text"]:focus{
     border: 1px solid rgba(0,0,0,0.2);
