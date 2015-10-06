@@ -8,6 +8,9 @@ body{
 img{
     max-width: 100%;
 }
+.obli{
+    color:red !important;
+}
 /* Inscription */
 #e_signup .container{
     background-color:#fff;
