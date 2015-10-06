@@ -19,7 +19,9 @@ class Etudiant_controller extends CI_Controller {
             $this->load->view('profil.php',$this->etudiant_model->getProfile($this->session->userdata("id")));
 
         }else{
-            $this->load->view('index.php');
+
+             $error = array('inexistant' =>  true );
+             $this->load->view('index.php',$error);
         }
     }
         

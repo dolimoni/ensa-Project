@@ -157,7 +157,7 @@
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                 <span>range cp</span><div class="pull-right"><?php echo $range_cnc; ?></div>
+                                 <span>rang cp</span><div class="pull-right"><?php echo $range_cnc; ?></div>
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-lock"></span>

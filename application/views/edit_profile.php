@@ -221,7 +221,7 @@
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="range_cnc" value="<?php if(isset($_POST['range_cnc'])) echo $_POST['range_cnc']; ?>" placeholder="Range CNC"/>
+                                <input type="text" name="rang_cnc" value="<?php if(isset($_POST['range_cnc'])) echo $_POST['range_cnc']; ?>" placeholder="Range CNC"/>
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <h3>Choix de la filliere:</h3>

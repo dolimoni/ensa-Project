@@ -101,12 +101,14 @@ class Etudiant_model extends CI_Model
                      $this->db->update($this->table, $data); 
 
                      copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
+                     echo "laaaaaaaaaaa";
 
                     // adding new student to etudiant_ensa
                     $this->db->set('id_etudiant',$this->getId($info['cin']))
                              ->set('type_bac',$info['type_bac'])
                              ->set('note_bac',$info['note_bac'])
                              ->set('note_1er_annee',$info['note_1er_annee'])
+                              ->set('classement_1er_annee',$info['classement'])
                    //  $this->db->set('note_2eme_annee',$this->getId($info['note_2eme_annee']));
                              ->set('created_at','NOW()',false)
                              ->insert('etudiant_ensa') ;
@@ -159,8 +161,7 @@ class Etudiant_model extends CI_Model
                  copy($info['photo']['tmp_name'], 'assets/img/'.$info['cin'].".jpg");
 
                  $this->db->set('id_etudiant',$this->getId($info['cin']))
-                 		  ->set('type_bac',$info['type_bac'])
-                          ->set('note_bac',$info['note_bac'])
+                          ->set('note_diplome',$info['note_diplome'])
                           ->set('type_diplome',$info['type_diplome'])
                           ->set('etablissement_diplome',$info['etablissement_diplome'])
                           ->set('created_at','NOW()',false)

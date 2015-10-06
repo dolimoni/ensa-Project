@@ -8,7 +8,7 @@
          <!-- Bootstrap files -->
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" />
-        
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/js/jquery.js" />
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,800,700,600,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/icons/flaticon.css" />
         
@@ -25,18 +25,41 @@
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
                         <?php echo form_open_multipart('ensa_controller');?>
-                            <div class="alert alert-danger text-center" role="alert">
-                                <span class="glyphicon glyphicon-remove-sign"></span>
-                                Veuillez remplir tous les champs obligatoires
-                            </div>
+                            
 
                             <?php 
                             if(isset($inexistant) and $inexistant==true)
-                                echo "Votre nom ne figure pas dans la liste des étudiants, vérifiez votre nom, prénom, CNE et CIN";
-                            else
-                            echo $this->form_validation->first_error();
+                            {
                             ?>
-                            <?php if (isset($error)) echo $error;?>
+                            <div class="alert alert-danger text-center" role="alert">
+                                <span class="glyphicon glyphicon-remove-sign"></span>
+                                Votre nom ne figure pas dans la liste des étudiants, vérifiez le nom, prénom, CNE et CIN
+                            </div>
+                                
+                            <?php
+                            }
+                            else if($this->form_validation->first_error()!="")
+                            {
+                            ?>
+                             <div class="alert alert-danger text-center" role="alert">
+                                <span class="glyphicon glyphicon-remove-sign"></span>
+                               <?php  echo $this->form_validation->first_error(); ?>
+                            </div>
+                            <?php
+                            }
+                           
+                            ?>
+
+                            <?php if (isset($error)) 
+                            {
+                            ?>
+                             <div class="alert alert-danger text-center" role="alert">
+                                <span class="glyphicon glyphicon-remove-sign"></span>
+                              <?php echo $error;?>
+                            </div>
+                            <?php
+                            }
+                           ?>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-user"></span>
                                 <input type="text" name="nom" value="<?php if(isset($_POST['nom'])) echo $_POST['nom']; ?>" placeholder="Nom"/> 
@@ -148,7 +171,7 @@
                             </div>
                             <div class="e_input col-md-12">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                <input type="text" name="classement" value="<?php if(isset($_POST['classement'])) echo $_POST['classement']; ?>" placeholder="Classement"/>
+                                <input type="text" name="classement" value="<?php if(isset($_POST['classement'])) echo $_POST['classement']; ?>" placeholder="Classement 1er année"/>
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <h3>Choix de la filliere:</h3>
@@ -156,26 +179,26 @@
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-certificate"></span>
                                 <span> Choix 1</span><br/>
-                                <input type="radio" name="choix1" value="D" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
-                                <input type="radio" name="choix1" value="P" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix1" value="I" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
-                                <input type="radio" name="choix1" value="T" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
+                                <input class="choix1" type="radio" name="choix1" value="D" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="D") echo 'checked="checked"';?>/>Génie industriel<br/>
+                                <input class="choix1" type="radio" name="choix1" value="P" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
+                                <input class="choix1" type="radio" name="choix1" value="I" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="I") echo 'checked="checked"';?>/>Génie informatique<br/>
+                                <input class="choix1" type="radio" name="choix1" value="T" <?php if (isset($_POST['choix1']) and $_POST['choix1']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-certificate"></span>
                                 <span> Choix 2</span><br/>
-                                <input type="radio" name="choix2" value="D" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
-                                <input type="radio" name="choix2" value="P" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix2" value="I" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
-                                <input type="radio" name="choix2" value="T" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
+                                <input class="choix2" type="radio" name="choix2" value="D" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="D") echo 'checked="checked"';?>/>Génie industriel<br/>
+                                <input class="choix2" type="radio" name="choix2" value="P" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
+                                <input class="choix2" type="radio" name="choix2" value="I" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="I") echo 'checked="checked"';?>/>Génie informatique<br/>
+                                <input class="choix2" type="radio" name="choix2" value="T" <?php if (isset($_POST['choix2']) and $_POST['choix2']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-certificate"></span>
                                 <span> Choix 3</span><br/>
-                                <input type="radio" name="choix3" value="D" <?php if (isset($_POST['choix3']) and $_POST['choix3']=="I") echo 'checked="checked"';?>/>Génie industriel<br/>
-                                <input type="radio" name="choix3" value="P"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix3" value="I"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="F") echo 'checked="checked"';?>/>Génie informatique<br/>
-                                <input type="radio" name="choix3" value="T"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
+                                <input class="choix3" type="radio" name="choix3" value="D" <?php if (isset($_POST['choix3']) and $_POST['choix3']=="D") echo 'checked="checked"';?>/>Génie industriel<br/>
+                                <input class="choix3" type="radio" name="choix3" value="P"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="P") echo 'checked="checked"';?>/>Génie des procédés et M.C<br/>
+                                <input class="choix3" type="radio" name="choix3" value="I"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="I") echo 'checked="checked"';?>/>Génie informatique<br/>
+                                <input class="choix3" type="radio" name="choix3" value="T"  <?php if (isset($_POST['choix3']) and $_POST['choix3']=="T") echo 'checked="checked"';?>/>Génie télécommunication et réseau<br/>
                             </div>
                                     <input type="hidden" value="ensa" name="who" / >
                             <div class="e_login_btn col-md-4 col-md-offset-8 text-right">
@@ -187,9 +210,85 @@
                 </div>
             </div>
         </div>
+              <div class="rating">
+          <input type="radio" name="group1" value="1" />1
+          <input type="radio" name="group1" value="2" />2
+          <!-- more radio buttons -->
+      </div>
+      <div class="rating">
+          <input type="radio" name="group2" value="1" />1
+           <input type="radio" name="group2" value="2" />2
+          <!-- more radio buttons -->
+</div>
         
+    </body>
         <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
         <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
-    </body>
+
+      <script src="jquery.js"></script>
+        <script>
+
+            var choix1= "";
+            var choix2= "";
+            var choix3= "";
+            var val = $('.choix1:checked').val();  
+                var name= $(this).attr('name');
+                  if(choix1=="")
+                     choix1=$('.choix1:checked').val();
+                  if(choix2=="")
+                     choix2=$('.choix2:checked').val();
+                  if(choix3=="")
+                     choix3=$('.choix3:checked').val();
+                 
+               $('input:radio:not([name="choix1"])[value="' + choix1 + '"]').attr('disabled', false);
+               $('input:radio:not([name="choix1"])[value="' + val + '"]').attr('disabled', true); 
+
+
+               var val2 = $('.choix2:checked').val();
+
+               $('input:radio:not([name="choix2"])[value="' + choix2 + '"]').attr('disabled', false);
+               $('input:radio:not([name="choix2"])[value="' + val2 + '"]').attr('disabled', true); 
+
+
+               var val3 = $('.choix3:checked').val();
+
+               $('input:radio:not([name="choix3"])[value="' + choix3 + '"]').attr('disabled', false);
+               $('input:radio:not([name="choix3"])[value="' + val3 + '"]').attr('disabled', true); 
+
+               choix1=$('.choix1:checked').val();
+               choix2=$('.choix2:checked').val(); 
+               choix3=$('.choix3:checked').val(); 
+            var f=function(){
+                var val = $('.choix1:checked').val();  
+                var name= $(this).attr('name');
+                  if(choix1=="")
+                     choix1=$('.choix1:checked').val();
+                  if(choix2=="")
+                     choix2=$('.choix2:checked').val();
+                  if(choix3=="")
+                     choix3=$('.choix3:checked').val();
+
+               $('input:radio:not([name="choix1"])[value="' + choix1 + '"]').attr('disabled', false);
+               $('input:radio:not([name="choix1"])[value="' + val + '"]').attr('disabled', true); 
+
+
+               var val2 = $('.choix2:checked').val();
+
+               $('input:radio:not([name="choix2"])[value="' + choix2 + '"]').attr('disabled', false);
+               $('input:radio:not([name="choix2"])[value="' + val2 + '"]').attr('disabled', true); 
+
+
+               var val3 = $('.choix3:checked').val();
+
+               $('input:radio:not([name="choix3"])[value="' + choix3 + '"]').attr('disabled', false);
+               $('input:radio:not([name="choix3"])[value="' + val3 + '"]').attr('disabled', true); 
+
+               choix1=$('.choix1:checked').val();
+               choix2=$('.choix2:checked').val(); 
+               choix3=$('.choix3:checked').val(); 
+            };
+            $("input:radio").change(f);
+
+        </script>
 </html>

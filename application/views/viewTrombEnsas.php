@@ -36,14 +36,14 @@ ob_start();
 	{
 	$pdf->SetFillColor(165, 209, 82);
 	}
-	// on dessine un grand rectangle coloré (cf le DF)
+	// on dessine un grand rectangle colorï¿½ (cf le DF)
 	$pdf->Rect(0,0, $pdf_larg, $pdf_long,'DF');
 	
 	$pdf->SetFont('Arial','B',16);
 	$pdf->Cell(200,5,'Trombinoscope',0,1,'C');
 	$pdf->Ln();
 	$pdf->SetFont('Arial','',12);
-	$pdf->Cell(200,7,'des élèves issus de la 2ème année cycle prépa de l\'ENSAS',0,1,'C');
+	$pdf->Cell(200,7,'des ï¿½lï¿½ves issus de la 2ï¿½me annï¿½e cycle prï¿½pa de l\'ENSAS',0,1,'C');
 	//verifier la date
 	$annee=explode('-',$results[0]->created_at);
 	$an=((int)$annee[0])+1;
@@ -58,26 +58,26 @@ ob_start();
 	//noir
 	$pdf->SetTextColor(0,0,0);
 	$pdf->SetFont('Arial','',12);
-	$pdf->Cell(20,7,' Elèves .',0,0,'R');
-	$pdf->Cell(20,7,' Filière :',0,0,'R');
+	$pdf->Cell(20,7,' Elï¿½ves .',0,0,'R');
+	$pdf->Cell(20,7,' Filiï¿½re :',0,0,'R');
 	$pdf->SetFont('Arial','B',12);
 	
 	//changer le titre selon la filiere choisie
 	if($results[0]->final_filiere=='F')
 	{
-	$pdf->Cell(50,7,'Génie Informatique',0,1,'L');
+	$pdf->Cell(50,7,'Gï¿½nie Informatique',0,1,'L');
 	}
 	if($results[0]->final_filiere=='D')
 	{
-	$pdf->Cell(50,7,'Génie Industriel',0,1,'L');
+	$pdf->Cell(50,7,'Gï¿½nie Industriel',0,1,'L');
 	}
 	if($results[0]->final_filiere=='P')
 	{
-	$pdf->Cell(50,7,'Génie des Procédés et M.C',0,1,'L');
+	$pdf->Cell(50,7,'Gï¿½nie des Procï¿½dï¿½s et M.C',0,1,'L');
 	}
 	if($results[0]->final_filiere=='T')
 	{
-	$pdf->Cell(50,7,'Génie Télécom et Réseaux',0,1,'L');
+	$pdf->Cell(50,7,'Gï¿½nie Tï¿½lï¿½com et Rï¿½seaux',0,1,'L');
 	}
     $pdf->Ln();
 	$pdf->Ln();
@@ -94,7 +94,7 @@ ob_start();
 	//augmenter la valeur de x et y(selon w et h du rect precedent) du rect apres chache affichage pr obtenir un rect pr chaque personne 
 	$xrect=4;
 	$yrect=50;
-	//à ne pas changer ds la boucle pr garder  ls mêmes valeurs pr ts les rect
+	//ï¿½ ne pas changer ds la boucle pr garder  ls mï¿½mes valeurs pr ts les rect
 	$wrect=39;
 	$hrect=55;
 	
@@ -103,10 +103,10 @@ ob_start();
 	$ytxt=90;
 	
 	/* ----------------les corr des images ----*/
-	      //changer ds la boucle pr passer d'un rect à un autre
+	      //changer ds la boucle pr passer d'un rect ï¿½ un autre
 	$ximg=9;
 	$yimg=52;
-	      //à ne pas changer ds la boucle pr garder les mm val pr ttes les img
+	      //ï¿½ ne pas changer ds la boucle pr garder les mm val pr ttes les img
 	$wimg=30;
 	$himg=34;
 
@@ -117,7 +117,7 @@ ob_start();
 	  
 	  $pdf->SetFillColor(255,255,255);
 	  $pdf->RoundedRect($xrect, $yrect,$wrect,$hrect, 5, '13', 'DF');
-	  $pdf->Image($row->photo,$ximg,$yimg,$wimg,$himg);
+	  $pdf->Image(img_url($row->photo),$ximg,$yimg,$wimg,$himg);
 	  $pdf->SetFont('Times','B',8);
 	  $pdf->Text($xtxt,$ytxt,$i.'-'.strtoupper($row->nom).' '.strtolower($row->prenom).'('.$row->final_filiere.')');
 	  $pdf->SetFont('Times','',8);
@@ -136,7 +136,7 @@ ob_start();
 	
 		if($i%5==0)
 		{$saut=1;
-	     //retour à la ligne
+	     //retour ï¿½ la ligne
 		 $yrect=$yrect+$hrect+2;
 		 $xrect=4;
 		
