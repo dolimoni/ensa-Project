@@ -8,6 +8,9 @@ body{
 img{
     max-width: 100%;
 }
+.obli{
+    color:red !important;
+}
 /* Inscription */
 #e_signup .container{
     background-color:#fff;
@@ -53,15 +56,31 @@ img{
 #e_signup .e_input input[type="password"],
 #e_signup .e_input input[type="date"],
 #e_signup .e_input input[type="number"]{
-    background-color: rgb(241,241,241);
-    border:none;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     padding: 5px;
-    width:80%;
+    width:60%;
 }
 #e_signup .e_date input[type="text"]{
     width:80px;
     background-color: #fff;
     border: 1px solid rgba(0,0,0,0.2);
+}
+.no_border .e_input input[type="text"],.no_border .e_input input[type="password"]{
+    background-color: transparent !important;
+    border:none !important;
+}
+.no_border .e_input input[type="text"]:hover,
+.no_border .e_input input[type="text"]:focus,
+.no_border .e_input input[type="text"]:active,
+.no_border .e_input input[type="text"]:default,
+.no_border .e_input input[type="text"]:focus,
+.no_border .e_input input[type="password"]:hover,
+.no_border .e_input input[type="password"]:active,
+.no_border .e_input input[type="password"]:default,
+.no_border .e_input input[type="password"]:focus{
+    background-color: transparent !important;
+    border:none !important;
 }
 #e_signup .e_input input[type="text"]:hover,
 #e_signup .e_input input[type="text"]:focus,
@@ -80,8 +99,7 @@ img{
 #e_signup .e_input input[type="number"]:active,
 #e_signup .e_input input[type="number"]:default,
 #e_signup .e_input input[type="number"]:focus{
-    border:none;
-    outline: 0;
+    border: 1px solid rgba(0, 0, 0, 0.2);
 }
 #e_signup .e_date input[type="text"]:hover,#e_signup .e_date input[type="text"]:focus,#e_signup .e_date input[type="text"]:active,#e_signup .e_date input[type="text"]:default,#e_signup .e_date input[type="text"]:focus{
     border: 1px solid rgba(0,0,0,0.2);

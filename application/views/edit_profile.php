@@ -169,26 +169,26 @@
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-certificate"></span>
                                 <span> Choix 1</span><br/>
-                                <input type="radio" name="choix1" value="Génie industriel" <?php echoChecked($choix1,"Génie industriel") ?> />Génie industriel<br/>
-                                <input type="radio" name="choix1" value="Génie des procédés et M.C" <?php echoChecked($choix1,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix1" value="Génie informatique" <?php echoChecked($choix1,"Génie informatique") ?> />Génie informatique<br/>
-                                <input type="radio" name="choix1" value="Génie télécommunication et réseau" <?php echoChecked($choix1,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
+                                <input type="radio" name="choix1" value="D" <?php echoChecked($choix1,"Génie industriel") ?> />Génie industriel<br/>
+                                <input type="radio" name="choix1" value="P" <?php echoChecked($choix1,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
+                                <input type="radio" name="choix1" value="I" <?php echoChecked($choix1,"Génie informatique") ?> />Génie informatique<br/>
+                                <input type="radio" name="choix1" value="T" <?php echoChecked($choix1,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-certificate"></span>
                                 <span> Choix 2</span><br/>
-                                <input type="radio" name="choix2" value="Génie industriel" <?php echoChecked($choix2,"Génie industriel") ?> />Génie industriel<br/>
-                                <input type="radio" name="choix2" value="Génie des procédés et M.C" <?php echoChecked($choix2,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix2" value="Génie informatique" <?php echoChecked($choix2,"Génie informatique") ?> />Génie informatique<br/>
-                                <input type="radio" name="choix2" value="Génie télécommunication et réseau" <?php echoChecked($choix2,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
+                                <input type="radio" name="choix2" value="D" <?php echoChecked($choix2,"Génie industriel") ?> />Génie industriel<br/>
+                                <input type="radio" name="choix2" value="P" <?php echoChecked($choix2,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
+                                <input type="radio" name="choix2" value="I" <?php echoChecked($choix2,"Génie informatique") ?> />Génie informatique<br/>
+                                <input type="radio" name="choix2" value="T" <?php echoChecked($choix2,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
                             </div>
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-certificate"></span>
                                 <span> Choix 3</span><br/>
-                                <input type="radio" name="choix3" value="Génie industriel" <?php echoChecked($choix3,"Génie industriel") ?> />Génie industriel<br/>
-                                <input type="radio" name="choix3" value="Génie des procédés et M.C" <?php echoChecked($choix3,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix3" value="Génie informatique" <?php echoChecked($choix3,"Génie informatique") ?> />Génie informatique<br/>
-                                <input type="radio" name="choix3" value="Génie télécommunication et réseau" <?php echoChecked($choix3,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
+                                <input type="radio" name="choix3" value="D" <?php echoChecked($choix3,"Génie industriel") ?> />Génie industriel<br/>
+                                <input type="radio" name="choix3" value="P" <?php echoChecked($choix3,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
+                                <input type="radio" name="choix3" value="I" <?php echoChecked($choix3,"Génie informatique") ?> />Génie informatique<br/>
+                                <input type="radio" name="choix3" value="T" <?php echoChecked($choix3,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
                             </div>
                             <input type="hidden" value="ensa" name="who" />
                             <?php
@@ -229,10 +229,10 @@
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 <span> Choix de la filiere</span>
-                                <input type="radio" name="choix3" value="Génie industriel" <?php echoChecked($choix1,"Génie industriel") ?> />Génie industriel<br/>
-                                <input type="radio" name="choix3" value="Génie des procédés et M.C" <?php echoChecked($choix1,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix3" value="Génie informatique" <?php echoChecked($choix1,"Génie informatique") ?> />Génie informatique<br/>
-                                <input type="radio" name="choix3" value="Génie télécommunication et réseau" <?php echoChecked($choix1,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
+                                <input type="radio" name="choix3" value="D" <?php echoChecked($choix1,"Génie industriel") ?> />Génie industriel<br/>
+                                <input type="radio" name="choix3" value="P" <?php echoChecked($choix1,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
+                                <input type="radio" name="choix3" value="I" <?php echoChecked($choix1,"Génie informatique") ?> />Génie informatique<br/>
+                                <input type="radio" name="choix3" value="T" <?php echoChecked($choix1,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
                             </div>
                             <?php
                             }else{
@@ -268,10 +268,10 @@
                             <div class="e_input e_date col-md-12">
                                 <span class="glyphicon glyphicon-list-alt"></span>
                                 <span> Choix de la filiere</span>
-                                <input type="radio" name="choix3" value="Génie industriel" <?php echoChecked($choix1,"Génie industriel") ?> />Génie industriel<br/>
-                                <input type="radio" name="choix3" value="Génie des procédés et M.C" <?php echoChecked($choix1,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
-                                <input type="radio" name="choix3" value="Génie informatique" <?php echoChecked($choix1,"Génie informatique") ?> />Génie informatique<br/>
-                                <input type="radio" name="choix3" value="Génie télécommunication et réseau" <?php echoChecked($choix1,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
+                                <input type="radio" name="choix3" value="D" <?php echoChecked($choix1,"Génie industriel") ?> />Génie industriel<br/>
+                                <input type="radio" name="choix3" value="P" <?php echoChecked($choix1,"Génie des procédés et M.C") ?> />Génie des procédés et M.C<br/>
+                                <input type="radio" name="choix3" value="I" <?php echoChecked($choix1,"Génie informatique") ?> />Génie informatique<br/>
+                                <input type="radio" name="choix3" value="T" <?php echoChecked($choix1,"Génie télécommunication et réseau") ?> />Génie télécommunication et réseau<br/>
                             </div>
                             <?php
                             }

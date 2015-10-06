@@ -26,11 +26,11 @@
                 <div class="row admin">
                     <div class="col-sm-3 sidebar">
                         <ul>
-                            <li><a href="<?php echo site_url("Admin"); ?>"><span class="glyphicon glyphicon-dashboard"></span> Information generale</a></li>
+                            <li><a href="<?php echo site_url("admin_controller"); ?>"><span class="glyphicon glyphicon-dashboard"></span> Information generale</a></li>
                             <li><a href="<?php echo site_url("admin_controller/gestionEtudiants"); ?>"><span class="glyphicon glyphicon-user"></span> Gestion des etudiants</a></li>
-                            <li><a href="<?php echo site_url("Admin/adsManagement"); ?>"><span class="glyphicon glyphicon-picture"></span> Gestion des fillieres</a></li>
+                            <li><a href="<?php echo site_url("Filiere_controller/gestionFiliere"); ?>"><span class="glyphicon glyphicon-picture"></span> Gestion des fillieres</a></li>
                             <li><a href="<?php echo site_url("admin_controller/statistics"); ?>"><span class="glyphicon glyphicon-file"></span> Statistiques</a></li>
-                            <li><a href="<?php echo site_url("admin_controller/attribution"); ?>"><span class="glyphicon glyphicon-file"></span> Attribution des filières</a></li>
+                            <li><a href="<?php echo site_url("admin_controller/attributionUpload"); ?>"><span class="glyphicon glyphicon-file"></span> Attribution des filières</a></li>
                             <li><a href="<?php echo site_url("etudiant_controller/deconnexion"); ?>"><span class="glyphicon glyphicon-file"></span> Deconnexion</a></li>
                         </ul>
                     </div>

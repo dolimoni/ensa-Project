@@ -29,6 +29,7 @@ class Admin_controller extends CI_Controller
         }
     }
 	public function statistics(){
+            if(isAdmin()){
 
 
 		$this->load->model('admin_model');
@@ -39,25 +40,90 @@ class Admin_controller extends CI_Controller
 				
 		
 		$this->load->view('statistics.php',$choix);
+            }else{
+                redirect("Admin_controller");
+            }
 	}
 
 	# this function makes changes in the database, it will update "final_filiere" in the table "etudiant_ensa"
 	public function attribution()
 	{
+            if(isAdmin()){
 		$this->load->model('admin_model');
 		
 		$this->load->view('classement', $this->admin_model->attribution("moyen"));
-
-		
+            }else{
+                redirect("Admin_controller");
+            }
 	}
         
         public function attributionUpload()
 	{
-            $this->load->view('attribution');
+            if(isAdmin()){
+                $this->load->view('attribution');
+            }else{
+                redirect("Admin_controller");
+            }
 	}
         
         public function importExcelAttribution(){
-            $filename = 'files/classement/'.date("Ymd").'.xlsx';
+            if(isAdmin()){
+                $filename = 'files/classement/'.date("Ymd").'.xlsx';
+                copy($_FILES['excelfile']['tmp_name'], $filename);
+
+                //load the excel library
+                $this->load->library('excel');
+                //read file from path
+                $objPHPExcel = PHPExcel_IOFactory::load(FCPATH.$filename);
+                //get only the Cell Collection
+                $cell_collection = $objPHPExcel->getActiveSheet()->getCellCollection();
+                //extract to a PHP readable array format
+                foreach ($cell_collection as $cell) {
+                    $column = $objPHPExcel->getActiveSheet()->getCell($cell)->getColumn();
+                    $row = $objPHPExcel->getActiveSheet()->getCell($cell)->getRow();
+                    $data_value = $objPHPExcel->getActiveSheet()->getCell($cell)->getValue();
+                    //header will/should be in row 1 only. of course this can be modified to suit your need.
+                    if ($row == 1) {
+                        $header[$row][$column] = $data_value;
+                    } else {
+                        $arr_data[$row][$column] = $data_value;
+                    }
+                }
+                //send the data in an array format
+                $data['header'] = $header;
+                $data['values'] = $arr_data;
+                $this->load->model('admin_model') ;
+                $this->admin_model->insertNotesFromExcelFile($arr_data);
+                redirect("admin_controller/attribution");
+            }else{
+                redirect("Admin_controller");
+            }
+        }
+
+	public function sort()
+	{
+            if(isAdmin()){
+		 $order=$this->input->post('name');
+		  $this->load->model('admin_model');
+		$this->load->view('array.php', $this->admin_model->attribution($order));
+            }else{
+                redirect("Admin_controller");
+            }
+	}
+
+    /* this fct opens a view that contains a browse button, where admin can choose the EXCEL file */
+    public function administration(){
+        if(isAdmin()){
+            $this->load->view('admin-import');
+        }else{
+            redirect("Admin_controller");
+        }
+    }
+    
+    /* this fct uploads the excel file & sends data to model in order to insert it in db */
+    public function importExcel(){
+        if(isAdmin()){
+            $filename = 'files/'.date("Ymd").'.xlsx';
             copy($_FILES['excelfile']['tmp_name'], $filename);
 
             //load the excel library
@@ -82,78 +148,49 @@ class Admin_controller extends CI_Controller
             $data['header'] = $header;
             $data['values'] = $arr_data;
             $this->load->model('admin_model') ;
-            $this->admin_model->insertNotesFromExcelFile($arr_data);
-            redirect("admin_controller/attribution");
+            $this->admin_model->insertStudentsFromExcelFile($arr_data);
+
+            $this->load->view('vue', $data);
+        }else{
+            redirect("Admin_controller");
         }
-
-	public function sort()
-	{
-		 $order=$this->input->post('name');
-		  $this->load->model('admin_model');
-		$this->load->view('array.php', $this->admin_model->attribution($order));
-
-	}
-
-    /* this fct opens a view that contains a browse button, where admin can choose the EXCEL file */
-    public function administration(){
-        $this->load->view('admin-import');
-    }
-    
-    /* this fct uploads the excel file & sends data to model in order to insert it in db */
-    public function importExcel(){
-        $filename = 'files/'.date("Ymd").'.xlsx';
-        copy($_FILES['excelfile']['tmp_name'], $filename);
-        
-        //load the excel library
-        $this->load->library('excel');
-        //read file from path
-        $objPHPExcel = PHPExcel_IOFactory::load(FCPATH.$filename);
-        //get only the Cell Collection
-        $cell_collection = $objPHPExcel->getActiveSheet()->getCellCollection();
-        //extract to a PHP readable array format
-        foreach ($cell_collection as $cell) {
-            $column = $objPHPExcel->getActiveSheet()->getCell($cell)->getColumn();
-            $row = $objPHPExcel->getActiveSheet()->getCell($cell)->getRow();
-            $data_value = $objPHPExcel->getActiveSheet()->getCell($cell)->getValue();
-            //header will/should be in row 1 only. of course this can be modified to suit your need.
-            if ($row == 1) {
-                $header[$row][$column] = $data_value;
-            } else {
-                $arr_data[$row][$column] = $data_value;
-            }
-        }
-        //send the data in an array format
-        $data['header'] = $header;
-        $data['values'] = $arr_data;
-        $this->load->model('admin_model') ;
-        $this->admin_model->insertStudentsFromExcelFile($arr_data);
-        
-        $this->load->view('vue', $data);
     }
     
     public function gestionEtudiants(){
-        $this->load->model("etudiant_model");
-        $data = $this->etudiant_model->getListEtudiants();
-        $this->load->view('gestionEtudiants',$data);
+        if(isAdmin()){
+            $this->load->model("etudiant_model");
+            $data = $this->etudiant_model->getListEtudiants();
+            $this->load->view('gestionEtudiants',$data);
+        }else{
+            redirect("Admin_controller");
+        }
     }
 
     
    public function editProfile(){
-        $this->load->model('etudiant_model') ;
-        $id = $this->session->userdata("id");
-        $cin = $this->session->userdata("cin");
-        if(!empty($cin)){
-            $data = $this->etudiant_model->getProfile($id);
-            $this->load->view('edit_profile',$data);
+        if(isAdmin()){
+            $this->load->model('etudiant_model') ;
+            $id = $this->session->userdata("id");
+            $cin = $this->session->userdata("cin");
+            if(!empty($cin)){
+                $data = $this->etudiant_model->getProfile($id);
+                $this->load->view('edit_profile',$data);
+            }else{
+                redirect();
+            }
         }else{
-            redirect();
+            redirect("Admin_controller");
         }
     }
     
     public function supprimerEtudiant($id){
-        $this->load->model('etudiant_model') ;
-        $this->etudiant_model->delete($id);
-        redirect('admin_controller/gestionEtudiants');
+        if(isAdmin()){
+            $this->load->model('etudiant_model') ;
+            $this->etudiant_model->delete($id);
+            redirect('admin_controller/gestionEtudiants');
+        }else{
+            redirect("Admin_controller");
+        }
     }
 
 }

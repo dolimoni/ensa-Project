@@ -20,6 +20,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+            if(isConnected()){
+                $this->load->model('etudiant_model') ;
+                $this->load->view('profil.php',$this->etudiant_model->getProfile($this->session->userdata("id")));
+            }else{
 		$this->load->view('index');
+            }
 	}
 }

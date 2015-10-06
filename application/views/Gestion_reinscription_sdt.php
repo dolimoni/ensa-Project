@@ -24,7 +24,9 @@
                 </div>
                 <table class="table table-bordered table-calendrier">
                   <tbody>
+	<!-- tableau des annonces -->
                     <tr>
+					
                       <th scope="row">25 Juin</th>
                       <td>Ouverture des choix de filliere en ligne sur le site web</td>
                     </tr>
@@ -46,6 +48,8 @@
                     </tr>
                   </tbody>
                 </table>
+				
+<!--  les fichiers disponibles ds le dossier telechargement de l'app -->				
                 <!--     pieces  -->
 <?php
 if(file_exists("telechargements/pieces.pdf")) {
@@ -55,7 +59,7 @@ $origin="telechargements";
 
 ?>
 <br/>
-<a href="<?php echo site_url("fcntr/down/".$name."/".$origin); ?>"> télécharger les pièces en pdf</a>
+<a href="<?php echo site_url("cntr_RI/downCntr/".$name."/".$origin); ?>"> télécharger les pièces en pdf</a>
 <?php
 }
 //else echo "les pieces ne sont pas disponibles pour le moment !";
@@ -68,7 +72,7 @@ $origin="telechargements";
 
 ?>
 <br/>
-<a href="<?php echo site_url("fcntr/down/".$name."/".$origin); ?>"> Fiche de renseignements-1ere année C.P.</a>
+<a href="<?php echo site_url("cntr_RI/downCntr/".$name."/".$origin); ?>"> Fiche de renseignements-1ere année C.P.</a>
 <?php
 }
 //else echo "la fiche 2eme annee n'est pas disponible pour le moment !";
@@ -82,7 +86,7 @@ $origin="telechargements";
 
 ?>
 <br/>
-<a href="<?php echo site_url("fcntr/down/".$name."/".$origin); ?>"> Fiche de renseignements-2eme année Cycle Préparatoire</a>
+<a href="<?php echo site_url("cntr_RI/downCntr/".$name."/".$origin); ?>"> Fiche de renseignements-2eme année Cycle Préparatoire</a>
 <?php
 }
 //else echo "la fiche 2eme annee n'est pas disponible pour le moment !";
@@ -97,7 +101,7 @@ $origin="telechargements";
 
 ?>
 <br/>
-<a href="<?php echo site_url("fcntr/down/".$name."/".$origin); ?>"> Fiche de renseignements-1ere année Cycle Ingénieur</a>
+<a href="<?php echo site_url("cntr_RI/downCntr/".$name."/".$origin); ?>"> Fiche de renseignements-1ere année Cycle Ingénieur</a>
 <?php
 }
 //else echo "la fiche 3eme annee n'est pas disponible pour le moment !";
@@ -111,7 +115,7 @@ $origin="telechargements";
 
 ?>
 <br/>
-<a href="<?php echo site_url("fcntr/down/".$name."/".$origin); ?>"> Fiche de renseignements-2eme annee Cycle Ingénieur</a>
+<a href="<?php echo site_url("cntr_RI/downCntr/".$name."/".$origin); ?>"> Fiche de renseignements-2eme annee Cycle Ingénieur</a>
 <?php
 }
 //else echo "la fiche 4eme annee n'est pas disponible pour le moment !";
@@ -126,7 +130,7 @@ $origin="telechargements";
 
 ?>
 <br/>
-<a href="<?php echo site_url("fcntr/down/".$name."/".$origin); ?>"> Fiche de renseignements-3eme année Cycle Ingénieur</a>
+<a href="<?php echo site_url("cntr_RI/downCntr/".$name."/".$origin); ?>"> Fiche de renseignements-3eme année Cycle Ingénieur</a>
 <?php
 }
 //else echo "la fiche 5eme annee n'est pas disponible pour le moment !";
@@ -140,7 +144,7 @@ $origin="telechargements";
 
 ?>
 <br/>
-<a href="<?php echo site_url("fcntr/down/".$name."/".$origin); ?>"> Dossier d'inscription définitif en CNC <?php $d=date('Y');$dd=date('Y')+1; echo $d."-".$dd; ?></a>
+<a href="<?php echo site_url("cntr_RI/downCntr/".$name."/".$origin); ?>"> Dossier d'inscription définitif en CNC <?php $d=date('Y');$dd=date('Y')+1; echo $d."-".$dd; ?></a>
 <?php
 }
 //else echo "la fiche 5eme annee n'est pas disponible pour le moment !";
