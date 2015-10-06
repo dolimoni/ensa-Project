@@ -14,17 +14,29 @@
         
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/signup.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/login.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/admin.css"/>
     </head>
     <body>
-        <!-- Modifier une filiere -->
+        <!-- Inscription -->
         <div id="e_signup">
             <div class="container">
                 <div class="e_title col-sm-4 col-sm-offset-2">
-                    <h3>Modification des Filières</h3>
+                    <h3>Administration</h3>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                      <form ENCTYPE="multipart/form-data" method="post" action="<?php echo site_url('filiere_controller/editFiliereConf');?>">
+                <div class="row admin">
+                    <div class="col-sm-3 sidebar">
+                        <ul>
+                            <li><a href="<?php echo site_url("admin_controller"); ?>"><span class="glyphicon glyphicon-dashboard"></span> Information generale</a></li>
+                            <li><a href="<?php echo site_url("admin_controller/gestionEtudiants"); ?>"><span class="glyphicon glyphicon-user"></span> Gestion des etudiants</a></li>
+                            <li><a href="<?php echo site_url("Filiere_controller/gestionFiliere"); ?>"><span class="glyphicon glyphicon-picture"></span> Gestion des fillieres</a></li>
+                            <li><a href="<?php echo site_url("admin_controller/statistics"); ?>"><span class="glyphicon glyphicon-file"></span> Statistiques</a></li>
+                            <li><a href="<?php echo site_url("admin_controller/attributionUpload"); ?>"><span class="glyphicon glyphicon-file"></span> Attribution des filières</a></li>
+                            <li><a href="<?php echo site_url("etudiant_controller/deconnexion"); ?>"><span class="glyphicon glyphicon-file"></span> Deconnexion</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-9 content">
+                        <h3 class="page-title">Dashboard <span> Modification des Filières </span></h3>
+                        <form ENCTYPE="multipart/form-data" method="post" action="<?php echo site_url('filiere_controller/editFiliereConf');?>">
                             <?php
                     foreach($results as $filiere){
                     ?>
