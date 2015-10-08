@@ -37,6 +37,22 @@
                     <div class="col-sm-9 content">
                         <h3 class="page-title">Dashboard <span> Gestion des etudiants </span></h3>
                         <div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    Filière : 
+                                    <select id="filtre_filiere">
+                                        <option value="0">Tous</option>
+                                        <option value="I">Génie informatique</option>
+                                        <option value="D">Génie industriel</option>
+                                        <option value="P">Génie des procédés et M.C</option>
+                                        <option value="T">Génie télécommunication et réseau</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <input type="text" name="filtre_name" placeholder="Chercher par nom"/>
+                                </div>
+                            </div>
                             <table class="table-list-etudiants table table-striped">
                                 <thead>
                                     <tr>
